@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 41969124}
   - component: {fileID: 41969123}
   - component: {fileID: 41969126}
+  - component: {fileID: 41969127}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -166,11 +167,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 41969122}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 785, y: 6.83, z: 775}
+  m_LocalPosition: {x: 785, y: 6.874, z: 775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 993322339}
   - {fileID: 534669905}
+  - {fileID: 759399462}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -188,6 +190,28 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 10
   myrenderer: {fileID: 0}
+  onGround: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  animator: {fileID: 0}
+--- !u!114 &41969127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 41969122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db68b9a7d868ba4eb200fdb4609e22b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oldRotation: {x: 0, y: 0, z: 0, w: 0}
+  newRotation: {x: 0, y: 0, z: 0, w: 0}
+  mouseSensitivityX: 0
+  mouseSensitivityY: 0
+  oldMousePosition: {x: 0, y: 0, z: 0}
+  animator: {fileID: 0}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +407,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 1, z: -2.2}
+  m_LocalPosition: {x: 0.45, y: 1, z: -2.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 41969125}
@@ -575,6 +599,34 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aae542b8a65f39b49b008fa689ce9804, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &759399461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 759399462}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: GroundCheck
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &759399462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 759399461}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.072, z: -0.129}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 41969125}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &763031003
 Prefab:
   m_ObjectHideFlags: 0
@@ -588,7 +640,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400110, guid: 0d251b4aa560c8a4ca2d4f7ace1b9ab7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -0.98
       objectReference: {fileID: 0}
     - target: {fileID: 400110, guid: 0d251b4aa560c8a4ca2d4f7ace1b9ab7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1087,6 +1139,10 @@ Prefab:
         type: 2}
       propertyPath: m_BakeLightProbesForTrees
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674822528704550, guid: 885a2aa68397e6b458781690e1e3e682, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 885a2aa68397e6b458781690e1e3e682, type: 2}

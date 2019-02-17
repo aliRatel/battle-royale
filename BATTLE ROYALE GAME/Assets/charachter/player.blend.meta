@@ -130,6 +130,9 @@ ModelImporter:
     7400004: walk_001
     7400006: walk_LEFT
     7400008: walk_RIGHT
+    7400010: idle
+    7400012: walk_RIGHT (1)
+    7400014: aim_norm
     9500000: //RootNode
     13700000: hair
     13700002: Human_BaseMesh
@@ -152,15 +155,18 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Default Take' has import animation warnings
+    animationImportWarnings: "\nClip 'idle' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'Chest' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Index1_L' has translation animation that
+      will be discarded.\n\t'Middle1_L' has translation animation that will be discarded.\n\t'Ring1_L'
+      has translation animation that will be discarded.\n\t'Pinky1_L' has translation
+      animation that will be discarded.\n\t'Index1_R' has translation animation that
+      will be discarded.\n\t'Middle1_R' has translation animation that will be discarded.\n\t'Ring1_R'
+      has translation animation that will be discarded.\n\t'Pinky1_R' has translation
+      animation that will be discarded.\n\nClip 'run_002' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'UpperLeg_L' has scale animation that will
-      be discarded.\n\t'LowerLeg_L' has scale animation that will be discarded.\n\t'Foot_L'
-      has scale animation that will be discarded.\n\t'UpperLeg_R' has scale animation
-      that will be discarded.\n\t'LowerLeg_R' has scale animation that will be discarded.\n\t'Foot_R'
-      has scale animation that will be discarded.\n\nClip 'run_002' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'Chest' is inbetween humanoid transforms
+      to improve retargeting quality.\n\t'Chest' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\t'UpperLeg_L' has scale
       animation that will be discarded.\n\t'LowerLeg_L' has scale animation that will
       be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
@@ -198,17 +204,17 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Default Take
-      takeName: Default Take
+      name: idle
+      takeName: idle
       firstFrame: 0
-      lastFrame: 15
+      lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -336,6 +342,146 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: walk_RIGHT (1)
+      takeName: walk_RIGHT
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000000000000000000000000000000000001000000010000000000000000000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hips
+        weight: 1
+      - path: Armature/Hips/Spine
+        weight: 0
+      - path: Armature/Hips/Spine/Chest
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Neck
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Neck/Head
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Index1_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Index1_L/Index2_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Index1_L/Index2_L/Index3_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Middle1_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Middle1_L/Middle2_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Middle1_L/Middle2_L/Middle3_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Pinky1_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Pinky1_L/Pinky2_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Pinky1_L/Pinky2_L/Pinky3_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Ring1_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Ring1_L/Ring2_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Ring1_L/Ring2_L/Ring3_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Thumb1_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Thumb1_L/Thumb2_L
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Index1_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Index1_R/Index2_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Index1_R/Index2_R/Index3_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Middle1_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Middle1_R/Middle2_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Middle1_R/Middle2_R/Middle3_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Pinky1_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Pinky1_R/Pinky2_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Pinky1_R/Pinky2_R/Pinky3_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Ring1_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Ring1_R/Ring2_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Ring1_R/Ring2_R/Ring3_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Thumb1_R
+        weight: 0
+      - path: Armature/Hips/Spine/Chest/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Thumb1_R/Thumb2_R
+        weight: 0
+      - path: Armature/Hips/UpperLeg_L
+        weight: 1
+      - path: Armature/Hips/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Armature/Hips/UpperLeg_L/LowerLeg_L/Foot_L
+        weight: 1
+      - path: Armature/Hips/UpperLeg_L/LowerLeg_L/Foot_L/Toes_L
+        weight: 1
+      - path: Armature/Hips/UpperLeg_R
+        weight: 1
+      - path: Armature/Hips/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Armature/Hips/UpperLeg_R/LowerLeg_R/Foot_R
+        weight: 1
+      - path: Armature/Hips/UpperLeg_R/LowerLeg_R/Foot_R/Toes_R
+        weight: 1
+      - path: hair
+        weight: 1
+      - path: Human_BaseMesh
+        weight: 1
+      - path: pants
+        weight: 1
+      - path: shirt
+        weight: 1
+      - path: shoes
+        weight: 1
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: d7df5fa1062491d45a8cb898b3cee8d8, type: 2}
       additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
