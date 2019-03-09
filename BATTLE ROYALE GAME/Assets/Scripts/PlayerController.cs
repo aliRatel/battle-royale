@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     public bool onGround;
     public LayerMask whatIsGround;
     public Animator animator;
+    public bool h = false;
 	// Use this for initialization
 	void Start () {
         animator = GetComponentInChildren<Animator>();
@@ -16,33 +17,52 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        GameObject groundCheck = GameObject.FindGameObjectWithTag("GroundCheck");
-       onGround= Physics2D.OverlapCircle(groundCheck.transform.position,10f,whatIsGround);
-#region movement
-        if (Input.GetKey(KeyCode.W))
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                speed = 15f;
-                animator.SetBool("running", true);
-                animator.SetBool("walking", false);
-            }
-            else{
-                speed = 10f;
-                animator.SetBool("running", false);
-                animator.SetBool("walking", true);
-            }
+        
+            animator.SetBool("isHustler", h);
 
-            transform.position += transform.forward * speed * Time.deltaTime;
+        
+        if (Input.GetKey(KeyCode.Z))
+        {
+            animator.SetBool("isCrouching", true);
 
         }
         else
         {
-            animator.SetBool("walking", false);
-            animator.SetBool("running", false);
-
+            animator.SetBool("isCrouching", false);
 
         }
+        if (Input.GetMouseButton(1) ||Input.GetMouseButton(0))
+        {
+            animator.SetBool("isAiming", true);
+        }else
+        {
+            animator.SetBool("isAiming", false);
+        }
+
+
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 15f;
+            animator.SetBool("run", true);
+
+        }
+        else
+        {
+            animator.SetBool("run", false);
+
+            speed = 10f;
+
+        }
+        #region movement
+        if (Input.GetKey(KeyCode.W))
+        {
+            
+
+            transform.position += transform.forward * speed * Time.deltaTime;
+
+        }
+      
         if (Input.GetKey(KeyCode.S))
         {
             transform.position -= transform.forward * speed*Time.deltaTime;
@@ -54,7 +74,6 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKey(KeyCode.D))
         {
             transform.position += transform.right * speed * Time.deltaTime;
-           // animator.SetBool("walkRight", true);
         }
         if (Input.GetKey(KeyCode.Space) )
         {
