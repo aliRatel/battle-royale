@@ -10,9 +10,15 @@ public class PlayerController : MonoBehaviour {
     public LayerMask whatIsGround;
     public Animator animator;
     public bool h = false;
+    public GameObject socketIO;
+    public SocketIO.SocketIOComponent sio;
+
 	// Use this for initialization
 	void Start () {
         animator = GetComponentInChildren<Animator>();
+
+ 
+        
 	}
 	
 	// Update is called once per frame
