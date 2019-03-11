@@ -1,0 +1,303 @@
+fileFormatVersion: 2
+guid: ffa92854639525840a23f6986345d04b
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Arch60_02_00
+    100002: Arch60_02_01
+    100004: Arch60_02_02
+    100006: Arch60_02_03
+    100008: Arch60_02_04
+    100010: Arch60_02_05
+    100012: Arch60_02_06
+    100014: Arch60_02_07
+    100016: Arch60_02_08
+    100018: Arch60_02_09
+    100020: Arch60_02_10
+    100022: Arch60_02_12
+    100024: Arch60_02_13
+    100026: Arch60_02_14
+    100028: Arch60_02_15
+    100030: Arch60_02_16
+    100032: Arch60_02_17
+    100034: Arch60_02_18
+    100036: Arch60_02_19
+    100038: Arch60_02_20
+    100040: Arch60_02_21
+    100042: Box001
+    100044: Object001
+    100046: Object002
+    100048: Object003
+    100050: Object005
+    100052: Object006
+    100054: Object007
+    100056: //RootNode
+    400000: Arch60_02_00
+    400002: Arch60_02_01
+    400004: Arch60_02_02
+    400006: Arch60_02_03
+    400008: Arch60_02_04
+    400010: Arch60_02_05
+    400012: Arch60_02_06
+    400014: Arch60_02_07
+    400016: Arch60_02_08
+    400018: Arch60_02_09
+    400020: Arch60_02_10
+    400022: Arch60_02_12
+    400024: Arch60_02_13
+    400026: Arch60_02_14
+    400028: Arch60_02_15
+    400030: Arch60_02_16
+    400032: Arch60_02_17
+    400034: Arch60_02_18
+    400036: Arch60_02_19
+    400038: Arch60_02_20
+    400040: Arch60_02_21
+    400042: Box001
+    400044: Object001
+    400046: Object002
+    400048: Object003
+    400050: Object005
+    400052: Object006
+    400054: Object007
+    400056: //RootNode
+    2100000: 04 - Default
+    2100002: 02 - Default
+    2100004: 05 - Default
+    2100006: 07 - Default
+    2100008: 03 - Default
+    2100010: St
+    2100012: 08 - Default
+    2100014: 01 - Default
+    2100016: 09 - Default
+    2300000: Arch60_02_01
+    2300002: Arch60_02_02
+    2300004: Arch60_02_03
+    2300006: Arch60_02_04
+    2300008: Arch60_02_05
+    2300010: Arch60_02_06
+    2300012: Arch60_02_07
+    2300014: Arch60_02_08
+    2300016: Arch60_02_09
+    2300018: Arch60_02_10
+    2300020: Arch60_02_12
+    2300022: Arch60_02_13
+    2300024: Arch60_02_14
+    2300026: Arch60_02_15
+    2300028: Arch60_02_16
+    2300030: Arch60_02_17
+    2300032: Arch60_02_18
+    2300034: Arch60_02_19
+    2300036: Arch60_02_20
+    2300038: Arch60_02_21
+    2300040: Box001
+    2300042: Object001
+    2300044: Object002
+    2300046: Object003
+    2300048: Object005
+    2300050: Object006
+    2300052: Object007
+    3300000: Arch60_02_01
+    3300002: Arch60_02_02
+    3300004: Arch60_02_03
+    3300006: Arch60_02_04
+    3300008: Arch60_02_05
+    3300010: Arch60_02_06
+    3300012: Arch60_02_07
+    3300014: Arch60_02_08
+    3300016: Arch60_02_09
+    3300018: Arch60_02_10
+    3300020: Arch60_02_12
+    3300022: Arch60_02_13
+    3300024: Arch60_02_14
+    3300026: Arch60_02_15
+    3300028: Arch60_02_16
+    3300030: Arch60_02_17
+    3300032: Arch60_02_18
+    3300034: Arch60_02_19
+    3300036: Arch60_02_20
+    3300038: Arch60_02_21
+    3300040: Box001
+    3300042: Object001
+    3300044: Object002
+    3300046: Object003
+    3300048: Object005
+    3300050: Object006
+    3300052: Object007
+    4300000: Arch60_02_20
+    4300002: Arch60_02_19
+    4300004: Arch60_02_18
+    4300006: Arch60_02_03
+    4300008: Arch60_02_04
+    4300010: Arch60_02_05
+    4300012: Arch60_02_06
+    4300014: Arch60_02_17
+    4300016: Arch60_02_16
+    4300018: Arch60_02_09
+    4300020: Arch60_02_10
+    4300022: Arch60_02_15
+    4300024: Arch60_02_12
+    4300026: Arch60_02_14
+    4300028: Arch60_02_21
+    4300030: Arch60_02_08
+    4300032: Arch60_02_07
+    4300034: Arch60_02_02
+    4300036: Arch60_02_01
+    4300038: Arch60_02_13
+    4300040: Object001
+    4300042: Object002
+    4300044: Object003
+    4300046: Object005
+    4300048: Object006
+    4300050: Object007
+    4300052: Box001
+    6400000: Arch60_02_01
+    6400002: Arch60_02_02
+    6400004: Arch60_02_03
+    6400006: Arch60_02_04
+    6400008: Arch60_02_05
+    6400010: Arch60_02_06
+    6400012: Arch60_02_07
+    6400014: Arch60_02_08
+    6400016: Arch60_02_09
+    6400018: Arch60_02_10
+    6400020: Arch60_02_12
+    6400022: Arch60_02_13
+    6400024: Arch60_02_14
+    6400026: Arch60_02_15
+    6400028: Arch60_02_16
+    6400030: Arch60_02_17
+    6400032: Arch60_02_18
+    6400034: Arch60_02_19
+    6400036: Arch60_02_20
+    6400038: Arch60_02_21
+    6400040: Box001
+    6400042: Object001
+    6400044: Object002
+    6400046: Object003
+    6400048: Object005
+    6400050: Object006
+    6400052: Object007
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 711c5194c09c273e2fee3a7a68f74706--cobblestone-paving-seamless-textures
+    second: {fileID: 2800000, guid: 8347cc2e72fc15e4eaefa68a9f2631ce, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 88175393-empty-damaged-beton-background-abstract-urban-distressed-texture-
+    second: {fileID: 2800000, guid: a96c35027a768ab4390dcaa49d70dc41, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Arch39_031
+    second: {fileID: 2800000, guid: 8b7eb2aec62c8724685e5b08f1a4a49e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Archmodels65_01_capboard
+    second: {fileID: 2800000, guid: 7b79fb25a64bce8478a3c4a68a0ab7a0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Archmodels65_05_Chaire_seat
+    second: {fileID: 2800000, guid: 01d3743ddf8dc3641bfd6339bc3ec116, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: frontend-large
+    second: {fileID: 2800000, guid: 47a43766fb4f743459e79b8d925e621c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: glass_blue_background_texture_pattern_transparent_window-1194340 (1)
+    second: {fileID: 2800000, guid: 5a542f7ddcca73844a01a361e8869dff, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: s_shutterstock_188230646
+    second: {fileID: 2800000, guid: 85506de033ec65c4ca16834c22612372, type: 3}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
