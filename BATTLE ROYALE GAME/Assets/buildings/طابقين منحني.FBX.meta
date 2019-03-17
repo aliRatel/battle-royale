@@ -1,0 +1,220 @@
+fileFormatVersion: 2
+guid: dc103b5a08baf5c4291003bd399d7117
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Arch01_03_399
+    100002: Arch01_03_402
+    100004: Arch01_03_403
+    100006: Arch01_03_404
+    100008: Arch01_03_405
+    100010: Box002
+    100012: Box01
+    100014: Curve01
+    100016: Object008
+    100018: Object009
+    100020: Object01
+    100022: Object05
+    100024: Object06
+    100026: Object07
+    100028: StraightStair001
+    100030: Text01
+    100032: //RootNode
+    400000: Arch01_03_399
+    400002: Arch01_03_402
+    400004: Arch01_03_403
+    400006: Arch01_03_404
+    400008: Arch01_03_405
+    400010: Box002
+    400012: Box01
+    400014: Curve01
+    400016: Object008
+    400018: Object009
+    400020: Object01
+    400022: Object05
+    400024: Object06
+    400026: Object07
+    400028: StraightStair001
+    400030: Text01
+    400032: //RootNode
+    2100000: 03 - Default
+    2100002: 'Material #0'
+    2100004: 13 - Default
+    2100006: 'Material #25'
+    2100008: 04 - Default
+    2100010: 2
+    2100012: 06 - Default
+    2100014: 02 - Default
+    2300000: Arch01_03_399
+    2300002: Arch01_03_402
+    2300004: Arch01_03_403
+    2300006: Arch01_03_404
+    2300008: Arch01_03_405
+    2300010: Box002
+    2300012: Box01
+    2300014: Object008
+    2300016: Object009
+    2300018: Object01
+    2300020: Object05
+    2300022: Object06
+    2300024: Object07
+    2300026: StraightStair001
+    2300028: Text01
+    3300000: Arch01_03_399
+    3300002: Arch01_03_402
+    3300004: Arch01_03_403
+    3300006: Arch01_03_404
+    3300008: Arch01_03_405
+    3300010: Box002
+    3300012: Box01
+    3300014: Object008
+    3300016: Object009
+    3300018: Object01
+    3300020: Object05
+    3300022: Object06
+    3300024: Object07
+    3300026: StraightStair001
+    3300028: Text01
+    4300000: Arch01_03_399
+    4300002: Arch01_03_402
+    4300004: Arch01_03_403
+    4300006: Arch01_03_404
+    4300008: Arch01_03_405
+    4300010: Object05
+    4300012: Object06
+    4300014: Object07
+    4300016: Object01
+    4300018: Box01
+    4300020: Text01
+    4300022: StraightStair001
+    4300024: Box002
+    4300026: Object008
+    4300028: Object009
+    6400000: Arch01_03_399
+    6400002: Arch01_03_402
+    6400004: Arch01_03_403
+    6400006: Arch01_03_404
+    6400008: Arch01_03_405
+    6400010: Box002
+    6400012: Box01
+    6400014: Object008
+    6400016: Object009
+    6400018: Object01
+    6400020: Object05
+    6400022: Object06
+    6400024: Object07
+    6400026: StraightStair001
+    6400028: Text01
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 44583278-stone-pavement-texture-granite-cobblestoned-pavement-background-
+    second: {fileID: 2800000, guid: 75bcd46eef0c97d42bea2b2015efaeb0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 6b64140580ea302ada03c0018a090707
+    second: {fileID: 2800000, guid: b092f7adfb6894f47a26f83ee8504d21, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Concrete.Precast Structural Concrete.Smooth.bump
+    second: {fileID: 2800000, guid: 7a11e85c8d076784491c5b36113abb55, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: leather-textures-wallpapers-25244-278754
+    second: {fileID: 2800000, guid: 5797810c62db1e641acffa45adfe2ef9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: qxslpnncku106sp1dbirn3xc7cjld7yidpkcj3hsn1rwtwakayzqgcxqwsmdsyrz-
+    second: {fileID: 2800000, guid: c3f08f5db55132745b199c40d51d5bcb, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: uaskjxcpunoijmldpjlazztatiswm18esrfnztu480xovz6wo7fgi652hpvkuity-
+    second: {fileID: 2800000, guid: 6936121e9b87f7343864f2d4632b0b82, type: 3}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

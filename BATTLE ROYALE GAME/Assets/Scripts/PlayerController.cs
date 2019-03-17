@@ -12,14 +12,12 @@ public class PlayerController : MonoBehaviour {
     public Animator animator;
     public bool h = false;
     public GameObject socketIO;
-    public SocketIO.SocketIOComponent sio;
-    private bool localPlayer = false;
+
 
     // Use this for initialization
     void Start () {
         animator = GetComponentInChildren<Animator>();
-        oldPosition = transform.position;
-        currentPosiotion = oldPosition;
+
         
 	}
 	

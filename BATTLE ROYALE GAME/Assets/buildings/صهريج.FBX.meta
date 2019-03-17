@@ -1,0 +1,246 @@
+fileFormatVersion: 2
+guid: bd57322bec0467a49a73e005a6e18b6c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Arc005
+    100002: Arc006
+    100004: Box005
+    100006: Box006
+    100008: Box007
+    100010: Box008
+    100012: Box009
+    100014: Box010
+    100016: Cylinder008
+    100018: Cylinder009
+    100020: Group001
+    100022: Line001
+    100024: Line002
+    100026: Object003
+    100028: Object004
+    100030: Object005
+    100032: Object006
+    100034: Object007
+    100036: OilTank001
+    100038: Plane001
+    100040: Shape001
+    100042: //RootNode
+    400000: Arc005
+    400002: Arc006
+    400004: Box005
+    400006: Box006
+    400008: Box007
+    400010: Box008
+    400012: Box009
+    400014: Box010
+    400016: Cylinder008
+    400018: Cylinder009
+    400020: Group001
+    400022: Line001
+    400024: Line002
+    400026: Object003
+    400028: Object004
+    400030: Object005
+    400032: Object006
+    400034: Object007
+    400036: OilTank001
+    400038: Plane001
+    400040: Shape001
+    400042: //RootNode
+    2100000: 06 - Default
+    2100002: 10 - Default
+    2100004: 'Material #3'
+    2100006: 17 - Default
+    2100008: 12 - Default
+    2100010: 11 - Default
+    2100012: 'Material #4'
+    2100014: 'Material #5'
+    2300000: Arc005
+    2300002: Arc006
+    2300004: Box005
+    2300006: Box006
+    2300008: Box007
+    2300010: Box008
+    2300012: Box009
+    2300014: Box010
+    2300016: Cylinder008
+    2300018: Cylinder009
+    2300020: Line001
+    2300022: Line002
+    2300024: Object003
+    2300026: Object004
+    2300028: Object005
+    2300030: Object006
+    2300032: Object007
+    2300034: OilTank001
+    2300036: Plane001
+    3300000: Arc005
+    3300002: Arc006
+    3300004: Box005
+    3300006: Box006
+    3300008: Box007
+    3300010: Box008
+    3300012: Box009
+    3300014: Box010
+    3300016: Cylinder008
+    3300018: Cylinder009
+    3300020: Line001
+    3300022: Line002
+    3300024: Object003
+    3300026: Object004
+    3300028: Object005
+    3300030: Object006
+    3300032: Object007
+    3300034: OilTank001
+    3300036: Plane001
+    4300000: Arc005
+    4300002: Plane001
+    4300004: Cylinder009
+    4300006: Line001
+    4300008: Box007
+    4300010: Cylinder008
+    4300012: Box005
+    4300014: Box009
+    4300016: Arc006
+    4300018: Object004
+    4300020: Object003
+    4300022: Box006
+    4300024: OilTank001
+    4300026: Object005
+    4300028: Object006
+    4300030: Line002
+    4300032: Object007
+    4300034: Box010
+    4300036: Box008
+    6400000: Arc005
+    6400002: Arc006
+    6400004: Box005
+    6400006: Box006
+    6400008: Box007
+    6400010: Box008
+    6400012: Box009
+    6400014: Box010
+    6400016: Cylinder008
+    6400018: Cylinder009
+    6400020: Line001
+    6400022: Line002
+    6400024: Object003
+    6400026: Object004
+    6400028: Object005
+    6400030: Object006
+    6400032: Object007
+    6400034: OilTank001
+    6400036: Plane001
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 32604
+    second: {fileID: 2800000, guid: d1775c2d0e267e54ab633fed9e544a82, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Arch41_014_ground_bump
+    second: {fileID: 2800000, guid: 1e2874764f3466e4f8c72839cdbbfd7d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: canva-fuel-tank-MAA31zUGbtI
+    second: {fileID: 2800000, guid: cbd86809b31a8c14b88e2f1016f97fe2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: salvage-fuelCS7_1669
+    second: {fileID: 2800000, guid: d0bc4280de47896498d46f04b7b40d94, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: tank_texture
+    second: {fileID: 2800000, guid: 1803d744bed367b419fca0b18d3a9e76, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: viejo-fondo-madera-textured-oscuro-grunge-superficie-vieja-textura-madera-marron_7182-329
+    second: {fileID: 2800000, guid: 827b215ae8dfb2d4e93871de302cb47a, type: 3}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
