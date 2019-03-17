@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+    Vector3 oldPosition, currentPosiotion;
     public GameObject target;
     public float speed = 10;
     public SkinnedMeshRenderer myrenderer;
@@ -12,19 +13,24 @@ public class PlayerController : MonoBehaviour {
     public bool h = false;
     public GameObject socketIO;
     public SocketIO.SocketIOComponent sio;
+    private bool localPlayer = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         animator = GetComponentInChildren<Animator>();
-
- 
+        oldPosition = transform.position;
+        currentPosiotion = oldPosition;
         
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
-            animator.SetBool("isHustler", h);
+        if (!localPlayer)
+        {
+            return ;
+        }
+        # region animation
+        animator.SetBool("isHustler", h);
 
         
         if (Input.GetKey(KeyCode.Z))
@@ -60,6 +66,7 @@ public class PlayerController : MonoBehaviour {
             speed = 10f;
 
         }
+#endregion animation
         #region movement
         if (Input.GetKey(KeyCode.W))
         {
@@ -85,6 +92,14 @@ public class PlayerController : MonoBehaviour {
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + speed * Time.deltaTime, transform.position.z);
         }
-#endregion 
+        #endregion
+        #region networking
+        if (oldPosition != currentPosiotion)
+        {
+            //todo position networking
+            oldPosition = currentPosiotion;
+        }
+
+        #endregion networking
     }
 }
