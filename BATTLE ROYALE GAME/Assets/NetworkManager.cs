@@ -52,9 +52,9 @@ public class NetworkManager : MonoBehaviour {
 
     private void JoinSession()
     {
-        logInInfo info = new logInInfo("ali", "emad");
-        String infoJson = JsonUtility.ToJson(info);
-        socket.Emit("join session",new JSONObject(infoJson) );
+        posrotJson posrotJson = new posrotJson(player.transform.position,player.transform.rotation);
+        String posrot = JsonUtility.ToJson(posrotJson);
+        socket.Emit("join session",new JSONObject(posrot) );
     }
 
     private void LogIn()
@@ -69,6 +69,7 @@ public class NetworkManager : MonoBehaviour {
     private void OnOtherPlayerConnected(SocketIOEvent obj)
     {
         string player = obj.data.ToString();
+        Debug.Log("player info: "+player);
         PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
         SessionManager.AddNewPlayer(playerJson) ;
     }
@@ -125,6 +126,18 @@ public class NetworkManager : MonoBehaviour {
             this.rotation = new float[] { rotation.eulerAngles.x, rotation.eulerAngles.y, rotation.eulerAngles.z };
         }
          
+    }
+    [Serializable]
+    public class posrotJson
+    {
+        public float[] position;
+        public float[] rotation;
+
+        public posrotJson(Vector3 position,  Quaternion  rotation)
+        {
+            this.position = new float[]{position.x,position.y,position.z}  ;
+            this.rotation = new float[] { rotation.x,rotation.y,rotation.z};
+        }
     }
     [Serializable]
     public class logInInfo
