@@ -12,17 +12,19 @@ public class PlayerController : MonoBehaviour {
     public Animator animator;
     public bool h = false;
     public GameObject socketIO;
+    public bool localPlayer;
 
 
     // Use this for initialization
     void Start () {
         animator = GetComponentInChildren<Animator>();
+        localPlayer = true;
 
-        
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        currentPosiotion = transform.position;
         if (!localPlayer)
         {
             return ;
