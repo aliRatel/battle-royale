@@ -22,13 +22,10 @@ public class NetworkManager : MonoBehaviour {
 
     void Start () {
         socket.On("join session approved", OnApproved);
-        socket.On("i", onI);
         socket.On("other player connected", OnOtherPlayerConnected);
 
     }
-    public void onI(SocketIOEvent obj)
-    {
-        Debug.Log("aa"); }
+  
 
     private void Update()
     {
@@ -47,8 +44,10 @@ public class NetworkManager : MonoBehaviour {
 
     private void OnApproved(SocketIOEvent obj)
     {
+        string players = obj.data.ToString();
         
-        Debug.Log("type" );
+        PlayerJson[] playersJson= JsonUtility.FromJson<PlayerJson[]>(players);
+        
     }
 
     private void JoinSession()
@@ -67,9 +66,11 @@ public class NetworkManager : MonoBehaviour {
 
     }
 
-    private void OnOtherPlayerConnected(SocketIOEvent socketIOEvent)
+    private void OnOtherPlayerConnected(SocketIOEvent obj)
     {
-       
+        string player = obj.data.ToString();
+        PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
+        SessionManager.AddNewPlayer(playerJson) ;
     }
 
     public void JoinGame()
@@ -94,7 +95,15 @@ public class NetworkManager : MonoBehaviour {
     [Serializable]
     public class PlayerJson
     {
-
+        public int sessionId;
+        public float[] position;
+        public float[] rotation;
+        public PlayerJson(int sessionId,Vector3 position,Quaternion rotation)
+        {
+            this.sessionId = sessionId;
+            this.position = new float[] { position.x, position.y, position.z };
+            this.rotation = new float[] { rotation.x, rotation.y, rotation.z };
+        }
     }
     [Serializable]
     public class PositionJson
