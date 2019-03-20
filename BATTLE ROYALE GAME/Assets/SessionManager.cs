@@ -58,6 +58,5 @@ public class SessionManager : MonoBehaviour
     {
         
             playersObjects[sessionId].transform.rotation = Quaternion.Euler(rot.x,rot.y,rot.z);
-        GameObject.FindGameObjectWithTag("player").transform.rotation = Quaternion.Euler(rot.x, rot.y, rot.z);
     }
 }
