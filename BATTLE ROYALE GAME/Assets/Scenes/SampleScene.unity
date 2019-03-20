@@ -7877,6 +7877,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   socket: {fileID: 625245201}
   player: {fileID: 624879173}
+  SessionManager: {fileID: 1719535620}
+  playerId: 0
+  loggedIn: 0
 --- !u!4 &584977973
 Transform:
   m_ObjectHideFlags: 0
@@ -8697,6 +8700,9 @@ MonoBehaviour:
   target: {fileID: 0}
   camera: {fileID: 0}
   rotationSpeed: 1
+  networkManager: {fileID: 584977972}
+  oldRotation: {x: 0, y: 0, z: 0, w: 0}
+  currentRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &624879175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8720,6 +8726,7 @@ MonoBehaviour:
   h: 0
   socketIO: {fileID: 0}
   localPlayer: 0
+  networkManager: {fileID: 584977972}
 --- !u!136 &624879176
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -25795,6 +25802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab168ed81ec98d7499cff62a4a9ab17d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerId: 0
   playerPrefab: {fileID: 624879173}
 --- !u!4 &1719535621
 Transform:
