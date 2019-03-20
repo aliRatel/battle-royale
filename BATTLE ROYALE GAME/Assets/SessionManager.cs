@@ -5,43 +5,29 @@ using UnityEngine;
 
 public  class SessionManager : MonoBehaviour {
     public static Player[] players;
-    public static GameObject[] playersObjects;
-    public int playerId;
-
     public GameObject playerPrefab;
 	// Use this for initialization
 	void Start () {
         players = new Player[100];
-        playersObjects = new GameObject[100];
-
-    }
-
-    // Update is called once per frame
-    void Update () {
+	}
+	
+	// Update is called once per frame
+	void Update () {
 		
 	}
 
-    internal  void AddNewPlayer(NetworkManager.PlayerJson playerJson)
+    internal static void AddNewPlayer(NetworkManager.PlayerJson playerJson)
     {
-
         Vector3 position = new Vector3(playerJson.position[0], playerJson.position[1], playerJson.position[2]);
         Quaternion rotation = new Quaternion(playerJson.rotation[0], playerJson.rotation[1], playerJson.rotation[2],0.0f);
         int sessionId = playerJson.sessionId;
-        
 
-
-        //players[sessionId] = player;
-        if (players[sessionId]==null &&playersObjects[sessionId]==null)
-        {
-            Player player = new Player(position, rotation, sessionId);
-            players[sessionId] = player;
-            GameObject pl = Instantiate(playerPrefab, position, rotation) as GameObject;
-            playersObjects[sessionId] = pl;
-        }
-
-        //Debug.Log("posi" + pl.transform.position);
+        Player player = new Player(position, rotation, sessionId);
+        players[sessionId] = player;
+        GameObject.Instantiate(Resources.Load("player"), position, rotation);
 
     }
+<<<<<<< HEAD
 
     internal void movePlayer(Vector3 pos, int sessionId)
     {
@@ -54,4 +40,6 @@ public  class SessionManager : MonoBehaviour {
         Debug.Log("rot is " + rot);
         playersObjects[sessionId].transform.rotation = rot;
     }
+=======
+>>>>>>> parent of 76ad6ea... Merge branch 'master' of https://github.com/aliRatel/BATTLE-ROYALE
 }

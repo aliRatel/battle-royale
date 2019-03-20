@@ -13,12 +13,10 @@ public class PlayerController : MonoBehaviour {
     public bool h = false;
     public GameObject socketIO;
     public bool localPlayer;
-    public NetworkManager networkManager;
 
 
     // Use this for initialization
     void Start () {
-        
         animator = GetComponentInChildren<Animator>();
         localPlayer = true;
 
@@ -96,12 +94,15 @@ public class PlayerController : MonoBehaviour {
         }
         #endregion
         #region networking
+<<<<<<< HEAD
         if (!networkManager.loggedIn) return;
         if (currentPosiotion != oldPosition)
+=======
+        if (oldPosition != currentPosiotion)
+>>>>>>> parent of 76ad6ea... Merge branch 'master' of https://github.com/aliRatel/BATTLE-ROYALE
         {
             //todo position networking
             oldPosition = currentPosiotion;
-            networkManager.sendPos(transform.position,networkManager.playerId);
         }
 
         #endregion networking
