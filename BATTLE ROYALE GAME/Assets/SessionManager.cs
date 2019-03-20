@@ -16,15 +16,23 @@ public  class SessionManager : MonoBehaviour {
 		
 	}
 
-    internal static void AddNewPlayer(NetworkManager.PlayerJson playerJson)
+    internal  void AddNewPlayer(NetworkManager.PlayerJson playerJson)
     {
+
         Vector3 position = new Vector3(playerJson.position[0], playerJson.position[1], playerJson.position[2]);
         Quaternion rotation = new Quaternion(playerJson.rotation[0], playerJson.rotation[1], playerJson.rotation[2],0.0f);
         int sessionId = playerJson.sessionId;
 
         Player player = new Player(position, rotation, sessionId);
+
         players[sessionId] = player;
-        GameObject.Instantiate(Resources.Load("player"), position, rotation);
+      
+
+        GameObject pl =  Instantiate(playerPrefab, position, rotation)as GameObject;
+        pl.GetComponent<PlayerController>().enabled = false ;
+        pl.GetComponent<PlayerRotator>().enabled = false;
+
+        Debug.Log("posi" + pl.transform.position);
 
     }
 }

@@ -8,6 +8,7 @@ public class NetworkManager : MonoBehaviour {
     public static NetworkManager instance;
     public SocketIOComponent socket;
     public GameObject player;
+    public SessionManager SessionManager;
     // Use this for initialization
     void Awake()
     {
