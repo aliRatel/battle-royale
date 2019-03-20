@@ -13,12 +13,10 @@ public class PlayerController : MonoBehaviour {
     public bool h = false;
     public GameObject socketIO;
     public bool localPlayer;
-    public NetworkManager networkManager;
 
 
     // Use this for initialization
     void Start () {
-        
         animator = GetComponentInChildren<Animator>();
         localPlayer = true;
 
@@ -96,13 +94,10 @@ public class PlayerController : MonoBehaviour {
         }
         #endregion
         #region networking
-        if (!networkManager.loggedIn) return;
-
-        if (currentPosiotion != oldPosition)
+        if (oldPosition != currentPosiotion)
         {
             //todo position networking
             oldPosition = currentPosiotion;
-            networkManager.sendPos(transform.position,networkManager.playerId);
         }
 
         #endregion networking
