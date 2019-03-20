@@ -127,6 +127,8 @@ public class NetworkManager : MonoBehaviour {
         Quaternion rot;
         int sessionId;
         String s  = obj.data.ToString();
+        Debug.Log(s);
+
         RotationJson rotJ = JsonUtility.FromJson<RotationJson>(s);
         rot = new Quaternion(rotJ.rotation[0], rotJ.rotation[1], rotJ.rotation[2],0);
         sessionId = rotJ.sessionId;
@@ -137,6 +139,7 @@ public class NetworkManager : MonoBehaviour {
         Vector3 pos;
         int sessionId;
         String s = obj.data.ToString();
+        Debug.Log(s);
         PositionJson posJ = JsonUtility.FromJson<PositionJson>(s);
         pos = new Vector3(posJ.position[0], posJ.position[1], posJ.position[2]);
         sessionId = posJ.sessionId;

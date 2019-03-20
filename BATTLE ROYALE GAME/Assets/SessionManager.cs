@@ -51,6 +51,7 @@ public  class SessionManager : MonoBehaviour {
 
     internal void RotatePlayer(Quaternion rot, int sessionId)
     {
+        Debug.Log("rot is " + rot);
         playersObjects[sessionId].transform.rotation = rot;
     }
 }
