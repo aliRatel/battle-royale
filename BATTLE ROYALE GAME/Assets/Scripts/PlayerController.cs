@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
     Vector3 oldPosition, currentPosiotion;
     public GameObject target;
     public float speed = 10;
@@ -13,26 +14,30 @@ public class PlayerController : MonoBehaviour {
     public bool h = false;
     public GameObject socketIO;
     public bool localPlayer;
+    public NetworkManager networkManager;
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+
         animator = GetComponentInChildren<Animator>();
         localPlayer = true;
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         currentPosiotion = transform.position;
         if (!localPlayer)
         {
-            return ;
+            return;
         }
         # region animation
         animator.SetBool("isHustler", h);
 
-        
+
         if (Input.GetKey(KeyCode.Z))
         {
             animator.SetBool("isCrouching", true);
@@ -43,10 +48,11 @@ public class PlayerController : MonoBehaviour {
             animator.SetBool("isCrouching", false);
 
         }
-        if (Input.GetMouseButton(1) ||Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1) || Input.GetMouseButton(0))
         {
             animator.SetBool("isAiming", true);
-        }else
+        }
+        else
         {
             animator.SetBool("isAiming", false);
         }
@@ -66,19 +72,19 @@ public class PlayerController : MonoBehaviour {
             speed = 10f;
 
         }
-#endregion animation
+        #endregion animation
         #region movement
         if (Input.GetKey(KeyCode.W))
         {
-            
+
 
             transform.position += transform.forward * speed * Time.deltaTime;
 
         }
-      
+
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position -= transform.forward * speed*Time.deltaTime;
+            transform.position -= transform.forward * speed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A))
         {
@@ -88,21 +94,19 @@ public class PlayerController : MonoBehaviour {
         {
             transform.position += transform.right * speed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.Space) )
+        if (Input.GetKey(KeyCode.Space))
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + speed * Time.deltaTime, transform.position.z);
         }
         #endregion
         #region networking
-<<<<<<< HEAD
         if (!networkManager.loggedIn) return;
+
         if (currentPosiotion != oldPosition)
-=======
-        if (oldPosition != currentPosiotion)
->>>>>>> parent of 76ad6ea... Merge branch 'master' of https://github.com/aliRatel/BATTLE-ROYALE
         {
             //todo position networking
             oldPosition = currentPosiotion;
+            networkManager.sendPos(transform.position, networkManager.playerId);
         }
 
         #endregion networking
