@@ -5,14 +5,18 @@ using UnityEngine;
 
 public  class SessionManager : MonoBehaviour {
     public static Player[] players;
+    public static GameObject[] playersObjects;
+
     public GameObject playerPrefab;
 	// Use this for initialization
 	void Start () {
         players = new Player[100];
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        playersObjects = new GameObject[100];
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
@@ -26,14 +30,21 @@ public  class SessionManager : MonoBehaviour {
 
 
         //players[sessionId] = player;
-        if (players[sessionId]==null)
+        if (players[sessionId]==null &&playersObjects[sessionId]==null)
         {
             Player player = new Player(position, rotation, sessionId);
             players[sessionId] = player;
             GameObject pl = Instantiate(playerPrefab, position, rotation) as GameObject;
+            playersObjects[sessionId] = pl;
         }
 
         //Debug.Log("posi" + pl.transform.position);
+
+    }
+
+    internal void movePlayer(Vector3 pos, int sessionId)
+    {
+        playersObjects[sessionId].transform.position = pos;
 
     }
 }

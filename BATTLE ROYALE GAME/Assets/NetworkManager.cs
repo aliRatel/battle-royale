@@ -24,9 +24,10 @@ public class NetworkManager : MonoBehaviour {
     void Start () {
         socket.On("join session approved", OnApproved);
         socket.On("other player connected", OnOtherPlayerConnected);
-
+        socket.On("player moved", OnOtherPlayerMoved);
     }
-  
+
+   
 
     private void Update()
     {
@@ -43,16 +44,6 @@ public class NetworkManager : MonoBehaviour {
 
     }
 
-    private void OnApproved(SocketIOEvent obj)
-    {
-        string players = obj.data.ToString();
-        
-        PlayerJson[] playersJson= JsonUtility.FromJson<PlayerJson[]>(players);
-
-        foreach(PlayerJson player in playersJson) {
-            SessionManager.AddNewPlayer(player);
-        }
-    }
 
     private void JoinSession()
     {
@@ -92,9 +83,37 @@ public class NetworkManager : MonoBehaviour {
         socket.Emit("connection",new JSONObject(pos));
        
     }
+    public void sendPos(Vector3 pos,int sessionId)
+    {
+        PositionJson posJ = new PositionJson(pos,sessionId);
+        String newPos = JsonUtility.ToJson(posJ);
+        socket.Emit("player moved", new JSONObject(newPos));
+    }
     #endregion commands
     #region listening
-    
+
+    private void OnApproved(SocketIOEvent obj)
+    {
+        string players = obj.data.ToString();
+
+        PlayerJson[] playersJson = JsonUtility.FromJson<PlayerJson[]>(players);
+
+        foreach (PlayerJson player in playersJson)
+        {
+            SessionManager.AddNewPlayer(player);
+        }
+    }
+
+    private void OnOtherPlayerMoved(SocketIOEvent obj)
+    {
+        Vector3 pos;
+        int sessionId;
+        String s  = obj.data.ToString();
+        PositionJson posJ = JsonUtility.FromJson<PositionJson>(s);
+        pos = new Vector3(posJ.position[0], posJ.position[1], posJ.position[2]);
+        sessionId = posJ.sessionId;
+        SessionManager.movePlayer(pos, sessionId);
+    }
     #endregion listening
     #region JsonClasses
     [Serializable]
@@ -114,6 +133,13 @@ public class NetworkManager : MonoBehaviour {
     public class PositionJson
     {
         public float[] position;
+        public int sessionId;
+        public PositionJson(Vector3 position,int SessionId)
+        {
+            this.position = new float[]
+            { position.x, position.y, position.z };
+            this.sessionId = sessionId;
+        }
         public PositionJson(Vector3 position)
         {
             this.position = new float[]
