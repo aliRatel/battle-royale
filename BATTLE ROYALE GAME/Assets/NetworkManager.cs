@@ -9,6 +9,7 @@ public class NetworkManager : MonoBehaviour {
     public SocketIOComponent socket;
     public GameObject player;
     public SessionManager SessionManager;
+    public int playerId;
     // Use this for initialization
     void Awake()
     {
@@ -25,9 +26,14 @@ public class NetworkManager : MonoBehaviour {
         socket.On("join session approved", OnApproved);
         socket.On("other player connected", OnOtherPlayerConnected);
         socket.On("player moved", OnOtherPlayerMoved);
+        socket.On("sessionId", SetSessionId);
     }
 
-   
+    private void SetSessionId(SocketIOEvent obj)
+    {
+        string data = obj.data.ToString();
+        playerId = JsonUtility.FromJson<int>(data);
+    }
 
     private void Update()
     {

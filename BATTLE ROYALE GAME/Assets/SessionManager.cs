@@ -6,6 +6,7 @@ using UnityEngine;
 public  class SessionManager : MonoBehaviour {
     public static Player[] players;
     public static GameObject[] playersObjects;
+    public int playerId;
 
     public GameObject playerPrefab;
 	// Use this for initialization

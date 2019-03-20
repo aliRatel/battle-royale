@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour {
         {
             //todo position networking
             oldPosition = currentPosiotion;
-            networkManager.sendPos(transform.position);
+            networkManager.sendPos(transform.position,networkManager.playerId);
         }
 
         #endregion networking
