@@ -37,8 +37,10 @@ public class PlayerRotator : MonoBehaviour
         if (currentRotation != oldRotation)
         {
             //todo position networking
-            oldRotation = currentRotation;
             networkManager.sendRot(transform.rotation, networkManager.playerId);
+            oldRotation = currentRotation;
+
+
         }
 
         #endregion networking

@@ -57,13 +57,7 @@ public class NetworkManager : MonoBehaviour
 
     }
 
-    internal void sendRot(Quaternion rotation, int playerId)
-    {
-        RotationJson rotJ = new RotationJson(rotation, playerId);
-        String newRot = JsonUtility.ToJson(rotJ);
-        if (SessionManager.sessionAprroved)
-            socket.Emit("player rotated", new JSONObject(newRot));
-    }
+  
 
     private void JoinSession()
     {
@@ -104,6 +98,13 @@ public class NetworkManager : MonoBehaviour
         socket.Connect();
         socket.Emit("connection", new JSONObject(pos));
 
+    }
+    public void sendRot(Quaternion rotation, int sessionId)
+    {
+        RotationJson rotJ = new RotationJson(rotation, playerId);
+        String newRot = JsonUtility.ToJson(rotJ);
+        if (SessionManager.sessionAprroved)
+            socket.Emit("player rotated", new JSONObject(newRot));
     }
     public void sendPos(Vector3 pos, int sessionId)
     {
