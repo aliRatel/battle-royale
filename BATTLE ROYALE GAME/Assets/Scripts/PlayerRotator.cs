@@ -32,6 +32,7 @@ public class PlayerRotator : MonoBehaviour {
 
 
         #region networking
+        if (!networkManager.loggedIn) return; 
         if (currentRotation != oldRotation)
         {
             //todo position networking

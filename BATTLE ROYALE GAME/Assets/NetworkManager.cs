@@ -10,6 +10,8 @@ public class NetworkManager : MonoBehaviour {
     public GameObject player;
     public SessionManager SessionManager;
     public int playerId;
+    public bool loggedIn = false;
+
     // Use this for initialization
     void Awake()
     {
@@ -25,7 +27,7 @@ public class NetworkManager : MonoBehaviour {
     void Start () {
         socket.On("join session approved", OnApproved);
         socket.On("other player connected", OnOtherPlayerConnected);
-        socket.On("player moved", OnOtherPlayerRotated);
+        socket.On("player moved", OnOtherPlayerMoved);
         socket.On("sessionId", SetSessionId);
         socket.On("player rotated", OnOtherPlayerRotated);
 
@@ -64,6 +66,7 @@ public class NetworkManager : MonoBehaviour {
         posrotJson posrotJson = new posrotJson(player.transform.position,player.transform.rotation);
         String posrot = JsonUtility.ToJson(posrotJson);
         socket.Emit("join session",new JSONObject(posrot) );
+
     }
 
     private void LogIn()
@@ -78,7 +81,7 @@ public class NetworkManager : MonoBehaviour {
     private void OnOtherPlayerConnected(SocketIOEvent obj)
     {
         string player = obj.data.ToString();
-        Debug.Log("player info: "+player);
+
         PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
         SessionManager.AddNewPlayer(playerJson) ;
     }
@@ -108,6 +111,7 @@ public class NetworkManager : MonoBehaviour {
 
     private void OnApproved(SocketIOEvent obj)
     {
+        loggedIn = true;
         string players = obj.data.ToString();
 
         PlayerJson[] playersJson = JsonUtility.FromJson<PlayerJson[]>(players);
@@ -127,6 +131,16 @@ public class NetworkManager : MonoBehaviour {
         rot = new Quaternion(rotJ.rotation[0], rotJ.rotation[1], rotJ.rotation[2],0);
         sessionId = rotJ.sessionId;
         SessionManager.RotatePlayer(rot, sessionId);
+    }
+    private void OnOtherPlayerMoved(SocketIOEvent obj)
+    {
+        Vector3 pos;
+        int sessionId;
+        String s = obj.data.ToString();
+        PositionJson posJ = JsonUtility.FromJson<PositionJson>(s);
+        pos = new Vector3(posJ.position[0], posJ.position[1], posJ.position[2]);
+        sessionId = posJ.sessionId;
+        SessionManager.movePlayer(pos, sessionId);
     }
     #endregion listening
     #region JsonClasses
