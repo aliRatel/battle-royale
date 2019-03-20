@@ -48,7 +48,10 @@ public class NetworkManager : MonoBehaviour {
         string players = obj.data.ToString();
         
         PlayerJson[] playersJson= JsonUtility.FromJson<PlayerJson[]>(players);
-        
+
+        foreach(PlayerJson player in playersJson) {
+            SessionManager.AddNewPlayer(player);
+        }
     }
 
     private void JoinSession()
