@@ -12,6 +12,9 @@ public class PlayerRotator : MonoBehaviour {
     public Transform target;
     public GameObject camera;
     public float rotationSpeed = 1;
+    public NetworkManager networkManager;
+    public Quaternion oldRotation, currentRotation;
+
 
     // Use this for initialization
     void Start () {
@@ -23,7 +26,21 @@ public class PlayerRotator : MonoBehaviour {
 
 
     }
+    private void Update()
+    {
+        currentRotation = transform.rotation;
 
+
+        #region networking
+        if (currentRotation != oldRotation)
+        {
+            //todo position networking
+            oldRotation = currentRotation;
+            networkManager.sendRot(transform.rotation, networkManager.playerId);
+        }
+
+        #endregion networking
+    }
     // Update is called once per frame
     void LateUpdate () {
 

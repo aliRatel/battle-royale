@@ -25,8 +25,10 @@ public class NetworkManager : MonoBehaviour {
     void Start () {
         socket.On("join session approved", OnApproved);
         socket.On("other player connected", OnOtherPlayerConnected);
-        socket.On("player moved", OnOtherPlayerMoved);
+        socket.On("player moved", OnOtherPlayerRotated);
         socket.On("sessionId", SetSessionId);
+        socket.On("player rotated", OnOtherPlayerRotated);
+
     }
 
     private void SetSessionId(SocketIOEvent obj)
@@ -50,6 +52,12 @@ public class NetworkManager : MonoBehaviour {
 
     }
 
+    internal void sendRot(Quaternion rotation, int playerId)
+    {
+        RotationJson rotJ = new RotationJson(rotation, playerId);
+        String newRot = JsonUtility.ToJson(rotJ);
+        socket.Emit("player rotated", new JSONObject(newRot));
+    }
 
     private void JoinSession()
     {
@@ -91,7 +99,7 @@ public class NetworkManager : MonoBehaviour {
     }
     public void sendPos(Vector3 pos,int sessionId)
     {
-        PositionJson posJ = new PositionJson(pos,sessionId);
+        PositionJson posJ = new PositionJson(pos,playerId);
         String newPos = JsonUtility.ToJson(posJ);
         socket.Emit("player moved", new JSONObject(newPos));
     }
@@ -110,15 +118,15 @@ public class NetworkManager : MonoBehaviour {
         }
     }
 
-    private void OnOtherPlayerMoved(SocketIOEvent obj)
+    private void OnOtherPlayerRotated(SocketIOEvent obj)
     {
-        Vector3 pos;
+        Quaternion rot;
         int sessionId;
         String s  = obj.data.ToString();
-        PositionJson posJ = JsonUtility.FromJson<PositionJson>(s);
-        pos = new Vector3(posJ.position[0], posJ.position[1], posJ.position[2]);
-        sessionId = posJ.sessionId;
-        SessionManager.movePlayer(pos, sessionId);
+        RotationJson rotJ = JsonUtility.FromJson<RotationJson>(s);
+        rot = new Quaternion(rotJ.rotation[0], rotJ.rotation[1], rotJ.rotation[2],0);
+        sessionId = rotJ.sessionId;
+        SessionManager.RotatePlayer(rot, sessionId);
     }
     #endregion listening
     #region JsonClasses
@@ -140,7 +148,7 @@ public class NetworkManager : MonoBehaviour {
     {
         public float[] position;
         public int sessionId;
-        public PositionJson(Vector3 position,int SessionId)
+        public PositionJson(Vector3 position,int sessionId)
         {
             this.position = new float[]
             { position.x, position.y, position.z };
@@ -157,11 +165,19 @@ public class NetworkManager : MonoBehaviour {
     public class RotationJson
     {
         public float[] rotation;
+        public int sessionId;
+
         public RotationJson(Quaternion rotation)
         {
             this.rotation = new float[] { rotation.eulerAngles.x, rotation.eulerAngles.y, rotation.eulerAngles.z };
         }
-         
+        public RotationJson(Quaternion rotation,int sessionId)
+        {
+            this.rotation = new float[] { rotation.eulerAngles.x, rotation.eulerAngles.y, rotation.eulerAngles.z };
+            this.sessionId = sessionId;
+
+        }
+
     }
     [Serializable]
     public class posrotJson

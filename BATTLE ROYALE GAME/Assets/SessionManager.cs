@@ -48,4 +48,9 @@ public  class SessionManager : MonoBehaviour {
         playersObjects[sessionId].transform.position = pos;
 
     }
+
+    internal void RotatePlayer(Quaternion rot, int sessionId)
+    {
+        playersObjects[sessionId].transform.rotation = rot;
+    }
 }
