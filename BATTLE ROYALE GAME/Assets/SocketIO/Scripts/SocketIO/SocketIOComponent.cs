@@ -418,10 +418,7 @@ namespace SocketIO
 			}
 		}
 
-        internal void On(string v, Action<SocketIOEvent> onApproved)
-        {
-            throw new NotImplementedException();
-        }
+      
 
         #endregion
     }
