@@ -61,7 +61,8 @@ public class NetworkManager : MonoBehaviour
     {
         RotationJson rotJ = new RotationJson(rotation, playerId);
         String newRot = JsonUtility.ToJson(rotJ);
-        socket.Emit("player rotated", new JSONObject(newRot));
+        if (SessionManager.sessionAprroved)
+            socket.Emit("player rotated", new JSONObject(newRot));
     }
 
     private void JoinSession()
@@ -108,13 +109,15 @@ public class NetworkManager : MonoBehaviour
     {
         PositionJson posJ = new PositionJson(pos, playerId);
         String newPos = JsonUtility.ToJson(posJ);
-        socket.Emit("player moved", new JSONObject(newPos));
+        if (SessionManager.sessionAprroved)
+            socket.Emit("player moved", new JSONObject(newPos));
     }
     #endregion commands
     #region listening
 
     private void OnApproved(SocketIOEvent obj)
     {
+        SessionManager.sessionAprroved = true;
         loggedIn = true;
         string players = obj.data.ToString();
 

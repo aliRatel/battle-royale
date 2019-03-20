@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class SessionManager : MonoBehaviour
 {
-    public static Player[] players;
-    public static GameObject[] playersObjects;
+    public  Player[] players;
+    public  GameObject[] playersObjects;
     public int playerId;
+    public  bool sessionAprroved = false;
 
     public GameObject playerPrefab;
     // Use this for initialization
@@ -48,12 +49,14 @@ public class SessionManager : MonoBehaviour
 
     internal void movePlayer(Vector3 pos, int sessionId)
     {
+      
         playersObjects[sessionId].transform.position = pos;
 
     }
 
     internal void RotatePlayer(Quaternion rot, int sessionId)
     {
-        playersObjects[sessionId].transform.rotation = rot;
+        
+            playersObjects[sessionId].transform.rotation = rot;
     }
 }
