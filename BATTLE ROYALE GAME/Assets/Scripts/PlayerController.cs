@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour {
         }
         #endregion
         #region networking
-        if (oldPosition != currentPosiotion)
+
         {
             //todo position networking
             oldPosition = currentPosiotion;

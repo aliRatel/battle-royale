@@ -90,7 +90,7 @@ public class NetworkManager : MonoBehaviour {
     }
     #endregion commands
     #region listening
-    
+
     #endregion listening
     #region JsonClasses
     [Serializable]

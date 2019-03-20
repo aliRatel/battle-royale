@@ -27,4 +27,5 @@ public  class SessionManager : MonoBehaviour {
         GameObject.Instantiate(Resources.Load("player"), position, rotation);
 
     }
+
 }
