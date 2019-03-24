@@ -69,7 +69,7 @@ public class NetworkManager : MonoBehaviour
     {
         string animationString = JsonUtility.ToJson(animation);
         if(sessionManager.sessionAprroved)
-        socket.Emit("animate player", new JSONObject(animationString));
+        socket.Emit("player animated", new JSONObject(animationString));
     }
 
     private void LogIn()
