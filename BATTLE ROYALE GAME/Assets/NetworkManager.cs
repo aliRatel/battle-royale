@@ -10,7 +10,6 @@ public class NetworkManager : MonoBehaviour
     public SocketIOComponent socket;
     public GameObject player;
     public SessionManager sessionManager;
-    [SerializeField]
     public  int playerId;
 
     public bool loggedIn = false;
@@ -32,18 +31,18 @@ public class NetworkManager : MonoBehaviour
         socket.On("join session approved", OnApproved);
         socket.On("other player connected", OnOtherPlayerConnected);
         socket.On("player moved", OnOtherPlayerMoved);
-        socket.On("sessionId", SetSessionId);
+        socket.On("seId", SetSessionId);
         socket.On("player rotated", OnOtherPlayerRotated);
 
     }
 
     private void SetSessionId(SocketIOEvent obj)
     {
-        string data = obj.data.ToString();
-        Debug.Log(data);
+        string player = obj.data.ToString();
+        PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
+        Debug.Log("data" + player + "    id is :   "+playerJson.sessionId);
 
-        playerId = JsonUtility.FromJson<int>(data);
-        Debug.Log(playerId);
+        playerId = playerJson.sessionId;
     }
 
     private void Update()
