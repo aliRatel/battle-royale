@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
 {
-    public static NetworkManager instance;
+    public NetworkManager instance;
     public SocketIOComponent socket;
     public GameObject player;
     public SessionManager SessionManager;
@@ -79,8 +79,9 @@ public class NetworkManager : MonoBehaviour
     private void OnOtherPlayerConnected(SocketIOEvent obj)
     {
         string player = obj.data.ToString();
-
+        
         PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
+        Debug.Log(playerJson.sessionId);
         SessionManager.AddNewPlayer(playerJson);
     }
 

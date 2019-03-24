@@ -5,14 +5,24 @@ using UnityEngine;
 
 public class SessionManager : MonoBehaviour
 {
-    public  Player[] players;
+    public  SessionManager instance;
+
+    public Player[] players;
     public  GameObject[] playersObjects;
     public int playerId;
     public  bool sessionAprroved = false;
 
     public GameObject playerPrefab;
     // Use this for initialization
-    void Start()
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
+    }
+        void Start()
     {
         players = new Player[100];
         playersObjects = new GameObject[100];
