@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
             zof = Mathf.Abs(oldPosition.z - currentPosiotion.z);
 
 
-            if (xof > 3 || yof > 3 || zof > 3)
+            if (xof > 1 || yof > 1 || zof > 1)
             {
                 networkManager.sendPos(transform.position, networkManager.playerId);
                 oldPosition = currentPosiotion;
