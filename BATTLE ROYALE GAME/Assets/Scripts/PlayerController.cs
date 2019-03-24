@@ -105,17 +105,18 @@ public class PlayerController : MonoBehaviour
         if (currentPosiotion != oldPosition)
         {
             //todo position networking
-            oldPosition = currentPosiotion;
             float xof, yof, zof;
             xof = Mathf.Abs(oldPosition.x - currentPosiotion.x);
             yof = Mathf.Abs(oldPosition.y - currentPosiotion.y);
             zof = Mathf.Abs(oldPosition.z - currentPosiotion.z);
 
 
-            if (xof>3 || yof>3||zof>3)
+            if (xof>3 || yof > 3 || zof > 3) { 
             networkManager.sendPos(transform.position, networkManager.playerId);
-        }
+                oldPosition = currentPosiotion;
 
-        #endregion networking
-    }
+            }
+
+            #endregion networking
+        }
 }
