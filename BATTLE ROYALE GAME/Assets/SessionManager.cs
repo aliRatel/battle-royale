@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SessionManager : MonoBehaviour
 {
-    public  SessionManager instance;
+    public static SessionManager instance;
 
     public Player[] players;
     public  GameObject[] playersObjects;
@@ -68,5 +68,9 @@ public class SessionManager : MonoBehaviour
     {
         
             playersObjects[sessionId].transform.rotation = Quaternion.Euler(rot.x,rot.y,rot.z);
+    }
+    public void setTrue()
+    {
+        sessionAprroved = true;
     }
 }

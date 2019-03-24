@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
 {
-    public NetworkManager instance;
+    public static NetworkManager instance;
     public SocketIOComponent socket;
     public GameObject player;
-    public SessionManager SessionManager;
+    public SessionManager sessionManager;
     public int playerId;
     public bool loggedIn = false;
 
@@ -82,7 +82,7 @@ public class NetworkManager : MonoBehaviour
         
         PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
         Debug.Log(playerJson.sessionId);
-        SessionManager.AddNewPlayer(playerJson);
+        sessionManager.AddNewPlayer(playerJson);
     }
 
     public void JoinGame()
@@ -104,14 +104,14 @@ public class NetworkManager : MonoBehaviour
     {
         RotationJson rotJ = new RotationJson(rotation, playerId);
         String newRot = JsonUtility.ToJson(rotJ);
-        if (SessionManager.sessionAprroved)
+        if (sessionManager.sessionAprroved)
             socket.Emit("player rotated", new JSONObject(newRot));
     }
     public void sendPos(Vector3 pos, int sessionId)
     {
         PositionJson posJ = new PositionJson(pos, playerId);
         String newPos = JsonUtility.ToJson(posJ);
-        if (SessionManager.sessionAprroved)
+        if (sessionManager.sessionAprroved)
             socket.Emit("player moved", new JSONObject(newPos));
     }
     #endregion commands
@@ -119,7 +119,7 @@ public class NetworkManager : MonoBehaviour
 
     private void OnApproved(SocketIOEvent obj)
     {
-        SessionManager.sessionAprroved = true;
+        sessionManager.setTrue();
         loggedIn = true;
         string players = obj.data.ToString();
 
@@ -127,7 +127,7 @@ public class NetworkManager : MonoBehaviour
 
         foreach (PlayerJson player in playersJson)
         {
-            SessionManager.AddNewPlayer(player);
+            sessionManager.AddNewPlayer(player);
         }
     }
 
@@ -139,7 +139,7 @@ public class NetworkManager : MonoBehaviour
         RotationJson rotJ = JsonUtility.FromJson<RotationJson>(s);
         rot = new Quaternion(rotJ.rotation[0], rotJ.rotation[1], rotJ.rotation[2], 0);
         sessionId = rotJ.sessionId;
-        SessionManager.RotatePlayer(rot, sessionId);
+        sessionManager.RotatePlayer(rot, sessionId);
     }
     private void OnOtherPlayerMoved(SocketIOEvent obj)
     {
@@ -149,7 +149,7 @@ public class NetworkManager : MonoBehaviour
         PositionJson posJ = JsonUtility.FromJson<PositionJson>(s);
         pos = new Vector3(posJ.position[0], posJ.position[1], posJ.position[2]);
         sessionId = posJ.sessionId;
-        SessionManager.movePlayer(pos, sessionId);
+        sessionManager.movePlayer(pos, sessionId);
     }
     #endregion listening
     #region JsonClasses
