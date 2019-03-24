@@ -412,7 +412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   socket: {fileID: 625245201}
   player: {fileID: 624879173}
-  SessionManager: {fileID: 1719535620}
+  sessionManager: {fileID: 1719535620}
   playerId: 0
   loggedIn: 0
 --- !u!4 &584977973
