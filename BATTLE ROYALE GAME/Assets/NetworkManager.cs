@@ -33,17 +33,11 @@ public class NetworkManager : MonoBehaviour
         socket.On("player moved", OnOtherPlayerMoved);
         socket.On("seId", SetSessionId);
         socket.On("player rotated", OnOtherPlayerRotated);
+        socket.On("player animated", OnPlayerAnimated);
 
     }
 
-    private void SetSessionId(SocketIOEvent obj)
-    {
-        string player = obj.data.ToString();
-        PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
-        Debug.Log("data" + player + "    id is :   "+playerJson.sessionId);
-
-        playerId = playerJson.sessionId;
-    }
+   
 
     private void Update()
     {
@@ -78,6 +72,21 @@ public class NetworkManager : MonoBehaviour
 
         socket.Emit("log in", new JSONObject(infoJson));
 
+    }
+    private void OnPlayerAnimated(SocketIOEvent obj)
+    {
+        string animation = obj.data.ToString();
+        AnimationJson animationJson = JsonUtility.FromJson<AnimationJson>(animation);
+        sessionManager.AnimatePlayer(animationJson);
+    }
+
+    private void SetSessionId(SocketIOEvent obj)
+    {
+        string player = obj.data.ToString();
+        PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
+        Debug.Log("data" + player + "    id is :   " + playerJson.sessionId);
+
+        playerId = playerJson.sessionId;
     }
 
     private void OnOtherPlayerConnected(SocketIOEvent obj)
@@ -157,6 +166,24 @@ public class NetworkManager : MonoBehaviour
     }
     #endregion listening
     #region JsonClasses
+    [Serializable]
+    public class AnimationJson
+    {
+        public int sessionId;
+        public float horizontal, vertical;
+        public bool run, isHustler, isAiming, isCrouching;
+
+        public AnimationJson(int sessionId,float horizontal, float vertical, bool run, bool isHustler, bool isAiming, bool isCrouching)
+        {
+            this.sessionId = sessionId;
+            this.horizontal = horizontal;
+            this.vertical = vertical;
+            this.run = run;
+            this.isHustler = isHustler;
+            this.isAiming = isAiming;
+            this.isCrouching = isCrouching;
+        }
+    }
     [Serializable]
     public class PlayerJson
     {

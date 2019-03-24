@@ -11,6 +11,7 @@ public class SessionManager : MonoBehaviour
     public  GameObject[] playersObjects;
     public int playerId;
     public  bool sessionAprroved = false;
+    public Animator anim;
 
     public GameObject playerPrefab;
     // Use this for initialization
@@ -24,6 +25,7 @@ public class SessionManager : MonoBehaviour
     }
         void Start()
     {
+        
         players = new Player[100];
         playersObjects = new GameObject[100];
 
@@ -69,6 +71,18 @@ public class SessionManager : MonoBehaviour
         
             playersObjects[sessionId].transform.rotation = Quaternion.Euler(rot.x,rot.y,rot.z);
     }
+
+    internal void AnimatePlayer(NetworkManager.AnimationJson animationJson)
+    {
+        anim = playersObjects[animationJson.sessionId].GetComponentInChildren<Animator>();
+        anim.SetFloat("Horizontal", animationJson.horizontal);
+        anim.SetFloat("Vertical", animationJson.vertical);
+        anim.SetBool("run", animationJson.run);
+        anim.SetBool("isHustler", animationJson.isHustler);
+        anim.SetBool("isAiming", animationJson.isAiming);
+        anim.SetBool("isCrouching", animationJson.isCrouching);
+    }
+
     public void setTrue()
     {
         sessionAprroved = true;

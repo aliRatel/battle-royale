@@ -1293,6 +1293,7 @@ MonoBehaviour:
   playersObjects: []
   playerId: 0
   sessionAprroved: 0
+  anim: {fileID: 0}
   playerPrefab: {fileID: 1510335609812538, guid: fb4837d7e6fcdbb49a2f0bf741940cab,
     type: 2}
 --- !u!4 &1719535621
@@ -1435,6 +1436,11 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 114177010949604640, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
+        type: 2}
+      propertyPath: networkManager
+      value: 
+      objectReference: {fileID: 584977972}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 2}
   m_IsPrefabAsset: 0
