@@ -65,6 +65,13 @@ public class NetworkManager : MonoBehaviour
 
     }
 
+    internal void SendAnimation(AnimationJson animation)
+    {
+        string animationString = JsonUtility.ToJson(animation);
+        if(sessionManager.sessionAprroved)
+        socket.Emit("animate player", new JSONObject(animationString));
+    }
+
     private void LogIn()
     {
         logInInfo info = new logInInfo("ali", "emad");
@@ -76,6 +83,7 @@ public class NetworkManager : MonoBehaviour
     private void OnPlayerAnimated(SocketIOEvent obj)
     {
         string animation = obj.data.ToString();
+        Debug.Log(animation);
         AnimationJson animationJson = JsonUtility.FromJson<AnimationJson>(animation);
         sessionManager.AnimatePlayer(animationJson);
     }

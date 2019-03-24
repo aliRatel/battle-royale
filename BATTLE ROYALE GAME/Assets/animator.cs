@@ -25,40 +25,21 @@ public class animator : MonoBehaviour {
         anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
 
 
-        //currentParams = anim.parameters;
 
-
-
-        //for (int i = 0; i < oldParams.Length; i++)
-        //{
-        //    AnimatorControllerParameter p1, p2;
-        //    p1 = oldParams[i];
-        //    p2 = currentParams[i];
-        //    Debug.Log("P1  "+i+"  " + p1.defaultFloat);
-        //    Debug.Log("P2  "+i + "  " + p2.defaultFloat);
-        //}
-
-
-        StartCoroutine(SendAnimation());
+        NetworkManager.AnimationJson animation = new NetworkManager.AnimationJson(networkManager.playerId,
+       anim.GetFloat("Horizontal"),
+       anim.GetFloat("Vertical"),
+       anim.GetBool("run"),
+       anim.GetBool("isHustler"),
+       anim.GetBool("isAiming"),
+       anim.GetBool("isCrouching")
+           );
+        networkManager.SendAnimation(animation);
 
 
 
 
     }
 
-    IEnumerator SendAnimation()
-    {
-        NetworkManager.AnimationJson animation;
-        animation = new NetworkManager.AnimationJson(networkManager.playerId,
-        anim.GetFloat("Horizontal"),
-        anim.GetFloat("Vertical"),
-        anim.GetBool("run"),
-        anim.GetBool("isHustler"),
-        anim.GetBool("isAiming"),
-        anim.GetBool("isCrouching")
-            );
-        string animationString = JsonUtility.ToJson(animation);
-        yield  return new WaitForSeconds(1f);
-        networkManager.socket.Emit("animate player", new JSONObject(animationString));
-    }
+  
 }

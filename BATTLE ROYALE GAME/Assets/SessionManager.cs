@@ -72,7 +72,7 @@ public class SessionManager : MonoBehaviour
             playersObjects[sessionId].transform.rotation = Quaternion.Euler(rot.x,rot.y,rot.z);
     }
 
-    internal void AnimatePlayer(NetworkManager.AnimationJson animationJson)
+    public void AnimatePlayer(NetworkManager.AnimationJson animationJson)
     {
         anim = playersObjects[animationJson.sessionId].GetComponentInChildren<Animator>();
         anim.SetFloat("Horizontal", animationJson.horizontal);
