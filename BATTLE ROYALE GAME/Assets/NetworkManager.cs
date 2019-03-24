@@ -10,7 +10,9 @@ public class NetworkManager : MonoBehaviour
     public SocketIOComponent socket;
     public GameObject player;
     public SessionManager sessionManager;
-    public int playerId;
+    [SerializeField]
+    public  int playerId;
+
     public bool loggedIn = false;
 
     // Use this for initialization
@@ -38,7 +40,10 @@ public class NetworkManager : MonoBehaviour
     private void SetSessionId(SocketIOEvent obj)
     {
         string data = obj.data.ToString();
+        Debug.Log(data);
+
         playerId = JsonUtility.FromJson<int>(data);
+        Debug.Log(playerId);
     }
 
     private void Update()
