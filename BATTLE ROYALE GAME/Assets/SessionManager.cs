@@ -12,8 +12,29 @@ public class SessionManager : MonoBehaviour
     public int playerId;
     public  bool sessionAprroved = false;
     public Animator anim;
-
+    public GameObject localPlayer;
+    public GameObject weaponHolder;
     public GameObject playerPrefab;
+
+    //public  void AddWeapon(string name)
+    //{
+    //    UnityEngine.Object pPrefab = Resources.Load("Assets/prefaps/weapon/"+name);
+
+    //    GameObject weapon = Instantiate(pPrefab, weaponHolder.transform.position,weaponHolder.transform.rotation) as GameObject;
+    //    Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
+    //    itemRb.isKinematic = true;
+    //    weapon.transform.parent = localPlayer.transform;
+    //}
+
+    internal void AddWeapon(GameObject gamesObject)
+    {
+
+        GameObject weapon = Instantiate(gamesObject, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
+        Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
+        itemRb.isKinematic = true;
+        weapon.transform.parent = weaponHolder.transform;
+    }
+
     // Use this for initialization
     void Awake()
     {
@@ -23,14 +44,18 @@ public class SessionManager : MonoBehaviour
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
     }
-        void Start()
+
+  
+
+    void Start()
     {
+        localPlayer = GameObject.FindGameObjectWithTag("Player");
         
         players = new Player[100];
         playersObjects = new GameObject[100];
 
     }
-
+  
     // Update is called once per frame
     void Update()
     {

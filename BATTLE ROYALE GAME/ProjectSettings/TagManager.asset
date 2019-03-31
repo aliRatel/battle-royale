@@ -8,6 +8,7 @@ TagManager:
   - spine_bone
   - camP
   - Head
+  - weapon holder
   layers:
   - Default
   - TransparentFX
