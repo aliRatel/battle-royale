@@ -9,6 +9,7 @@ TagManager:
   - camP
   - Head
   - weapon holder
+  - session manager
   layers:
   - Default
   - TransparentFX

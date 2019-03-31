@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class SessionManager : MonoBehaviour
@@ -14,7 +15,9 @@ public class SessionManager : MonoBehaviour
     public Animator anim;
     public GameObject localPlayer;
     public GameObject weaponHolder;
+    public PlayerShooter playerShooter;
     public GameObject playerPrefab;
+    public GameObject ak_prefab;
 
     //public  void AddWeapon(string name)
     //{
@@ -26,13 +29,24 @@ public class SessionManager : MonoBehaviour
     //    weapon.transform.parent = localPlayer.transform;
     //}
 
-    internal void AddWeapon(GameObject gamesObject)
+    internal void AddWeapon(GameObject temp)
     {
-
-        GameObject weapon = Instantiate(gamesObject, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
-        Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
-        itemRb.isKinematic = true;
-        weapon.transform.parent = weaponHolder.transform;
+        switch (temp.name.ToLower())
+        {
+            case "ak_47" :
+                GameObject weapon = Instantiate(ak_prefab, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
+                weapon.transform.Find("Canvas").gameObject.SetActive(false);
+            GameObject.Destroy(temp);
+            Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
+                weapon.GetComponent<BoxCollider>().enabled = false;
+                weapon.GetComponent<CapsuleCollider>().enabled = false;
+                itemRb.isKinematic = true;
+            weapon.transform.parent = weaponHolder.transform;
+               playerShooter =  localPlayer.GetComponent<PlayerShooter>();
+                playerShooter.addWeapon(weapon);
+                break;
+        }
+    
     }
 
     // Use this for initialization

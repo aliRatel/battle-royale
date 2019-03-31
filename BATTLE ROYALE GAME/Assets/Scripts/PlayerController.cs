@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     Vector3 oldPosition, currentPosiotion;
     public GameObject target;
-    public float speed = 10;
+    public float speed = 40;
     public SkinnedMeshRenderer myrenderer;
     public bool onGround;
     public LayerMask whatIsGround;
