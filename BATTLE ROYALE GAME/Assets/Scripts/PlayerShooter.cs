@@ -36,18 +36,19 @@ public class PlayerShooter : MonoBehaviour {
         }
             Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
 
-        if (firstWeapon == null)
-        {
-            Debug.Log("not set");
-            return;
-        }
+       
+
+
+
         if (Input.GetButton("Fire1")  )
         {
             if (firstWeapon.currentMag > 0)
             {
                 firstWeapon.bulletPoint.transform.LookAt ( Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, z)));
-                if ( Time.time > nextFire) { 
-                nextFire = Time.time + firstWeapon.fireRate;
+                if ( Time.time > nextFire) {
+                    firstWeapon.muzzleFire.GetComponent<ParticleSystem>().Play();
+
+                    nextFire = Time.time + firstWeapon.fireRate;
                 if (!firstWeapon.sound.isPlaying)
                     firstWeapon.sound.Play();
                 //todo fire
@@ -57,8 +58,8 @@ public class PlayerShooter : MonoBehaviour {
                 //todo manage bullets
                 firstWeapon.currentMag--;
 
-                //todo networking shooting
-            }
+                    //todo networking shooting
+                }
                 hUDManager.SetAmmo(firstWeapon);
             }
             else if (firstWeapon.spareAmmo > 0)
@@ -66,27 +67,36 @@ public class PlayerShooter : MonoBehaviour {
                 if (!isReloading) 
                 StartCoroutine(reload());
               
-                //reload();
+               
             }
             else return;
+        }else if (Input.GetKey(KeyCode.R) && firstWeapon.spareAmmo > 0)
+        {
+            if (!isReloading)
+                StartCoroutine(reload());
         }
 	}
 
     IEnumerator reload()
     {
         isReloading = true;
-
+        firstWeapon.sound.clip = firstWeapon.reload;
+        firstWeapon.sound.Play();
         yield return new WaitForSeconds(3f);
         if (firstWeapon.spareAmmo >= firstWeapon.magsize)
         {
             int bullets= firstWeapon.magsize - firstWeapon.currentMag;
             firstWeapon.currentMag += bullets;
             firstWeapon.spareAmmo -= bullets;
+            hUDManager.SetAmmo(firstWeapon);
 
         }
 
         else firstWeapon.currentMag += firstWeapon.spareAmmo;
+
         isReloading = false;
+        firstWeapon.sound.clip = firstWeapon.shoot;
+
     }
 
     internal void addWeapon(GameObject weapon)

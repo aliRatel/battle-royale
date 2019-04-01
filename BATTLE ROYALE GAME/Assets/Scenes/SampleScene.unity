@@ -2286,12 +2286,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114047091275470952, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
-        type: 2}
-      propertyPath: bulletPrefab
-      value: 
-      objectReference: {fileID: 1982260039}
-    - target: {fileID: 114177010949604640, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
+    - target: {fileID: 114499333081086660, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
         type: 2}
       propertyPath: networkManager
       value: 
@@ -2301,11 +2296,16 @@ Prefab:
       propertyPath: networkManager
       value: 
       objectReference: {fileID: 584977972}
-    - target: {fileID: 114499333081086660, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
+    - target: {fileID: 114177010949604640, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
         type: 2}
       propertyPath: networkManager
       value: 
       objectReference: {fileID: 584977972}
+    - target: {fileID: 114047091275470952, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
+        type: 2}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 1982260039}
     - target: {fileID: 114047091275470952, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
         type: 2}
       propertyPath: hUDManager

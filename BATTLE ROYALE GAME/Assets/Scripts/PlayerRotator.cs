@@ -76,7 +76,7 @@ public class PlayerRotator : MonoBehaviour
         mouseX += Input.GetAxis("Mouse X") * rotationSpeed;
         mouseY += Input.GetAxis("Mouse Y") * rotationSpeed;
         mouseY = Mathf.Clamp(mouseY, -35, 60);
-        camera.transform.rotation = Quaternion.RotateTowards(camera.transform.rotation, target.transform.rotation, Time.deltaTime * 10);
+        camera.transform.rotation = Quaternion.RotateTowards(camera.transform.rotation, target.transform.rotation, Time.deltaTime * 10000);
 
         if (Input.GetKey(KeyCode.LeftAlt))
         {

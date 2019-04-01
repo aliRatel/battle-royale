@@ -40,10 +40,13 @@ public class SessionManager : MonoBehaviour
             Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
                 weapon.GetComponent<BoxCollider>().enabled = false;
                 weapon.GetComponent<CapsuleCollider>().enabled = false;
+
                 itemRb.isKinematic = true;
             weapon.transform.parent = weaponHolder.transform;
                playerShooter =  localPlayer.GetComponent<PlayerShooter>();
+                weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
                 playerShooter.addWeapon(weapon);
+                //todo networking
                 break;
         }
     

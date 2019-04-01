@@ -10,6 +10,8 @@ public class Item : MonoBehaviour {
     public int currentMag;
     public int spareAmmo = 90;
     public GameObject bulletPoint;
+    public GameObject muzzleFire;
+    public AudioClip shoot, reload;
     public AudioSource sound;
     public float fireRate;
     public GameObject canvas;
@@ -19,7 +21,6 @@ public class Item : MonoBehaviour {
     void Start () {
 
         canvas = transform.Find("Canvas").gameObject;
-        
         sound = GetComponent<AudioSource>();
         sound.Stop();
         name = gameObject.name;
@@ -50,7 +51,6 @@ public class Item : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        canvas.SetActive(true);
 
 
         if (other.gameObject.tag == "Player")
@@ -67,5 +67,7 @@ public class Item : MonoBehaviour {
             canvas.SetActive(false);
         }
     }
+
+    
 
 }
