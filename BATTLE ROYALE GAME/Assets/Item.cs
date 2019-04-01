@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Item : MonoBehaviour {
     public SessionManager sessionManager;
     public string name;
+    public int id;
     public int magsize = 30;
     public int currentMag;
     public int spareAmmo = 90;
@@ -16,10 +17,11 @@ public class Item : MonoBehaviour {
     public float fireRate;
     public GameObject canvas;
     public bool canPickUp = false;
+    internal string nextAction;
 
     // Use this for initialization
     void Start () {
-
+        nextAction = "pick";
         canvas = transform.Find("Canvas").gameObject;
         sound = GetComponent<AudioSource>();
         sound.Stop();
@@ -35,8 +37,9 @@ public class Item : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.E)&& canPickUp)
         {
             Debug.Log("player");
-            sessionManager.AddWeapon(gameObject);
+            nextAction = "drop";
             canPickUp = false;
+            sessionManager.AddWeapon(gameObject);
             
         }
         if (sessionManager==null) sessionManager = GameObject.FindGameObjectWithTag("session manager").GetComponent<SessionManager>();

@@ -34,10 +34,11 @@ public class NetworkManager : MonoBehaviour
         socket.On("seId", SetSessionId);
         socket.On("player rotated", OnOtherPlayerRotated);
         socket.On("player animated", OnPlayerAnimated);
+        socket.On("weapon changed", OnWeaponChanged);
 
     }
 
-   
+  
 
     private void Update()
     {
@@ -80,13 +81,9 @@ public class NetworkManager : MonoBehaviour
         socket.Emit("log in", new JSONObject(infoJson));
 
     }
-    private void OnPlayerAnimated(SocketIOEvent obj)
-    {
-        string animation = obj.data.ToString();
-        Debug.Log(animation);
-        AnimationJson animationJson = JsonUtility.FromJson<AnimationJson>(animation);
-        sessionManager.AnimatePlayer(animationJson);
-    }
+    
+
+  
 
     private void SetSessionId(SocketIOEvent obj)
     {
@@ -97,14 +94,6 @@ public class NetworkManager : MonoBehaviour
         playerId = playerJson.sessionId;
     }
 
-    private void OnOtherPlayerConnected(SocketIOEvent obj)
-    {
-        string player = obj.data.ToString();
-        
-        PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
-        Debug.Log(playerJson.sessionId);
-        sessionManager.AddNewPlayer(playerJson);
-    }
 
     public void JoinGame()
     {
@@ -135,8 +124,35 @@ public class NetworkManager : MonoBehaviour
         if (sessionManager.sessionAprroved)
             socket.Emit("player moved", new JSONObject(newPos));
     }
+    public void  SendWeaponChanged(GameObject weapon)
+    {
+        WeaponJson weaponJson = new WeaponJson(weapon, this.playerId);
+        String newWeapon = JsonUtility.ToJson(weaponJson);
+        socket.Emit("weapon changed", new JSONObject(newWeapon));
+    }
     #endregion commands
     #region listening
+    private void OnWeaponChanged(SocketIOEvent obj)
+    {
+        string w = obj.data.ToString();
+        WeaponJson weaponJson = JsonUtility.FromJson<WeaponJson>(w);
+        sessionManager.changeWeapon(weaponJson);
+    }
+
+    private void OnPlayerAnimated(SocketIOEvent obj)
+    {
+        string animation = obj.data.ToString();
+        AnimationJson animationJson = JsonUtility.FromJson<AnimationJson>(animation);
+        sessionManager.AnimatePlayer(animationJson);
+    }
+    private void OnOtherPlayerConnected(SocketIOEvent obj)
+    {
+        string player = obj.data.ToString();
+
+        PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
+        Debug.Log(playerJson.sessionId);
+        sessionManager.AddNewPlayer(playerJson);
+    }
 
     private void OnApproved(SocketIOEvent obj)
     {
@@ -174,6 +190,30 @@ public class NetworkManager : MonoBehaviour
     }
     #endregion listening
     #region JsonClasses
+    [Serializable]
+    public class WeaponJson
+    {
+        public string name;
+        public int id;
+        public int currentMag;
+        public int spareAmmo;
+        public int sessionId;
+        public float[] position;
+        public string action;
+
+        public WeaponJson(GameObject weapon,int sessionID)
+        {
+            Item item = weapon.GetComponent<Item>();
+            this.name = item.name;
+            this.id = item.id;
+            this.currentMag = item.currentMag;
+            this.spareAmmo = item.spareAmmo;
+            this.sessionId = sessionID;
+            this.action = item.nextAction;
+            this.position = new float[] { weapon.transform.position.x, weapon.transform.position.y, weapon.transform.position.z };
+
+        }
+    }
     [Serializable]
     public class AnimationJson
     {

@@ -9,6 +9,7 @@ public class SessionManager : MonoBehaviour
     public static SessionManager instance;
 
     public Player[] players;
+    public GameObject[] weapons;
     public  GameObject[] playersObjects;
     public int playerId;
     public  bool sessionAprroved = false;
@@ -18,6 +19,8 @@ public class SessionManager : MonoBehaviour
     public PlayerShooter playerShooter;
     public GameObject playerPrefab;
     public GameObject ak_prefab;
+    public NetworkManager networkManager;
+
 
     //public  void AddWeapon(string name)
     //{
@@ -46,7 +49,7 @@ public class SessionManager : MonoBehaviour
                playerShooter =  localPlayer.GetComponent<PlayerShooter>();
                 weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
                 playerShooter.addWeapon(weapon);
-                //todo networking
+                networkManager.SendWeaponChanged(weapon);
                 break;
         }
     
@@ -113,6 +116,38 @@ public class SessionManager : MonoBehaviour
     {
         
             playersObjects[sessionId].transform.rotation = Quaternion.Euler(rot.x,rot.y,rot.z);
+    }
+
+    internal void changeWeapon(NetworkManager.WeaponJson weaponJson)
+    {
+       GameObject droppedWeapon = weapons[weaponJson.id];
+        GameObject enemyPlayerObject = playersObjects[weaponJson.sessionId];
+        EnemyPlayer enemyPlayer = enemyPlayerObject.GetComponent<EnemyPlayer>();
+        switch (weaponJson.name.ToLower())
+        {
+            case "ak_47":
+
+                GameObject weapon = Instantiate(ak_prefab, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
+                Item item = weapon.GetComponent<Item>();
+                item.name = weaponJson.name;
+                item.id = weaponJson.id;
+                item.currentMag = weaponJson.currentMag;
+                item.spareAmmo = weaponJson.spareAmmo;
+                item.nextAction = "drop";
+                weapon.transform.Find("Canvas").gameObject.SetActive(false);
+                GameObject.Destroy(droppedWeapon);
+                Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
+                weapon.GetComponent<BoxCollider>().enabled = false;
+                weapon.GetComponent<CapsuleCollider>().enabled = false;
+
+                itemRb.isKinematic = true;
+                weapon.transform.parent = enemyPlayer.weaponHolder.transform ;
+                //playerShooter = localPlayer.GetComponent<PlayerShooter>();
+                weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
+                enemyPlayer.firstWeapon = item;
+           
+                break;
+        }
     }
 
     internal void AnimatePlayer(NetworkManager.AnimationJson animationJson)

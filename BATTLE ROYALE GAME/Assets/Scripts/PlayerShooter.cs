@@ -11,12 +11,13 @@ public class PlayerShooter : MonoBehaviour {
     public Item currentWeapon;
     public GameObject bulletPrefab;
     private float nextFire;
-    private bool isReloading=false;
+    public bool isReloading;
+    Coroutine startSomeCoroutine;
     public HUDManager hUDManager;
 
     // Use this for initialization
     void Start () {
-		
+        isReloading = false;
 	}
 	
 	// Update is called once per frame
@@ -42,7 +43,7 @@ public class PlayerShooter : MonoBehaviour {
 
         if (Input.GetButton("Fire1")  )
         {
-            if (firstWeapon.currentMag > 0)
+            if (firstWeapon.currentMag > 0 &&!isReloading)
             {
                 firstWeapon.bulletPoint.transform.LookAt ( Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, z)));
                 if ( Time.time > nextFire) {
@@ -70,22 +71,29 @@ public class PlayerShooter : MonoBehaviour {
                
             }
             else return;
-        }else if (Input.GetKey(KeyCode.R) && firstWeapon.spareAmmo > 0)
+        }else if (Input.GetKey(KeyCode.R) && firstWeapon.spareAmmo > 0 && !isReloading &&firstWeapon.currentMag<firstWeapon.magsize)
         {
-            if (!isReloading)
-                StartCoroutine(reload());
+           
+                startSomeCoroutine = StartCoroutine(reload());
+
+            
         }
 	}
 
     IEnumerator reload()
     {
         isReloading = true;
+        Debug.Log("before");
         firstWeapon.sound.clip = firstWeapon.reload;
         firstWeapon.sound.Play();
         yield return new WaitForSeconds(3f);
+        Debug.Log("after");
+
         if (firstWeapon.spareAmmo > 0 )
         {
-            int bullets= firstWeapon.magsize - firstWeapon.currentMag;
+            firstWeapon.sound.Play();
+
+            int bullets = firstWeapon.magsize - firstWeapon.currentMag;
             firstWeapon.currentMag +=bullets;
             firstWeapon.spareAmmo -=bullets;
 
