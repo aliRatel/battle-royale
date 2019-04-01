@@ -83,16 +83,17 @@ public class PlayerShooter : MonoBehaviour {
         firstWeapon.sound.clip = firstWeapon.reload;
         firstWeapon.sound.Play();
         yield return new WaitForSeconds(3f);
-        if (firstWeapon.spareAmmo >= firstWeapon.magsize)
+        if (firstWeapon.spareAmmo > 0 )
         {
             int bullets= firstWeapon.magsize - firstWeapon.currentMag;
-            firstWeapon.currentMag += bullets;
-            firstWeapon.spareAmmo -= bullets;
-            hUDManager.SetAmmo(firstWeapon);
+            firstWeapon.currentMag +=bullets;
+            firstWeapon.spareAmmo -=bullets;
 
         }
 
         else firstWeapon.currentMag += firstWeapon.spareAmmo;
+
+        hUDManager.SetAmmo(firstWeapon);
 
         isReloading = false;
         firstWeapon.sound.clip = firstWeapon.shoot;
