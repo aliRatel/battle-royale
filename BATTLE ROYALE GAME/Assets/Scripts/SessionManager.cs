@@ -58,7 +58,7 @@ public class SessionManager : MonoBehaviour
                playerShooter =  localPlayer.GetComponent<PlayerShooter>();
                 weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
                 playerShooter.addWeapon(weapon);
-                
+                weapons[newitem.id]=weapon;
                 networkManager.SendWeaponChanged(weapon);
                 GameObject.Destroy(temp);
                 break;
@@ -146,16 +146,16 @@ public class SessionManager : MonoBehaviour
         switch (weaponJson.name.ToLower())
         {
             case "ak_47":
-                GameObject weapon = ak_prefab;
-               // GameObject weapon = Instantiate(ak_prefab, enemyPlayer.weaponHolder.transform.position, enemyPlayer.weaponHolder.transform.rotation) as GameObject;
+                Destroy(Dweapon);
+
+                GameObject weapon = Instantiate(ak_prefab, enemyPlayer.weaponHolder.transform.position, enemyPlayer.weaponHolder.transform.rotation) as GameObject;
                 Item item = weapon.GetComponent<Item>();
                 item.name = weaponJson.name;
                 item.id = weaponJson.id;
                 item.currentMag = weaponJson.currentMag;
                 item.spareAmmo = weaponJson.spareAmmo;
-                item.nextAction = "drop";
+                item.nextAction = weaponJson.action;
                 weapon.transform.Find("Canvas").gameObject.SetActive(false);
-                GameObject.Destroy(Dweapon);
                 Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
                 weapon.GetComponent<BoxCollider>().enabled = false;
                 weapon.GetComponent<CapsuleCollider>().enabled = false;
@@ -164,9 +164,8 @@ public class SessionManager : MonoBehaviour
                 Debug.Log(weapon.transform.parent);
                 //playerShooter = localPlayer.GetComponent<PlayerShooter>();
                 weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
-                weapon = Instantiate(weapon, enemyPlayer.weaponHolder.transform.position, enemyPlayer.weaponHolder.transform.rotation) as GameObject;
                 weapon.transform.SetParent(enemyPlayer.weaponHolder.transform);
-
+                weapons[weaponJson.id] = weapon;
                 enemyPlayer.firstWeapon = item;
            
                 break;
