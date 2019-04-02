@@ -12,7 +12,7 @@ public class SessionManager : MonoBehaviour
     public GameObject[] weapons;
     public  GameObject[] playersObjects;
     public int playerId;
-    public bool sessionAprroved;
+    private bool sessionAprroved;
     public Animator anim;
     public GameObject localPlayer;
     public GameObject weaponHolder;
@@ -56,6 +56,11 @@ public class SessionManager : MonoBehaviour
                 break;
         }
     
+    }
+
+    public bool isSessionAprroved()
+    {
+        return sessionAprroved;
     }
 
     // Use this for initialization
@@ -160,6 +165,10 @@ public class SessionManager : MonoBehaviour
         }
     }
 
+    internal void setSessionApproved()
+    {
+        sessionAprroved = true;    }
+
     internal void AnimatePlayer(NetworkManager.AnimationJson animationJson)
     {
         anim = playersObjects[animationJson.sessionId].GetComponentInChildren<Animator>();
@@ -171,8 +180,5 @@ public class SessionManager : MonoBehaviour
         anim.SetBool("isCrouching", animationJson.isCrouching);
     }
 
-    public void setTrue()
-    {
-        sessionAprroved = true;
-    }
+   
 }

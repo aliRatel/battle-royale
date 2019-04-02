@@ -69,7 +69,7 @@ public class NetworkManager : MonoBehaviour
     internal void SendAnimation(AnimationJson animation)
     {
         string animationString = JsonUtility.ToJson(animation);
-        if(sessionManager.sessionAprroved)
+        if(sessionManager.isSessionAprroved())
         socket.Emit("player animated", new JSONObject(animationString));
     }
 
@@ -114,14 +114,14 @@ public class NetworkManager : MonoBehaviour
     {
         RotationJson rotJ = new RotationJson(rotation, playerId);
         String newRot = JsonUtility.ToJson(rotJ);
-        if (sessionManager.sessionAprroved)
+        if (sessionManager.isSessionAprroved())
             socket.Emit("player rotated", new JSONObject(newRot));
     }
     public void sendPos(Vector3 pos, int sessionId)
     {
         PositionJson posJ = new PositionJson(pos, playerId);
         String newPos = JsonUtility.ToJson(posJ);
-        if (sessionManager.sessionAprroved)
+        if (sessionManager.isSessionAprroved())
             socket.Emit("player moved", new JSONObject(newPos));
     }
     public void  SendWeaponChanged(GameObject weapon)
@@ -156,7 +156,7 @@ public class NetworkManager : MonoBehaviour
 
     private void OnApproved(SocketIOEvent obj)
     {
-        sessionManager.setTrue();
+        sessionManager.setSessionApproved(); 
         loggedIn = true;
         string players = obj.data.ToString();
 
