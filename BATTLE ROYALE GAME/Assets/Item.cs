@@ -27,8 +27,8 @@ public class Item : MonoBehaviour {
         currentMag = magsize;
         fireRate = 0.1f;
         Rigidbody itemRb =GetComponent<Rigidbody>();
-        GetComponent<BoxCollider>().enabled = false;
-        GetComponent<CapsuleCollider>().enabled = false;
+        GetComponent<BoxCollider>().enabled = true;
+        GetComponent<CapsuleCollider>().enabled = true;
 
         itemRb.isKinematic = true;
     }
