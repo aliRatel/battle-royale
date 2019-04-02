@@ -204,7 +204,7 @@ public class NetworkManager : MonoBehaviour
         public WeaponJson(GameObject weapon,int sessionID)
         {
             Item item = weapon.GetComponent<Item>();
-            this.name = item.name;
+            this.name = item.itemName;
             this.id = item.id;
             this.currentMag = item.currentMag;
             this.spareAmmo = item.spareAmmo;

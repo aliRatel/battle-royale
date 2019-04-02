@@ -89,17 +89,22 @@ public class PlayerShooter : MonoBehaviour {
         yield return new WaitForSeconds(3f);
         Debug.Log("after");
 
-        if (firstWeapon.spareAmmo > 0 )
-        {
+        
             firstWeapon.sound.Play();
 
             int bullets = firstWeapon.magsize - firstWeapon.currentMag;
-            firstWeapon.currentMag +=bullets;
-            firstWeapon.spareAmmo -=bullets;
+        if (firstWeapon.spareAmmo > firstWeapon.magsize)
+        {
+            firstWeapon.currentMag += bullets;
+            firstWeapon.spareAmmo -= bullets;
 
         }
 
-        else firstWeapon.currentMag += firstWeapon.spareAmmo;
+        else
+        {
+            firstWeapon.currentMag += firstWeapon.spareAmmo;
+            firstWeapon.spareAmmo = 0;
+        }
 
         hUDManager.SetAmmo(firstWeapon);
 

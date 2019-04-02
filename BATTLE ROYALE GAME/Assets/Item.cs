@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour {
     public SessionManager sessionManager;
-    public string name;
+    public string itemName="ak_47";
     public int id;
     public int magsize = 30;
     public int currentMag;
@@ -18,7 +18,18 @@ public class Item : MonoBehaviour {
     public GameObject canvas;
     public bool canPickUp = false;
     internal string nextAction;
-
+    private void Awake()
+    {
+        nextAction = "pick";
+        canvas = transform.Find("Canvas").gameObject;
+        sound = GetComponent<AudioSource>();
+        sound.Stop();
+        name = gameObject.name;
+        sessionManager = GameObject.FindGameObjectWithTag("session manager").GetComponent<SessionManager>();
+        //bulletPoint = transform.Find("bullet Point").gameObject;
+        currentMag = magsize;
+        fireRate = 0.1f;
+    }
     // Use this for initialization
     void Start () {
         nextAction = "pick";
