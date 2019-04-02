@@ -17,6 +17,7 @@ public class SessionManager : MonoBehaviour
     public GameObject localPlayer;
     public GameObject weaponHolder;
     public PlayerShooter playerShooter;
+    public GameObject droppedWeapon;
     public GameObject playerPrefab;
     public GameObject ak_prefab;
     public NetworkManager networkManager;
@@ -122,15 +123,16 @@ public class SessionManager : MonoBehaviour
     }
 
     internal void changeWeapon(NetworkManager.WeaponJson weaponJson)
-    {
-       GameObject droppedWeapon = weapons[weaponJson.id];
+    {//this is important
+
+     //  GameObject droppedWeapon = weapons[weaponJson.id];
         GameObject enemyPlayerObject = playersObjects[weaponJson.sessionId];
         EnemyPlayer enemyPlayer = enemyPlayerObject.GetComponent<EnemyPlayer>();
         switch (weaponJson.name.ToLower())
         {
             case "ak_47":
-
-                GameObject weapon = Instantiate(ak_prefab, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
+                GameObject weapon = ak_prefab;
+               // GameObject weapon = Instantiate(ak_prefab, enemyPlayer.weaponHolder.transform.position, enemyPlayer.weaponHolder.transform.rotation) as GameObject;
                 Item item = weapon.GetComponent<Item>();
                 item.name = weaponJson.name;
                 item.id = weaponJson.id;
@@ -144,9 +146,12 @@ public class SessionManager : MonoBehaviour
                 weapon.GetComponent<CapsuleCollider>().enabled = false;
 
                 itemRb.isKinematic = true;
-                weapon.transform.parent = enemyPlayer.weaponHolder.transform ;
+                Debug.Log(weapon.transform.parent);
                 //playerShooter = localPlayer.GetComponent<PlayerShooter>();
                 weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
+                weapon = Instantiate(weapon, enemyPlayer.weaponHolder.transform.position, enemyPlayer.weaponHolder.transform.rotation) as GameObject;
+                weapon.transform.SetParent(enemyPlayer.weaponHolder.transform);
+
                 enemyPlayer.firstWeapon = item;
            
                 break;

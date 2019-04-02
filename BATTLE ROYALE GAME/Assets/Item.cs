@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour {
     public SessionManager sessionManager;
-    public string itemName="ak_47";
+    public string itemName;
     public int id;
-    public int magsize = 30;
+    public int magsize ;
     public int currentMag;
-    public int spareAmmo = 90;
+    public int spareAmmo;
     public GameObject bulletPoint;
     public GameObject muzzleFire;
     public AudioClip shoot, reload;
