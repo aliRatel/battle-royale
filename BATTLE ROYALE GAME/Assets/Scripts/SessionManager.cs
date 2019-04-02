@@ -38,6 +38,7 @@ public class SessionManager : MonoBehaviour
         {
             case "ak_47" :
                 GameObject weapon = Instantiate(ak_prefab, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
+                
                 weapon.transform.Find("Canvas").gameObject.SetActive(false);
             GameObject.Destroy(temp);
             Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
@@ -49,6 +50,7 @@ public class SessionManager : MonoBehaviour
                playerShooter =  localPlayer.GetComponent<PlayerShooter>();
                 weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
                 playerShooter.addWeapon(weapon);
+                weapon.GetComponent<Item>().nextAction = "drop";
                 networkManager.SendWeaponChanged(weapon);
                 break;
         }
@@ -73,6 +75,7 @@ public class SessionManager : MonoBehaviour
         
         players = new Player[100];
         playersObjects = new GameObject[100];
+        sessionAprroved = false;
 
     }
   
