@@ -12,7 +12,7 @@ public class SessionManager : MonoBehaviour
     public GameObject[] weapons;
     public  GameObject[] playersObjects;
     public int playerId;
-    private bool sessionAprroved;
+    public bool sessionAprroved;
     public Animator anim;
     public GameObject localPlayer;
     public GameObject weaponHolder;
@@ -38,10 +38,17 @@ public class SessionManager : MonoBehaviour
         switch (temp.GetComponent<Item>().itemName.ToLower())
         {
             case "ak_47" :
+
                 GameObject weapon = Instantiate(ak_prefab, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
-                
+
+                Item newitem = weapon.GetComponent<Item>();
+                Item olditem = weapon.GetComponent<Item>();
+                newitem.id = olditem.id;
+                newitem.spareAmmo = olditem.spareAmmo;
+                newitem.currentMag = olditem.currentMag;
+                newitem.nextAction = "drop";
                 weapon.transform.Find("Canvas").gameObject.SetActive(false);
-            GameObject.Destroy(temp);
+            
             Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
                 weapon.GetComponent<BoxCollider>().enabled = false;
                 weapon.GetComponent<CapsuleCollider>().enabled = false;
@@ -51,8 +58,9 @@ public class SessionManager : MonoBehaviour
                playerShooter =  localPlayer.GetComponent<PlayerShooter>();
                 weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
                 playerShooter.addWeapon(weapon);
-                weapon.GetComponent<Item>().nextAction = "drop";
+                
                 networkManager.SendWeaponChanged(weapon);
+                GameObject.Destroy(temp);
                 break;
         }
     
