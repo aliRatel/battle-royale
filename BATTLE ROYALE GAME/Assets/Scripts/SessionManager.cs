@@ -12,7 +12,7 @@ public class SessionManager : MonoBehaviour
     public GameObject[] weapons;
     public  GameObject[] playersObjects;
     public int playerId;
-    public  bool sessionAprroved = false;
+    public bool sessionAprroved;
     public Animator anim;
     public GameObject localPlayer;
     public GameObject weaponHolder;
@@ -61,6 +61,7 @@ public class SessionManager : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+        sessionAprroved = false;
         if (instance == null)
             instance = this;
         else if (instance != this)
