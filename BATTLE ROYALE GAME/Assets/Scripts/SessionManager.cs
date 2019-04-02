@@ -129,6 +129,7 @@ public class SessionManager : MonoBehaviour
      //  GameObject droppedWeapon = weapons[weaponJson.id];
         GameObject enemyPlayerObject = playersObjects[weaponJson.sessionId];
         EnemyPlayer enemyPlayer = enemyPlayerObject.GetComponent<EnemyPlayer>();
+        GameObject Dweapon = weapons[weaponJson.id];
         switch (weaponJson.name.ToLower())
         {
             case "ak_47":
@@ -141,7 +142,7 @@ public class SessionManager : MonoBehaviour
                 item.spareAmmo = weaponJson.spareAmmo;
                 item.nextAction = "drop";
                 weapon.transform.Find("Canvas").gameObject.SetActive(false);
-                GameObject.Destroy(droppedWeapon);
+                GameObject.Destroy(Dweapon);
                 Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
                 weapon.GetComponent<BoxCollider>().enabled = false;
                 weapon.GetComponent<CapsuleCollider>().enabled = false;
