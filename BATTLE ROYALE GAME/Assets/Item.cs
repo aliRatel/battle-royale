@@ -23,12 +23,14 @@ public class Item : MonoBehaviour {
         nextAction = "pick";
         canvas = transform.Find("Canvas").gameObject;
         sound = GetComponent<AudioSource>();
-        sound.Stop();
-        name = gameObject.name;
         sessionManager = GameObject.FindGameObjectWithTag("session manager").GetComponent<SessionManager>();
-        //bulletPoint = transform.Find("bullet Point").gameObject;
         currentMag = magsize;
         fireRate = 0.1f;
+        Rigidbody itemRb =GetComponent<Rigidbody>();
+        GetComponent<BoxCollider>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+
+        itemRb.isKinematic = true;
     }
     // Use this for initialization
     void Start () {
@@ -36,7 +38,6 @@ public class Item : MonoBehaviour {
         canvas = transform.Find("Canvas").gameObject;
         sound = GetComponent<AudioSource>();
         sound.Stop();
-        name = gameObject.name;
         sessionManager = GameObject.FindGameObjectWithTag("session manager").GetComponent<SessionManager>();
         //bulletPoint = transform.Find("bullet Point").gameObject;
         currentMag = magsize;
