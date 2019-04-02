@@ -35,7 +35,7 @@ public class SessionManager : MonoBehaviour
 
     internal void AddWeapon(GameObject temp)
     {
-        switch (temp.name.ToLower())
+        switch (temp.GetComponent<Item>().itemName.ToLower())
         {
             case "ak_47" :
                 GameObject weapon = Instantiate(ak_prefab, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
