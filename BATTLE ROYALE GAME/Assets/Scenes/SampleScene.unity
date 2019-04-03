@@ -2409,7 +2409,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4228296320196370, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1193.8
+      value: 1056.4
       objectReference: {fileID: 0}
     - target: {fileID: 4228296320196370, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2417,7 +2417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4228296320196370, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 875.9
+      value: 589.5
       objectReference: {fileID: 0}
     - target: {fileID: 4228296320196370, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3357,6 +3357,7 @@ MonoBehaviour:
   - {fileID: 994856570}
   playersObjects: []
   playerId: 0
+  sessionAprroved: 0
   anim: {fileID: 0}
   localPlayer: {fileID: 0}
   weaponHolder: {fileID: 767263337}
