@@ -10,6 +10,7 @@ public class PlayerShooter : MonoBehaviour {
    public int secondWeaponAmmo;
     public Item currentWeapon;
     public GameObject bulletPrefab;
+    public SessionManager sessionManager;
     private float nextFire;
     public bool isReloading;
     Coroutine startSomeCoroutine;
@@ -89,10 +90,15 @@ public class PlayerShooter : MonoBehaviour {
             GameObject weapon = firstWeapon.gameObject;
             weapon.transform.SetParent(null);
             firstWeapon = null;
+            firstWeapon.nextAction="pick";
             weapon.transform.position = gameObject.transform.position + Vector3.forward*3;
             weapon.GetComponent<BoxCollider>().enabled = true;
             weapon.GetComponent<CapsuleCollider>().enabled = true;
             weapon.GetComponent<Rigidbody>().isKinematic = false;
+            NetworkManager.WeaponJson weaponJson = new NetworkManager.WeaponJson(firstWeapon.gameObject, -1);
+            sessionManager.changeWeapon(weaponJson);
+            
+           
 
         }
     }

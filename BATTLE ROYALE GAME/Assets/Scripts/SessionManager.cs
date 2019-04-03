@@ -164,16 +164,32 @@ public class SessionManager : MonoBehaviour
                 item.currentMag = weaponJson.currentMag;
                 item.spareAmmo = weaponJson.spareAmmo;
                 item.nextAction = weaponJson.action;
-                weapon.transform.Find("Canvas").gameObject.SetActive(false);
-                Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
-                weapon.GetComponent<BoxCollider>().enabled = false;
-                weapon.GetComponent<CapsuleCollider>().enabled = false;
+                if (weaponJson.action == "drop")
+                {
+                    weapon.transform.Find("Canvas").gameObject.SetActive(false);
+                    Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
+                    weapon.GetComponent<BoxCollider>().enabled = false;
+                    weapon.GetComponent<CapsuleCollider>().enabled = false;
 
-                itemRb.isKinematic = true;
+                    itemRb.isKinematic = true;
+                    weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
+                    weapon.transform.SetParent(enemyPlayer.weaponHolder.transform);
+                }
+                else
+                {
+                    weapon.transform.Find("Canvas").gameObject.SetActive(true);
+                    Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
+                    weapon.GetComponent<BoxCollider>().enabled = true;
+                    weapon.GetComponent<CapsuleCollider>().enabled = true;
+
+                    itemRb.isKinematic = false;
+                    weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(false);
+                    weapon.transform.SetParent(null);
+
+                }
                 Debug.Log(weapon.transform.parent);
                 //playerShooter = localPlayer.GetComponent<PlayerShooter>();
-                weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
-                weapon.transform.SetParent(enemyPlayer.weaponHolder.transform);
+                
                 weapons[weaponJson.id] = weapon;
                 enemyPlayer.firstWeapon = item;
            
