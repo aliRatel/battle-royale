@@ -154,6 +154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4903019884750656}
+  - component: {fileID: 603020873}
   m_Layer: 0
   m_Name: swat:LeftArm
   m_TagString: Untagged
@@ -177,6 +178,20 @@ Transform:
   m_Father: {fileID: 4182873351074628}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &603020873
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028019852989862}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.07
+  m_Height: 0.27687418
+  m_Direction: 0
+  m_Center: {x: -0.13843709, y: 0, z: 0}
 --- !u!1 &1029141923072684
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4301545672105136}
+  - component: {fileID: 586286211}
   m_Layer: 0
   m_Name: swat:LeftForeArm
   m_TagString: Untagged
@@ -455,6 +471,20 @@ Transform:
   m_Father: {fileID: 4903019884750656}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &586286211
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063605661571858}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.06
+  m_Height: 0.5062752
+  m_Direction: 0
+  m_Center: {x: -0.2531376, y: 0, z: 0}
 --- !u!1 &1071534472942680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,6 +1606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4880749920020990}
+  - component: {fileID: 1283124607}
   m_Layer: 0
   m_Name: swat:Head
   m_TagString: Head
@@ -1601,6 +1632,19 @@ Transform:
   m_Father: {fileID: 4382061940385170}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1283124607
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273682214504242}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.12
+  m_Center: {x: 0, y: 0.08, z: 0}
 --- !u!1 &1290350135557698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2150,6 +2194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4675214884140498}
+  - component: {fileID: 143587978}
   m_Layer: 0
   m_Name: swat:RightUpLeg
   m_TagString: Untagged
@@ -2173,6 +2218,20 @@ Transform:
   m_Father: {fileID: 4634301123313252}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &143587978
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384780508051926}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.1
+  m_Height: 0.41761824
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.20880912, z: 0}
 --- !u!1 &1395767551059104
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,6 +2525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4616549201712522}
+  - component: {fileID: 215741440}
   m_Layer: 0
   m_Name: swat:LeftLeg
   m_TagString: Untagged
@@ -2489,6 +2549,20 @@ Transform:
   m_Father: {fileID: 4048469163346628}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &215741440
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436617463992182}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.09
+  m_Height: 0.5132948
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.2566474, z: 0}
 --- !u!1 &1438793570108122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2498,6 +2572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4476936867335086}
+  - component: {fileID: 12423519}
   m_Layer: 0
   m_Name: swat:RightArm
   m_TagString: Untagged
@@ -2521,6 +2596,20 @@ Transform:
   m_Father: {fileID: 4898175835229370}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &12423519
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438793570108122}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.07
+  m_Height: 0.27686
+  m_Direction: 0
+  m_Center: {x: 0.15, y: 0, z: 0}
 --- !u!1 &1449645377120824
 GameObject:
   m_ObjectHideFlags: 0
@@ -2647,6 +2736,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4048469163346628}
+  - component: {fileID: 1916937921}
   m_Layer: 0
   m_Name: swat:LeftUpLeg
   m_TagString: Untagged
@@ -2670,6 +2760,20 @@ Transform:
   m_Father: {fileID: 4634301123313252}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1916937921
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486454122974438}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.1
+  m_Height: 0.41761884
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.20880942, z: 0}
 --- !u!1 &1486676004901448
 GameObject:
   m_ObjectHideFlags: 0
@@ -3224,6 +3328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4634301123313252}
+  - component: {fileID: 1732718269}
   m_Layer: 0
   m_Name: swat:Hips
   m_TagString: Untagged
@@ -3249,6 +3354,19 @@ Transform:
   m_Father: {fileID: 4110796700937804}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1732718269
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547742346107704}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.36926526, y: 0.12499602, z: 0.25733608}
+  m_Center: {x: 0.0000062435865, y: 0.029765032, z: -0.027333826}
 --- !u!1 &1555012613785086
 GameObject:
   m_ObjectHideFlags: 0
@@ -3383,6 +3501,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4975175582509092}
+  - component: {fileID: 331002467}
   m_Layer: 0
   m_Name: swat:Spine
   m_TagString: Untagged
@@ -3406,6 +3525,19 @@ Transform:
   m_Father: {fileID: 4634301123313252}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &331002467
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591950560153014}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.36926526, y: 0.56, z: 0.25733596}
+  m_Center: {x: 0.0000059604645, y: 0.19483803, z: -0.035221726}
 --- !u!1 &1594744775929472
 GameObject:
   m_ObjectHideFlags: 0
@@ -3883,6 +4015,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4199118242291746}
+  - component: {fileID: 345611122}
   m_Layer: 0
   m_Name: swat:RightForeArm
   m_TagString: Untagged
@@ -3906,6 +4039,20 @@ Transform:
   m_Father: {fileID: 4476936867335086}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &345611122
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736159757796804}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.06
+  m_Height: 0.5088639
+  m_Direction: 0
+  m_Center: {x: 0.25, y: 0, z: 0}
 --- !u!1 &1754193003382200
 GameObject:
   m_ObjectHideFlags: 0
@@ -4765,6 +4912,7 @@ GameObject:
   - component: {fileID: 114001291004035570}
   - component: {fileID: 114499333081086660}
   - component: {fileID: 114047091275470952}
+  - component: {fileID: 624879175}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -4886,8 +5034,23 @@ MonoBehaviour:
   secondWeaponAmmo: 0
   currentWeapon: {fileID: 0}
   bulletPrefab: {fileID: 0}
+  sessionManager: {fileID: 0}
   isReloading: 0
   hUDManager: {fileID: 0}
+--- !u!114 &624879175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953391404207192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a60db9e16927854095d9689dc083a23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  armor: 0
 --- !u!1 &1954574006280204
 GameObject:
   m_ObjectHideFlags: 0
@@ -4990,6 +5153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4414329826803238}
+  - component: {fileID: 702451253}
   m_Layer: 0
   m_Name: swat:RightLeg
   m_TagString: Untagged
@@ -5013,6 +5177,20 @@ Transform:
   m_Father: {fileID: 4675214884140498}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &702451253
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984344769921524}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.09
+  m_Height: 0.513292
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.256646, z: 0}
 --- !u!1 &1996304483568986
 GameObject:
   m_ObjectHideFlags: 0

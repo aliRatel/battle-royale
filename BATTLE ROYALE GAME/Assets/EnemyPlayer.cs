@@ -8,6 +8,8 @@ public class EnemyPlayer : MonoBehaviour
     public Item SecondWeapon;
     public Item currentWeapon;
     public GameObject weaponHolder;
+    public int health;
+    public int armor;
     // Start is called before the first frame update
     void Start()
     {
