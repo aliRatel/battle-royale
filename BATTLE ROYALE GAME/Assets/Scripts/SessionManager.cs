@@ -12,7 +12,7 @@ public class SessionManager : MonoBehaviour
     public GameObject[] weapons;
     public  GameObject[] playersObjects;
     public int playerId;
-    public bool sessionAprroved;
+    public static bool sessionAprroved =false;
     public Animator anim;
     public GameObject localPlayer;
     public GameObject weaponHolder;
@@ -40,12 +40,17 @@ public class SessionManager : MonoBehaviour
             case "ak_47" :
 
                 GameObject weapon = Instantiate(ak_prefab, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
-
+                Debug.Log("before " + weapon.GetComponent<Item>().currentMag);
                 Item newitem = weapon.GetComponent<Item>();
-                Item olditem = weapon.GetComponent<Item>();
+                Item olditem = temp.GetComponent<Item>();
+                
                 newitem.id = olditem.id;
                 newitem.spareAmmo = olditem.spareAmmo;
                 newitem.currentMag = olditem.currentMag;
+
+                Debug.Log("after " + weapon.GetComponent<Item>().currentMag);
+
+
                 newitem.nextAction = "drop";
                 weapon.transform.Find("Canvas").gameObject.SetActive(false);
             
@@ -54,7 +59,7 @@ public class SessionManager : MonoBehaviour
                 weapon.GetComponent<CapsuleCollider>().enabled = false;
 
                 itemRb.isKinematic = true;
-            weapon.transform.parent = weaponHolder.transform;
+                weapon.transform.parent = weaponHolder.transform;
                playerShooter =  localPlayer.GetComponent<PlayerShooter>();
                 weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
                 playerShooter.addWeapon(weapon);
@@ -97,7 +102,10 @@ public class SessionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKey(KeyCode.U))
+        {
+            Debug.Log(sessionAprroved + "  sessionapp");
+        }
     }
 
     internal void AddNewPlayer(NetworkManager.PlayerJson playerJson)
@@ -146,8 +154,9 @@ public class SessionManager : MonoBehaviour
         switch (weaponJson.name.ToLower())
         {
             case "ak_47":
+                
                 Destroy(Dweapon);
-
+                Debug.Log(weaponJson.id);
                 GameObject weapon = Instantiate(ak_prefab, enemyPlayer.weaponHolder.transform.position, enemyPlayer.weaponHolder.transform.rotation) as GameObject;
                 Item item = weapon.GetComponent<Item>();
                 item.name = weaponJson.name;
