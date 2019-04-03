@@ -33,7 +33,7 @@ public class SessionManager : MonoBehaviour
     //    weapon.transform.parent = localPlayer.transform;
     //}
 
-    internal void AddWeapon(GameObject temp)
+    internal void PickWeapon(GameObject temp)
     {
         switch (temp.GetComponent<Item>().itemName.ToLower())
         {
@@ -51,7 +51,7 @@ public class SessionManager : MonoBehaviour
                 Debug.Log("after " + weapon.GetComponent<Item>().currentMag);
 
 
-                newitem.nextAction = "drop";
+                newitem.action = olditem.action;
                 weapon.transform.Find("Canvas").gameObject.SetActive(false);
             
             Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
@@ -69,6 +69,49 @@ public class SessionManager : MonoBehaviour
                 break;
         }
     
+    }
+
+    internal void RemoveWeapon(GameObject temp)
+    {
+        playerShooter = localPlayer.GetComponent<PlayerShooter>();
+
+        GameObject weapon = null;
+
+        switch (temp.GetComponent<Item>().itemName.ToLower())
+        {
+            case "ak_47":
+                weapon = Instantiate(ak_prefab, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
+                break;
+        }
+                
+                Item newitem = weapon.GetComponent<Item>();
+                Item olditem = temp.GetComponent<Item>();
+
+                newitem.id = olditem.id;
+                newitem.spareAmmo = olditem.spareAmmo;
+                newitem.currentMag = olditem.currentMag;
+                newitem.action = "drop";
+
+
+                weapon.transform.SetParent(null);
+                weapon.transform.Find("Canvas").gameObject.SetActive(false);
+                weapon.transform.position = localPlayer.transform.position + Vector3.forward*3;
+                weapon.GetComponent<BoxCollider>().enabled = true;
+                weapon.GetComponent<CapsuleCollider>().enabled = true;
+                weapon.GetComponent<Rigidbody>().isKinematic = false;
+                weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
+
+               
+               
+                playerShooter.dropWeapon(weapon);
+
+                weapons[newitem.id] = weapon;
+
+                networkManager.SendWeaponChanged(weapon);
+
+                GameObject.Destroy(temp);
+          
+
     }
 
     public bool isSessionAprroved()
@@ -147,25 +190,33 @@ public class SessionManager : MonoBehaviour
 
     internal void changeWeapon(NetworkManager.WeaponJson weaponJson)
     {//this is important
-
+        
      //  GameObject droppedWeapon = weapons[weaponJson.id];
         GameObject enemyPlayerObject = playersObjects[weaponJson.sessionId];
         EnemyPlayer enemyPlayer = enemyPlayerObject.GetComponent<EnemyPlayer>();
         GameObject Dweapon = weapons[weaponJson.id];
+        GameObject weapon = null;
+        Destroy(Dweapon);
         switch (weaponJson.name.ToLower())
         {
             case "ak_47":
-                
-                Destroy(Dweapon);
-                Debug.Log(weaponJson.id);
-                GameObject weapon = Instantiate(ak_prefab, enemyPlayer.weaponHolder.transform.position, enemyPlayer.weaponHolder.transform.rotation) as GameObject;
+
+
+                weapon = Instantiate(ak_prefab, enemyPlayer.weaponHolder.transform.position, enemyPlayer.weaponHolder.transform.rotation) as GameObject;
+                break;
+
+            default: return; 
+        }
+
+
+
                 Item item = weapon.GetComponent<Item>();
                 item.name = weaponJson.name;
                 item.id = weaponJson.id;
                 item.currentMag = weaponJson.currentMag;
                 item.spareAmmo = weaponJson.spareAmmo;
-                item.nextAction = weaponJson.action;
-                if (weaponJson.action == "drop")
+                item.action = weaponJson.action;
+                if (item.action == "pick")
                 {
                     weapon.transform.Find("Canvas").gameObject.SetActive(false);
                     Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
@@ -175,9 +226,12 @@ public class SessionManager : MonoBehaviour
                     itemRb.isKinematic = true;
                     weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
                     weapon.transform.SetParent(enemyPlayer.weaponHolder.transform);
+                    enemyPlayer.firstWeapon = item;
+           
                 }
-                else
+                else if(weaponJson.action=="drop")
                 {
+                    weapon.transform.position = enemyPlayerObject.transform.position + Vector3.forward * 3;
                     weapon.transform.Find("Canvas").gameObject.SetActive(true);
                     Rigidbody itemRb = weapon.GetComponent<Rigidbody>();
                     weapon.GetComponent<BoxCollider>().enabled = true;
@@ -186,16 +240,15 @@ public class SessionManager : MonoBehaviour
                     itemRb.isKinematic = false;
                     weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(false);
                     weapon.transform.SetParent(null);
+                    enemyPlayer.firstWeapon = null;
 
                 }
-                Debug.Log(weapon.transform.parent);
-                //playerShooter = localPlayer.GetComponent<PlayerShooter>();
+
                 
                 weapons[weaponJson.id] = weapon;
-                enemyPlayer.firstWeapon = item;
-           
-                break;
-        }
+              
+              
+        
     }
 
     internal void setSessionApproved()
