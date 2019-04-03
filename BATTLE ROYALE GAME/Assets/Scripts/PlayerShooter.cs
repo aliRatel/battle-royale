@@ -30,11 +30,16 @@ public class PlayerShooter : MonoBehaviour {
         if (Physics.Raycast(ray, out hit))
         {
             z = hit.distance;
+            if (hit.collider.isTrigger )
+            {
+                z += 400;
+            }
         }
         else
         {
             z = 1000;
         }
+        
             Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
 
 
@@ -80,7 +85,7 @@ public class PlayerShooter : MonoBehaviour {
 
         } else if (Input.GetKey(KeyCode.G) && firstWeapon != null)
         {
-
+            isReloading = false;
             GameObject weapon = firstWeapon.gameObject;
             weapon.transform.SetParent(null);
             firstWeapon = null;

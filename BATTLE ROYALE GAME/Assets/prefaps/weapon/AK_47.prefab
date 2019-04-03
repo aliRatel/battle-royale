@@ -5455,7 +5455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sessionManager: {fileID: 0}
   itemName: ak_47
-  id: 0
+  id: 1
   magsize: 30
   currentMag: 30
   spareAmmo: 90
