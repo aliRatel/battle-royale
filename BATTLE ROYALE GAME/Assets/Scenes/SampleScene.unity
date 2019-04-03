@@ -674,7 +674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400032, guid: dc103b5a08baf5c4291003bd399d7117, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400032, guid: dc103b5a08baf5c4291003bd399d7117, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -901,7 +901,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &418784598
 PrefabInstance:
@@ -1418,7 +1418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 010d39cbd03ee4c99a746c1f8ecdc0d8, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 010d39cbd03ee4c99a746c1f8ecdc0d8, type: 3}
       propertyPath: url
@@ -2409,15 +2409,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4228296320196370, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1022
+      value: 1193.8
       objectReference: {fileID: 0}
     - target: {fileID: 4228296320196370, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.9
+      value: 25.1
       objectReference: {fileID: 0}
     - target: {fileID: 4228296320196370, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 635.8
+      value: 875.9
       objectReference: {fileID: 0}
     - target: {fileID: 4228296320196370, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2437,7 +2437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4228296320196370, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114499333081086660, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
         type: 3}
@@ -3352,7 +3352,6 @@ MonoBehaviour:
   - {fileID: 994856570}
   playersObjects: []
   playerId: 0
-  sessionAprroved: 0
   anim: {fileID: 0}
   localPlayer: {fileID: 0}
   weaponHolder: {fileID: 767263337}
@@ -3872,7 +3871,7 @@ Transform:
   - {fileID: 660990755}
   - {fileID: 1435688372}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2049605319 stripped
 Transform:
