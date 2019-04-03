@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
 
     internal void dicreaseHealth(int health)
     {
-        health -= health;
+       this.health -= health;
         //todo networking;
     }
 

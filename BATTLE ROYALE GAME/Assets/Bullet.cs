@@ -19,7 +19,8 @@ public class Bullet : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter(Collider other)
+  
+    private void OnTriggerExit(Collider other)
     {
         PlayerManager enemyPlayerManager;
         int health;
@@ -29,14 +30,19 @@ public class Bullet : MonoBehaviour
                 enemyPlayerManager = other.gameObject.transform.root.GetComponent<PlayerManager>();
                  health =(int)( damage * 0.7);
                 enemyPlayerManager.dicreaseHealth(health);
+                Debug.Log(other.gameObject.name); ;
                 break;
 
             case "swat:Head":
                 enemyPlayerManager = other.gameObject.transform.root.GetComponent<PlayerManager>();
                  health = damage ;
                 enemyPlayerManager.dicreaseHealth(health);
+                Debug.Log("trigger");
+
                 break;
             case "swat:Spine":
+                Debug.Log("trigger");
+
                 enemyPlayerManager = other.gameObject.transform.root.GetComponent<PlayerManager>();
                  health = (int)(damage * 0.8);
                 enemyPlayerManager.dicreaseHealth(health);
