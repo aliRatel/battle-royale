@@ -37,27 +37,28 @@ public class PlayerShooter : MonoBehaviour {
         }
             Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
 
-       
 
 
 
-        if (Input.GetButton("Fire1")  )
+
+        if (Input.GetButton("Fire1"))
         {
-            if (firstWeapon.currentMag > 0 &&!isReloading)
+            if (firstWeapon.currentMag > 0 && !isReloading)
             {
-                firstWeapon.bulletPoint.transform.LookAt ( Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, z)));
-                if ( Time.time > nextFire) {
+
+                firstWeapon.bulletPoint.transform.LookAt(Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, z)));
+                if (Time.time > nextFire) {
                     firstWeapon.muzzleFire.GetComponent<ParticleSystem>().Play();
 
                     nextFire = Time.time + firstWeapon.fireRate;
-                if (!firstWeapon.sound.isPlaying)
-                    firstWeapon.sound.Play();
-                //todo fire
-                GameObject bullet = Instantiate(bulletPrefab, firstWeapon.bulletPoint.transform.position, firstWeapon.bulletPoint.transform.localRotation) as GameObject;
-                bullet.GetComponent<Rigidbody>().velocity = firstWeapon.bulletPoint.transform.forward * 25;
-                // todo start coroutine to destroy bullet
-                //todo manage bullets
-                firstWeapon.currentMag--;
+                    if (!firstWeapon.sound.isPlaying)
+                        firstWeapon.sound.Play();
+                    //todo fire
+                    GameObject bullet = Instantiate(bulletPrefab, firstWeapon.bulletPoint.transform.position, firstWeapon.bulletPoint.transform.localRotation) as GameObject;
+                    bullet.GetComponent<Rigidbody>().velocity = firstWeapon.bulletPoint.transform.forward * 25;
+                    // todo start coroutine to destroy bullet
+                    //todo manage bullets
+                    firstWeapon.currentMag--;
 
                     //todo networking shooting
                 }
@@ -65,20 +66,31 @@ public class PlayerShooter : MonoBehaviour {
             }
             else if (firstWeapon.spareAmmo > 0)
             {
-                if (!isReloading) 
-                StartCoroutine(reload());
-              
-               
+                if (!isReloading)
+                    StartCoroutine(reload());
+
+
             }
             else return;
-        }else if (Input.GetKey(KeyCode.R) && firstWeapon.spareAmmo > 0 && !isReloading &&firstWeapon.currentMag<firstWeapon.magsize)
+        } else if (Input.GetKey(KeyCode.R) && firstWeapon.spareAmmo > 0 && !isReloading && firstWeapon.currentMag < firstWeapon.magsize)
         {
-           
-                startSomeCoroutine = StartCoroutine(reload());
 
-            
+            startSomeCoroutine = StartCoroutine(reload());
+
+
+        } else if (Input.GetKey(KeyCode.G) && firstWeapon != null)
+        {
+
+            GameObject weapon = firstWeapon.gameObject;
+            weapon.transform.SetParent(null);
+            firstWeapon = null;
+            weapon.transform.position = gameObject.transform.position + Vector3.forward*3;
+            weapon.GetComponent<BoxCollider>().enabled = true;
+            weapon.GetComponent<CapsuleCollider>().enabled = true;
+            weapon.GetComponent<Rigidbody>().isKinematic = false;
+
         }
-	}
+    }
 
     IEnumerator reload()
     {
@@ -118,7 +130,10 @@ public class PlayerShooter : MonoBehaviour {
         if(firstWeapon == null)
         {
             firstWeapon = weapon.GetComponent<Item>();
-        }else if(SecondWeapon == null)
+            hUDManager.SetAmmo(firstWeapon);
+
+        }
+        else if(SecondWeapon == null)
         {
             SecondWeapon = weapon.GetComponent < Item > ();
         }

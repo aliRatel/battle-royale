@@ -40,7 +40,6 @@ public class Item : MonoBehaviour {
         sound.Stop();
         sessionManager = GameObject.FindGameObjectWithTag("session manager").GetComponent<SessionManager>();
         //bulletPoint = transform.Find("bullet Point").gameObject;
-        currentMag = magsize;
         fireRate = 0.1f;
     }
 	
