@@ -11,6 +11,7 @@ public class PlayerShooter : MonoBehaviour {
     public Item currentWeapon;
     public GameObject bulletPrefab;
     public SessionManager sessionManager;
+    public NetworkManager networkManager;
     private float nextFire;
     public bool isReloading;
     Coroutine startSomeCoroutine;
@@ -19,6 +20,8 @@ public class PlayerShooter : MonoBehaviour {
     // Use this for initialization
     void Start () {
         isReloading = false;
+        sessionManager = GameObject.FindGameObjectWithTag("session manager").GetComponent<SessionManager>();
+        networkManager = GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>();
 	}
 	
 	// Update is called once per frame
@@ -87,16 +90,10 @@ public class PlayerShooter : MonoBehaviour {
         } else if (Input.GetKey(KeyCode.G) && firstWeapon != null)
         {
             isReloading = false;
-            GameObject weapon = firstWeapon.gameObject;
-            weapon.transform.SetParent(null);
-            firstWeapon = null;
-            firstWeapon.nextAction="pick";
-            weapon.transform.position = gameObject.transform.position + Vector3.forward*3;
-            weapon.GetComponent<BoxCollider>().enabled = true;
-            weapon.GetComponent<CapsuleCollider>().enabled = true;
-            weapon.GetComponent<Rigidbody>().isKinematic = false;
-            NetworkManager.WeaponJson weaponJson = new NetworkManager.WeaponJson(firstWeapon.gameObject, -1);
-            sessionManager.changeWeapon(weaponJson);
+
+
+            firstWeapon.action = "drop";
+           sessionManager.RemoveWeapon(firstWeapon.gameObject);
             
            
 
@@ -148,5 +145,12 @@ public class PlayerShooter : MonoBehaviour {
         {
             SecondWeapon = weapon.GetComponent < Item > ();
         }
+    }
+
+
+    internal void dropWeapon(GameObject weapon)
+    {
+        firstWeapon = null;
+        
     }
 }

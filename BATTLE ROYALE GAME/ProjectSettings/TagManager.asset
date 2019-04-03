@@ -10,6 +10,7 @@ TagManager:
   - Head
   - weapon holder
   - session manager
+  - network manager
   layers:
   - Default
   - TransparentFX

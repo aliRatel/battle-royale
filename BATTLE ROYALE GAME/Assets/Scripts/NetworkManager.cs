@@ -209,7 +209,7 @@ public class NetworkManager : MonoBehaviour
             this.currentMag = item.currentMag;
             this.spareAmmo = item.spareAmmo;
             this.sessionId = sessionID;
-            this.action = item.nextAction;
+            this.action = item.action;
             this.position = new float[] { weapon.transform.position.x, weapon.transform.position.y, weapon.transform.position.z };
 
         }

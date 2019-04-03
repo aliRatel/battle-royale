@@ -17,10 +17,10 @@ public class Item : MonoBehaviour {
     public float fireRate;
     public GameObject canvas;
     public bool canPickUp = false;
-    internal string nextAction;
+    internal string action;
     private void Awake()
     {
-        nextAction = "pick";
+        action = "pick";
         canvas = transform.Find("Canvas").gameObject;
         sound = GetComponent<AudioSource>();
         sessionManager = GameObject.FindGameObjectWithTag("session manager").GetComponent<SessionManager>();
@@ -34,7 +34,7 @@ public class Item : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-        nextAction = "pick";
+        action = "pick";
         canvas = transform.Find("Canvas").gameObject;
         sound = GetComponent<AudioSource>();
         sound.Stop();
@@ -48,9 +48,10 @@ public class Item : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.E)&& canPickUp)
         {
             Debug.Log("player");
-            nextAction = "drop";
+            
             canPickUp = false;
-            sessionManager.AddWeapon(gameObject);
+            action = "pick";
+            sessionManager.PickWeapon(gameObject);
             
         }
         if (sessionManager==null) sessionManager = GameObject.FindGameObjectWithTag("session manager").GetComponent<SessionManager>();
