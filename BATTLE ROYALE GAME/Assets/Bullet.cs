@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public int ownerID ;
     public int damage;
+    public GameObject bloodSplash;
    
 
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         PlayerManager enemyPlayerManager;
+        GameObject g;
         int health;
         switch (other.gameObject.name)
         {
@@ -31,6 +33,8 @@ public class Bullet : MonoBehaviour
                  health =(int)( damage * 0.7);
                 enemyPlayerManager.dicreaseHealth(health);
                 Debug.Log(other.gameObject.name); ;
+             g  =  Instantiate(bloodSplash, other.transform.position,other.transform.rotation) as GameObject;
+                
                 break;
 
             case "swat:Head":
@@ -38,6 +42,7 @@ public class Bullet : MonoBehaviour
                  health = damage ;
                 enemyPlayerManager.dicreaseHealth(health);
                 Debug.Log("trigger");
+                  g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
 
                 break;
             case "swat:Spine":
@@ -46,10 +51,12 @@ public class Bullet : MonoBehaviour
                 enemyPlayerManager = other.gameObject.transform.root.GetComponent<PlayerManager>();
                  health = (int)(damage * 0.8);
                 enemyPlayerManager.dicreaseHealth(health);
+                  g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
+
                 break;
 
             default:
-
+                Destroy(this);
                 break;
         }
     }

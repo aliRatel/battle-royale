@@ -22,6 +22,7 @@ public class NetworkManager : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
+        
         JoinGame();
 
     }
