@@ -108,6 +108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerID: 0
   damage: 10
+  bloodSplash: {fileID: 9013365621103632586, guid: b8fb3a577f1777a47b2053dcb8d58154,
+    type: 3}
 --- !u!54 &1982260040
 Rigidbody:
   m_ObjectHideFlags: 0
