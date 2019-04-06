@@ -23,9 +23,19 @@ public class animator : MonoBehaviour {
     void Update () {
         anim.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
         anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
+        float camx = Camera.main.transform.eulerAngles.x;
+        if (camx >= 0 && camx<61)
+        {
+            
+            anim.SetFloat("AimAngle", camx-10);
 
+        }
+        else if(camx>200)
+        {   
+            anim.SetFloat("AimAngle",camx-360-10 );
 
-
+        }
+  
         NetworkManager.AnimationJson animation = new NetworkManager.AnimationJson(networkManager.playerId,
        anim.GetFloat("Horizontal"),
        anim.GetFloat("Vertical"),
