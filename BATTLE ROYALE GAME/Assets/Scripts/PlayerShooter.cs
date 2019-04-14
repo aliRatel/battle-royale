@@ -12,6 +12,8 @@ public class PlayerShooter : MonoBehaviour {
     public GameObject bulletPrefab;
     public SessionManager sessionManager;
     public NetworkManager networkManager;
+public    float z;
+
     private float nextFire;
     public bool isReloading;
     Coroutine startSomeCoroutine;
@@ -26,15 +28,118 @@ public class PlayerShooter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKey(KeyCode.Alpha1) && firstWeapon != null)
+        {
+            hustlerFirstWeapon();
+            
+
+
+
+        }
+        else if (Input.GetKey(KeyCode.Alpha2) && SecondWeapon != null)
+        {
+            hustlerSecondtWeapon();
+           
+        }
+
+        trackBullets();
+       
+
+
+
+
+
+        if (Input.GetButton("Fire1"))
+        {
+            if (currentWeapon.currentMag > 0 && !isReloading)
+            {
+
+                currentWeapon.bulletPoint.transform.LookAt(Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, z)));
+                if (Time.time > nextFire) {
+                    currentWeapon.muzzleFire.GetComponent<ParticleSystem>().Play();
+
+                    nextFire = Time.time + currentWeapon.fireRate;
+                    if (!currentWeapon.sound.isPlaying)
+                        currentWeapon.sound.Play();
+                    //todo fire
+                    GameObject bullet = Instantiate(bulletPrefab, currentWeapon.bulletPoint.transform.position, currentWeapon.bulletPoint.transform.localRotation) as GameObject;
+                    bullet.GetComponent<Rigidbody>().velocity = currentWeapon.bulletPoint.transform.forward * 25;
+                    // todo start coroutine to destroy bullet
+                    //todo manage bullets
+                    currentWeapon.currentMag--;
+
+                    //todo networking shooting
+                }
+                if (currentWeapon == firstWeapon)
+                    hUDManager.SetAmmo1(currentWeapon);
+                else if (currentWeapon == SecondWeapon)
+                    hUDManager.SetAmmo2(currentWeapon);
+            }
+            else if (currentWeapon.spareAmmo > 0)
+            {
+                if (!isReloading)
+                    StartCoroutine(reload());
+
+
+            }
+            else return;
+        } else if (Input.GetKey(KeyCode.R) && currentWeapon.spareAmmo > 0 && !isReloading && currentWeapon.currentMag < currentWeapon.magsize)
+        {
+
+            startSomeCoroutine = StartCoroutine(reload());
+
+
+        } else if (Input.GetKey(KeyCode.G) && currentWeapon != null)
+        {
+            isReloading = false;
+
+
+            currentWeapon.action = "drop";
+
+            sessionManager.RemoveWeapon(currentWeapon.gameObject);
+
+            currentWeapon = null;
+
+
+        }
+    }
+
+    private void hustlerSecondtWeapon()
+    {
+        if (currentWeapon == firstWeapon)
+        {
+            if (firstWeapon != null) firstWeapon.gameObject.SetActive(false);
+
+            SecondWeapon.gameObject.SetActive(true);
+        }
+
+        currentWeapon = SecondWeapon;
+        hUDManager.SetBg2();
+    }
+
+    private void hustlerFirstWeapon()
+    {
+        if (currentWeapon == SecondWeapon)
+        {
+            if (SecondWeapon != null) SecondWeapon.gameObject.SetActive(false);
+            firstWeapon.gameObject.SetActive(true);
+        }
+
+        currentWeapon = firstWeapon;
+        hUDManager.SetBg1();
+
+    }
+
+    private void trackBullets()
+    {
         int x = Screen.width / 2;
         int y = Screen.height / 2;
-        float z;
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(x, y));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
             z = hit.distance;
-            if (hit.collider.isTrigger )
+            if (hit.collider.isTrigger)
             {
                 z += 400;
             }
@@ -43,114 +148,71 @@ public class PlayerShooter : MonoBehaviour {
         {
             z = 1000;
         }
-        
-            Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
 
-
-
-
-
-        if (Input.GetButton("Fire1"))
-        {
-            if (firstWeapon.currentMag > 0 && !isReloading)
-            {
-
-                firstWeapon.bulletPoint.transform.LookAt(Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, z)));
-                if (Time.time > nextFire) {
-                    firstWeapon.muzzleFire.GetComponent<ParticleSystem>().Play();
-
-                    nextFire = Time.time + firstWeapon.fireRate;
-                    if (!firstWeapon.sound.isPlaying)
-                        firstWeapon.sound.Play();
-                    //todo fire
-                    GameObject bullet = Instantiate(bulletPrefab, firstWeapon.bulletPoint.transform.position, firstWeapon.bulletPoint.transform.localRotation) as GameObject;
-                    bullet.GetComponent<Rigidbody>().velocity = firstWeapon.bulletPoint.transform.forward * 25;
-                    // todo start coroutine to destroy bullet
-                    //todo manage bullets
-                    firstWeapon.currentMag--;
-
-                    //todo networking shooting
-                }
-                hUDManager.SetAmmo(firstWeapon);
-            }
-            else if (firstWeapon.spareAmmo > 0)
-            {
-                if (!isReloading)
-                    StartCoroutine(reload());
-
-
-            }
-            else return;
-        } else if (Input.GetKey(KeyCode.R) && firstWeapon.spareAmmo > 0 && !isReloading && firstWeapon.currentMag < firstWeapon.magsize)
-        {
-
-            startSomeCoroutine = StartCoroutine(reload());
-
-
-        } else if (Input.GetKey(KeyCode.G) && firstWeapon != null)
-        {
-            isReloading = false;
-
-
-            firstWeapon.action = "drop";
-           sessionManager.RemoveWeapon(firstWeapon.gameObject);
-            
-           
-
-        }
+        Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
     }
 
     IEnumerator reload()
     {
         isReloading = true;
         Debug.Log("before");
-        firstWeapon.sound.clip = firstWeapon.reload;
-        firstWeapon.sound.Play();
+        currentWeapon.sound.clip = currentWeapon.reload;
+        currentWeapon.sound.Play();
         yield return new WaitForSeconds(3f);
         Debug.Log("after");
 
-        
-            firstWeapon.sound.Play();
 
-            int bullets = firstWeapon.magsize - firstWeapon.currentMag;
-        if (firstWeapon.spareAmmo > firstWeapon.magsize)
+        currentWeapon.sound.Play();
+
+            int bullets = currentWeapon.magsize - currentWeapon.currentMag;
+        if (currentWeapon.spareAmmo > currentWeapon.magsize)
         {
-            firstWeapon.currentMag += bullets;
-            firstWeapon.spareAmmo -= bullets;
+            currentWeapon.currentMag += bullets;
+            currentWeapon.spareAmmo -= bullets;
 
         }
 
         else
         {
-            firstWeapon.currentMag += firstWeapon.spareAmmo;
-            firstWeapon.spareAmmo = 0;
+            currentWeapon.currentMag += currentWeapon.spareAmmo;
+            currentWeapon.spareAmmo = 0;
         }
+        if(currentWeapon == firstWeapon)
+        hUDManager.SetAmmo1(currentWeapon);
+        else if (currentWeapon == SecondWeapon) hUDManager.SetAmmo2(currentWeapon);
 
-        hUDManager.SetAmmo(firstWeapon);
 
         isReloading = false;
-        firstWeapon.sound.clip = firstWeapon.shoot;
+        currentWeapon.sound.clip = currentWeapon.shoot;
 
     }
 
-    internal void addWeapon(GameObject weapon)
+    internal void AddWeapon(GameObject weapon)
     {
         if(firstWeapon == null)
         {
             firstWeapon = weapon.GetComponent<Item>();
-            hUDManager.SetAmmo(firstWeapon);
+            currentWeapon = firstWeapon;
+            hustlerFirstWeapon();
+            hUDManager.SetAmmo1(firstWeapon);
+            hUDManager.SetImg1(weapon.GetComponent<Item>());
+
 
         }
         else if(SecondWeapon == null)
         {
+            
             SecondWeapon = weapon.GetComponent < Item > ();
+            currentWeapon = SecondWeapon;
+            hustlerSecondtWeapon();
+            hUDManager.SetAmmo2(SecondWeapon);
+            hUDManager.SetImg2(weapon.GetComponent<Item>());
+
+
+
         }
     }
 
 
-    internal void dropWeapon(GameObject weapon)
-    {
-        firstWeapon = null;
-        
-    }
+   
 }

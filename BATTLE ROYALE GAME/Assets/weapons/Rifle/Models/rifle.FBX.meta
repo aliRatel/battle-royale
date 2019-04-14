@@ -17,7 +17,12 @@ ModelImporter:
     4300002: clip
     7400000: Leather_Armchair
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M4A1_mat
+    second: {fileID: 2100000, guid: 65bcf8d3c16e247499bbfb0659753019, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -69,8 +74,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

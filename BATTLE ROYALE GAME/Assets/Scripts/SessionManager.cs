@@ -19,8 +19,14 @@ public class SessionManager : MonoBehaviour
     public PlayerShooter playerShooter;
     public GameObject droppedWeapon;
     public GameObject playerPrefab;
-    public GameObject ak_prefab;
+    public GameObject ak_prefab,m4_prefab;
+    
     public NetworkManager networkManager;
+
+    internal void setCurrentWeapon(GameObject gameObject, int v)
+    {
+
+    }
 
 
     //public  void AddWeapon(string name)
@@ -35,13 +41,19 @@ public class SessionManager : MonoBehaviour
 
     internal void PickWeapon(GameObject temp)
     {
+        GameObject weapon= null;
         switch (temp.GetComponent<Item>().itemName.ToLower())
-        {
+        { 
             case "ak_47" :
 
-                GameObject weapon = Instantiate(ak_prefab, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
-                Debug.Log("before " + weapon.GetComponent<Item>().currentMag);
-                Item newitem = weapon.GetComponent<Item>();
+                 weapon = Instantiate(ak_prefab, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
+                break;
+            case "m4":
+                 weapon = Instantiate(m4_prefab, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
+                break;
+                
+        }
+        Item newitem = weapon.GetComponent<Item>();
                 Item olditem = temp.GetComponent<Item>();
                 
                 newitem.id = olditem.id;
@@ -62,12 +74,12 @@ public class SessionManager : MonoBehaviour
                 weapon.transform.parent = weaponHolder.transform;
                playerShooter =  localPlayer.GetComponent<PlayerShooter>();
                 weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
-                playerShooter.addWeapon(weapon);
+                playerShooter.AddWeapon(weapon);
                 weapons[newitem.id]=weapon;
                 networkManager.SendWeaponChanged(weapon);
                 GameObject.Destroy(temp);
-                break;
-        }
+                
+        
     
     }
 
@@ -81,6 +93,9 @@ public class SessionManager : MonoBehaviour
         {
             case "ak_47":
                 weapon = Instantiate(ak_prefab, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
+                break;
+            case "m4":
+                weapon = Instantiate(m4_prefab, weaponHolder.transform.position, weaponHolder.transform.rotation) as GameObject;
                 break;
         }
                 
@@ -103,7 +118,7 @@ public class SessionManager : MonoBehaviour
 
                
                
-                playerShooter.dropWeapon(weapon);
+                //playerShooter.dropWeapon(weapon);
 
                 weapons[newitem.id] = weapon;
 
