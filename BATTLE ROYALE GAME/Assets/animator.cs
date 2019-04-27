@@ -17,6 +17,8 @@ public class animator : MonoBehaviour {
     void Start () {
         anim = GetComponent<Animator>();
         currentParams = anim.parameters;
+        networkManager = GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>();
+
     }
 
     // Update is called once per frame

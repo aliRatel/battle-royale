@@ -97,6 +97,7 @@ public class PanelManager : MonoBehaviour {
 
     public void changeScene(int a)
     {
+        GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().Play();
         SceneManager.LoadScene(a);
     }
 }

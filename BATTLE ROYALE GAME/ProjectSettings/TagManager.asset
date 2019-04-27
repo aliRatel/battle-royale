@@ -12,6 +12,8 @@ TagManager:
   - session manager
   - network manager
   - localPlayer
+  - account
+  - spawn point
   layers:
   - Default
   - TransparentFX

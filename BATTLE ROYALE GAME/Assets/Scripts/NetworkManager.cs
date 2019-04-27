@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class NetworkManager : MonoBehaviour
 
     void Start()
     {
-      
+        
         socket.On("join session approved", OnApproved);
         socket.On("other player connected", OnOtherPlayerConnected);
         socket.On("player moved", OnOtherPlayerMoved);
@@ -37,19 +38,31 @@ public class NetworkManager : MonoBehaviour
         socket.On("player rotated", OnOtherPlayerRotated);
         socket.On("player animated", OnPlayerAnimated);
         socket.On("weapon changed", OnWeaponChanged);
+        socket.On("logged in successed", OnLogIn);
+        CheckNulls();
 
     }
 
-  
+    private void OnLogIn(SocketIOEvent obj)
+    {
+        if (loggedIn == true)
+            return;
+        Debug.Log("logged in successful");
+        loggedIn = true;
+       GameObject account =  GameObject.FindGameObjectWithTag("account") ;
+        account.GetComponent<Text>().text = "Connected";
+        account.GetComponent<Text>().color = Color.green;
+
+    }
 
     private void Update()
     {
 
-        CheckNulls();
         if (Input.GetKeyDown(KeyCode.C))
-            LogIn();
+
         if (Input.GetKeyDown(KeyCode.J))
         {
+
             JoinSession();
 
 
@@ -63,14 +76,24 @@ public class NetworkManager : MonoBehaviour
     private void CheckNulls()
     {
         if (sessionManager == null)
+        {
+           
             sessionManager = GameObject.FindGameObjectWithTag("session manager").GetComponent<SessionManager>();
+        }
         if (player == null)
+        {
+            Debug.Log("null");
             player = GameObject.FindGameObjectWithTag("localPlayer");
-    }
-
-    private void JoinSession()
+        }
+        }
+    public void Play()
     {
-        posrotJson posrotJson = new posrotJson(player.transform.position, player.transform.rotation);
+        socket.Emit("play");
+    }
+    public void JoinSession()
+    {
+        CheckNulls();
+        posrotJson posrotJson = new posrotJson(player.transform.position, player.transform.rotation,playerId);
         String posrot = JsonUtility.ToJson(posrotJson);
         socket.Emit("join session", new JSONObject(posrot));
 
@@ -141,6 +164,55 @@ public class NetworkManager : MonoBehaviour
         String newWeapon = JsonUtility.ToJson(weaponJson);
         socket.Emit("weapon changed", new JSONObject(newWeapon));
     }
+    public void SignUP(GameObject field)
+    {
+        String userName=null, password=null;
+       Text[] fields =  field.GetComponentsInChildren<Text>();
+        for (int i = 0; i < fields.Length; i++)
+        {
+            if (fields[i].name == "user name field")
+            {
+                
+                userName = fields[i].text;
+            }
+            else if (fields[i].name == "password field")
+            {
+                password = fields[i].text;
+            }
+        }
+        if (userName.Length < 4 || password.Length < 4)
+            return;
+        UserJson userJson = new UserJson(userName,password);
+
+        String user = JsonUtility.ToJson(userJson);
+        socket.Emit("sign up", new JSONObject(user));
+    }
+    public void LogIn(GameObject field)
+    {
+        Debug.Log("log");
+        String userName = null, password = null;
+        Text[] fields = field.GetComponentsInChildren<Text>();
+        for (int i = 0; i < fields.Length; i++)
+        {
+            if (fields[i].name == "user name field")
+            {
+
+                userName = fields[i].text;
+            }
+            else if (fields[i].name == "password field")
+            {
+                password = fields[i].text;
+            }
+        }
+        if (userName.Length <1 || password.Length < 1)
+            return;
+
+
+        UserJson userJson = new UserJson("ali", "123");
+
+        String user = JsonUtility.ToJson(userJson);
+        socket.Emit("log in", new JSONObject(user));
+    }
     #endregion commands
     #region listening
     private void OnWeaponChanged(SocketIOEvent obj)
@@ -202,6 +274,20 @@ public class NetworkManager : MonoBehaviour
     #endregion listening
     #region JsonClasses
     [Serializable]
+    public class UserJson
+
+    {
+        public String userName;
+        public String password;
+        public UserJson(String userName,String password)
+        {
+            this.userName = userName;
+            this.password = password;
+        }
+
+    }
+
+        [Serializable]
     public class WeaponJson
     {
         public string name;
@@ -297,11 +383,13 @@ public class NetworkManager : MonoBehaviour
     {
         public float[] position;
         public float[] rotation;
+        public int sessionId;
 
-        public posrotJson(Vector3 position, Quaternion rotation)
+        public posrotJson(Vector3 position, Quaternion rotation,int sessionId)
         {
             this.position = new float[] { position.x, position.y, position.z };
             this.rotation = new float[] { rotation.x, rotation.y, rotation.z };
+            this.sessionId = sessionId;
         }
     }
     [Serializable]

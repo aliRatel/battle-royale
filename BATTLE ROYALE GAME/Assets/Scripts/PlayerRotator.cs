@@ -25,6 +25,8 @@ public class PlayerRotator : MonoBehaviour
         camera = GameObject.FindGameObjectWithTag("MainCamera");
         camOldRotation = camera.transform.rotation;
         target = GameObject.FindGameObjectWithTag("camP").transform;
+        networkManager = GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>();
+
 
 
     }

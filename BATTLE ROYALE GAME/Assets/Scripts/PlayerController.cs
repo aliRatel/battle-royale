@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
         animator = GetComponentInChildren<Animator>();
         localPlayer = true;
+        networkManager = GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>();
 
     }
 

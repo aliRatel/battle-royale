@@ -51,6 +51,7 @@ public    float z;
 
         if (Input.GetButton("Fire1"))
         {
+            if (currentWeapon == null) return;
             if (currentWeapon.currentMag > 0 && !isReloading)
             {
 
