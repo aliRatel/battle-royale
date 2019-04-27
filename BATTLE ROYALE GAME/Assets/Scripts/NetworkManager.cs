@@ -14,6 +14,7 @@ public class NetworkManager : MonoBehaviour
     public  int playerId;
 
     public bool loggedIn = false;
+    public static bool isId = false;
 
     // Use this for initialization
     void Awake()
@@ -34,7 +35,7 @@ public class NetworkManager : MonoBehaviour
         socket.On("join session approved", OnApproved);
         socket.On("other player connected", OnOtherPlayerConnected);
         socket.On("player moved", OnOtherPlayerMoved);
-        socket.On("seId", SetSessionId);
+        socket.On("setId", SetSessionId);
         socket.On("player rotated", OnOtherPlayerRotated);
         socket.On("player animated", OnPlayerAnimated);
         socket.On("weapon changed", OnWeaponChanged);
@@ -101,6 +102,7 @@ public class NetworkManager : MonoBehaviour
 
     internal void SendAnimation(AnimationJson animation)
     {
+        return;
         string animationString = JsonUtility.ToJson(animation);
         if(sessionManager.isSessionAprroved())
         socket.Emit("player animated", new JSONObject(animationString));
@@ -120,11 +122,15 @@ public class NetworkManager : MonoBehaviour
 
     private void SetSessionId(SocketIOEvent obj)
     {
+        Debug.Log("sadfalsdkjhgsa");
         string player = obj.data.ToString();
         PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
         Debug.Log("data" + player + "    id is :   " + playerJson.sessionId);
 
         playerId = playerJson.sessionId;
+        isId = true;
+
+        socket.Emit("id is set");
     }
 
 
@@ -208,7 +214,7 @@ public class NetworkManager : MonoBehaviour
             return;
 
 
-        UserJson userJson = new UserJson("ali", "123");
+        UserJson userJson = new UserJson(userName,password);
 
         String user = JsonUtility.ToJson(userJson);
         socket.Emit("log in", new JSONObject(user));
@@ -239,14 +245,15 @@ public class NetworkManager : MonoBehaviour
 
     private void OnApproved(SocketIOEvent obj)
     {
+        Debug.Log("on Approved");
         sessionManager.setSessionApproved(); 
-        loggedIn = true;
         string players = obj.data.ToString();
 
         PlayerJson[] playersJson = JsonUtility.FromJson<PlayerJson[]>(players);
 
         foreach (PlayerJson player in playersJson)
         {
+            if(player.sessionId!=playerId)
             sessionManager.AddNewPlayer(player);
         }
     }
@@ -335,6 +342,7 @@ public class NetworkManager : MonoBehaviour
         public int sessionId;
         public float[] position;
         public float[] rotation;
+       
         public PlayerJson(int sessionId, Vector3 position, Quaternion rotation)
         {
             this.sessionId = sessionId;
