@@ -229,6 +229,8 @@ namespace SocketIO
 
 		public void Emit(string ev, JSONObject data)
 		{
+            if (!this.connected)
+                return;
 			EmitMessage(-1, string.Format("[\"{0}\",{1}]", ev, data));
 		}
 

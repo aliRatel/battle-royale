@@ -4915,7 +4915,7 @@ GameObject:
   - component: {fileID: 624879175}
   m_Layer: 0
   m_Name: player
-  m_TagString: Player
+  m_TagString: localPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5035,6 +5035,8 @@ MonoBehaviour:
   currentWeapon: {fileID: 0}
   bulletPrefab: {fileID: 0}
   sessionManager: {fileID: 0}
+  networkManager: {fileID: 0}
+  z: 0
   isReloading: 0
   hUDManager: {fileID: 0}
 --- !u!114 &624879175
@@ -5051,6 +5053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   armor: 0
+  sessionId: 0
 --- !u!1 &1954574006280204
 GameObject:
   m_ObjectHideFlags: 0

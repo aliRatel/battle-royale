@@ -23,12 +23,13 @@ public class NetworkManager : MonoBehaviour
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
         
-        JoinGame();
+        Connect();
 
     }
 
     void Start()
     {
+      
         socket.On("join session approved", OnApproved);
         socket.On("other player connected", OnOtherPlayerConnected);
         socket.On("player moved", OnOtherPlayerMoved);
@@ -43,6 +44,8 @@ public class NetworkManager : MonoBehaviour
 
     private void Update()
     {
+
+        CheckNulls();
         if (Input.GetKeyDown(KeyCode.C))
             LogIn();
         if (Input.GetKeyDown(KeyCode.J))
@@ -57,7 +60,13 @@ public class NetworkManager : MonoBehaviour
 
     }
 
-  
+    private void CheckNulls()
+    {
+        if (sessionManager == null)
+            sessionManager = GameObject.FindGameObjectWithTag("session manager").GetComponent<SessionManager>();
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("localPlayer");
+    }
 
     private void JoinSession()
     {
@@ -96,7 +105,7 @@ public class NetworkManager : MonoBehaviour
     }
 
 
-    public void JoinGame()
+    public void Connect()
     {
         StartCoroutine(ConnectToServer());
 
@@ -108,7 +117,8 @@ public class NetworkManager : MonoBehaviour
         String pos = JsonUtility.ToJson(positoin);
         yield return new WaitForSeconds(0.1f);
         socket.Connect();
-        socket.Emit("connection", new JSONObject(pos));
+        //socket.Emit("connection", new JSONObject(pos));
+       // socket.Emit("connection");
 
     }
     public void sendRot(Quaternion rotation, int sessionId)

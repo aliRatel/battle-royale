@@ -11,6 +11,7 @@ TagManager:
   - weapon holder
   - session manager
   - network manager
+  - localPlayer
   layers:
   - Default
   - TransparentFX

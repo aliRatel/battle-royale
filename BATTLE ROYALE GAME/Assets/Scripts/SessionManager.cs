@@ -23,6 +23,7 @@ public class SessionManager : MonoBehaviour
     
     public NetworkManager networkManager;
 
+    
     internal void setCurrentWeapon(GameObject gameObject, int v)
     {
 
@@ -149,7 +150,7 @@ public class SessionManager : MonoBehaviour
 
     void Start()
     {
-        localPlayer = GameObject.FindGameObjectWithTag("Player");
+        localPlayer = GameObject.FindGameObjectWithTag("localPlayer");
         
         players = new Player[100];
         playersObjects = new GameObject[100];
@@ -160,10 +161,18 @@ public class SessionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckNulls();
         if (Input.GetKey(KeyCode.U))
         {
             Debug.Log(sessionAprroved + "  sessionapp");
         }
+    }
+
+    private void CheckNulls()
+    {
+        if (networkManager == null)
+            networkManager = GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>();
+      
     }
 
     internal void AddNewPlayer(NetworkManager.PlayerJson playerJson)

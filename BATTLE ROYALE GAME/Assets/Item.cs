@@ -47,7 +47,7 @@ public class Item : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.E)&& canPickUp)
         {
-            Debug.Log("player");
+            
             
             canPickUp = false;
             action = "pick";
@@ -67,8 +67,8 @@ public class Item : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
 
-
-        if (other.gameObject.tag == "Player")
+        Debug.Log("collid");
+        if (other.gameObject.tag == "localPlayer")
         {
             canvas.SetActive(true);
             canPickUp = true;
@@ -77,7 +77,7 @@ public class Item : MonoBehaviour {
     }
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "localPlayer")
         {
             canPickUp = false;
             canvas.SetActive(false);
