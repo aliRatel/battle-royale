@@ -177,7 +177,7 @@ public class SessionManager : MonoBehaviour
 
     internal void AddNewPlayer(NetworkManager.PlayerJson playerJson)
     {
-
+        Debug.Log("otherPlyaer");
         Vector3 position = new Vector3(playerJson.position[0], playerJson.position[1], playerJson.position[2]);
         Quaternion rotation = new Quaternion(playerJson.rotation[0], playerJson.rotation[1], playerJson.rotation[2], 0.0f);
         int sessionId = playerJson.sessionId;

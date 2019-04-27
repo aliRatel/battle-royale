@@ -129,8 +129,10 @@ public class NetworkManager : MonoBehaviour
 
         playerId = playerJson.sessionId;
         isId = true;
+        playerJson.sessionId = playerId;
+        String p = JsonUtility.ToJson(playerJson);
 
-        socket.Emit("id is set");
+        socket.Emit("id is set",new JSONObject(p));
     }
 
 
@@ -253,7 +255,10 @@ public class NetworkManager : MonoBehaviour
 
         foreach (PlayerJson player in playersJson)
         {
-            if(player.sessionId!=playerId)
+            Debug.Log("emad"+player.sessionId);
+            Debug.Log("ali" + playerId);
+
+            if (player.sessionId!=playerId)
             sessionManager.AddNewPlayer(player);
         }
     }
