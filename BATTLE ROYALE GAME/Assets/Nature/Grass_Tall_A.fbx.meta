@@ -11,7 +11,12 @@ ModelImporter:
     4300000: Grass_Tall_A
     7400000: Grass_Tall_A|hi_Leaf.002Action
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 4f8b90a96672bcf4ababc15f91c30c80, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
