@@ -32,7 +32,8 @@ public class NetworkManager : MonoBehaviour
     void Start()
     {
         
-        socket.On("join session approved", OnApproved);
+        socket.On("approved", OnApproved);
+
         socket.On("other player connected", OnOtherPlayerConnected);
         socket.On("player moved", OnOtherPlayerMoved);
         socket.On("setId", SetSessionId);
@@ -43,6 +44,7 @@ public class NetworkManager : MonoBehaviour
         CheckNulls();
 
     }
+
 
     private void OnLogIn(SocketIOEvent obj)
     {
@@ -248,12 +250,11 @@ public class NetworkManager : MonoBehaviour
     private void OnApproved(SocketIOEvent obj)
     {
         Debug.Log("on Approved");
-        sessionManager.setSessionApproved(); 
         string players = obj.data.ToString();
 
-        PlayerJson[] playersJson = JsonUtility.FromJson<PlayerJson[]>(players);
-
-        foreach (PlayerJson player in playersJson)
+        PlayersJson playersJson = JsonUtility.FromJson<PlayersJson>(players);
+        PlayerJson[] p = playersJson.players;
+        foreach (PlayerJson player in p)
         {
             Debug.Log("emad"+player.sessionId);
             Debug.Log("ali" + playerId);
@@ -342,6 +343,18 @@ public class NetworkManager : MonoBehaviour
         }
     }
     [Serializable]
+    public class PlayersJson
+    {
+        public PlayerJson[] players;
+        public PlayersJson(PlayerJson[] players)
+        {
+            for(int i = 0; i< players.Length; i++)
+            {
+                this.players[i] = players[i];
+            }
+        }
+    }
+        [Serializable]
     public class PlayerJson
     {
         public int sessionId;
