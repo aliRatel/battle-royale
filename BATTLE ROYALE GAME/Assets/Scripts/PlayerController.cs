@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public GameObject socketIO;
     public bool localPlayer;
     public NetworkManager networkManager;
+    public GameObject plain;
 
 
     // Use this for initialization
@@ -74,6 +75,17 @@ public class PlayerController : MonoBehaviour
         }
         #endregion animation
         #region movement
+
+        if(Input.GetKey(KeyCode.F)&&networkManager.status=="in plain")
+        {
+            if (plain == null) plain = GameObject.FindGameObjectWithTag("plain");
+            
+            plain.GetComponentInChildren<Camera>().enabled = false;
+            GetComponentInChildren<Camera>().enabled = true;
+            transform.position = plain.transform.position + Vector3.down * 20;
+            networkManager.Parachute();
+
+        }
         if (Input.GetKey(KeyCode.W))
         {
 
@@ -119,6 +131,14 @@ public class PlayerController : MonoBehaviour
             }
 
             #endregion networking
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (networkManager.status == "airborn"&& collision.collider.gameObject.tag!="eplayer")
+        {
+            networkManager.status = "on ground";
+
         }
     }
 }

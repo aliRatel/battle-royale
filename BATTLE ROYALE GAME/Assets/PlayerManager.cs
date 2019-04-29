@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class PlayerManager : MonoBehaviour
     }
     void Start()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 1) ;
         GameObject [] spawnPoints = GameObject.FindGameObjectsWithTag("spawn point");
         int a = UnityEngine.Random.Range(0, spawnPoints.Length);
         GameObject spawnPoint = spawnPoints[a];

@@ -22,7 +22,7 @@ public class PlayerRotator : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
+     //   camera = GameObject.FindGameObjectWithTag("MainCamera");
         camOldRotation = camera.transform.rotation;
         target = GameObject.FindGameObjectWithTag("camP").transform;
         networkManager = GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>();
@@ -38,7 +38,6 @@ public class PlayerRotator : MonoBehaviour
         #region networking
         if (currentRotation != oldRotation)
         {
-            //todo position networking
             networkManager.sendRot(transform.rotation, networkManager.playerId);
             oldRotation = currentRotation;
 
@@ -78,16 +77,13 @@ public class PlayerRotator : MonoBehaviour
         mouseX += Input.GetAxis("Mouse X") * rotationSpeed;
         mouseY += Input.GetAxis("Mouse Y") * rotationSpeed;
         mouseY = Mathf.Clamp(mouseY, -35, 60);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, mouseX, 0), Time.deltaTime * 500);
+
         camera.transform.rotation = Quaternion.RotateTowards(camera.transform.rotation, target.transform.rotation, Time.deltaTime * 10000);
 
-        if (Input.GetKey(KeyCode.LeftAlt))
+   
         {
             target.rotation = Quaternion.Euler(-mouseY, mouseX, 0);
-        }
-        else
-        {
-            target.rotation = Quaternion.Euler(-mouseY, mouseX, 0);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, mouseX, 0), Time.deltaTime * 500);
 
         }
 

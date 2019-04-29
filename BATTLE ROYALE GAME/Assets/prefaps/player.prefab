@@ -102,7 +102,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015007401581308}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -4916,7 +4916,7 @@ GameObject:
   m_Layer: 0
   m_Name: player
   m_TagString: localPlayer
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4929,7 +4929,7 @@ Transform:
   m_GameObject: {fileID: 1953391404207192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1022, y: 22.9, z: 635.8}
-  m_LocalScale: {x: 4.1862154, y: 4.1862154, z: 4.1862154}
+  m_LocalScale: {x: 4.218, y: 4.218, z: 4.218}
   m_Children:
   - {fileID: 4004368356398810}
   - {fileID: 4110796700937804}
@@ -4992,6 +4992,7 @@ MonoBehaviour:
   socketIO: {fileID: 0}
   localPlayer: 0
   networkManager: {fileID: 0}
+  plain: {fileID: 0}
 --- !u!114 &114499333081086660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5011,7 +5012,7 @@ MonoBehaviour:
   oldMousePosition: {x: 0, y: 0, z: 0}
   animator: {fileID: 0}
   target: {fileID: 0}
-  camera: {fileID: 0}
+  camera: {fileID: 1015007401581308}
   rotationSpeed: 1
   networkManager: {fileID: 0}
   oldRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -5033,6 +5034,7 @@ MonoBehaviour:
   firstWeaponAmmo: 0
   secondWeaponAmmo: 0
   currentWeapon: {fileID: 0}
+  animator: {fileID: 0}
   bulletPrefab: {fileID: 0}
   sessionManager: {fileID: 0}
   networkManager: {fileID: 0}

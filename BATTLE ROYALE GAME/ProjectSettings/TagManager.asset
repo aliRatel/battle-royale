@@ -14,6 +14,8 @@ TagManager:
   - localPlayer
   - account
   - spawn point
+  - plain
+  - plain camersa
   layers:
   - Default
   - TransparentFX

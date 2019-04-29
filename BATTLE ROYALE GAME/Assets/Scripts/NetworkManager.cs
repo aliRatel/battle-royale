@@ -13,13 +13,18 @@ public class NetworkManager : MonoBehaviour
     public GameObject player;
     public SessionManager sessionManager;
     public  int playerId;
-
+    public GameObject plain;
     public bool loggedIn = false;
     public static bool isId = false;
-
+    public String status = "in plain";
     // Use this for initialization
     void Awake()
     {
+        if(SceneManager.GetActiveScene().buildIndex==2)
+        {
+            sessionManager.sessionAprroved = false;
+            socket.Emit("in scene");
+        }
         if (instance == null)
             instance = this;
         else if (instance != this)
@@ -30,54 +35,32 @@ public class NetworkManager : MonoBehaviour
 
     }
 
+    internal void KickPlayers()
+    {
+        socket.Emit("kick players");
+    }
+
     void Start()
     {
-        
-        socket.On("approved", OnApproved);
-
-        socket.On("other player connected", OnOtherPlayerConnected);
-        socket.On("player moved", OnOtherPlayerMoved);
+        socket.On("logged in successed", OnLogIn);
         socket.On("setId", SetSessionId);
+        socket.On("approved", OnApproved);
+        socket.On("other player connected", OnOtherPlayerConnected);
+        socket.On("start game", OnStartGame);
+        socket.On("player moved", OnOtherPlayerMoved);
         socket.On("player rotated", OnOtherPlayerRotated);
         socket.On("player animated", OnPlayerAnimated);
         socket.On("weapon changed", OnWeaponChanged);
-        socket.On("logged in successed", OnLogIn);
+        socket.On("move plain", MovePlain);
+        socket.On("player air born", OnOtherPlayerAirBorn);
+        socket.On("player landed", OnOtherPlayerLanded);
         socket.On("decrease zone", OnDecreaseZone);
-        socket.On("start game", OnStartGame);
-        
         socket.On("disconnect", OnDisconnect);
         CheckNulls();
 
     }
 
-    private void OnDisconnect(SocketIOEvent obj)
-    {
-        Debug.Log("disconnected");
-    }
 
-    private void OnStartGame(SocketIOEvent obj)
-    {
-        
-        SceneManager.LoadScene(2);
-    }
-
-    private void OnDecreaseZone(SocketIOEvent obj)
-    {
-        Debug.Log("decrease zone");
-    }
-
-    private void OnLogIn(SocketIOEvent obj)
-    {
-        Debug.Log(socket.pingInterval);
-        if (loggedIn == true)
-            return;
-        Debug.Log("logged in successful");
-        loggedIn = true;
-       GameObject account =  GameObject.FindGameObjectWithTag("account") ;
-        account.GetComponent<Text>().text = "Connected";
-        account.GetComponent<Text>().color = Color.green;
-
-    }
 
     private void Update()
     {
@@ -110,15 +93,48 @@ public class NetworkManager : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("localPlayer");
         }
         }
+
+    
+
+  
+
+  
+
+
+    public void Connect()
+    {
+        StartCoroutine(ConnectToServer());
+
+    }
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+
+    #region commands
+
+
+
+    IEnumerator ConnectToServer()
+    {
+        PositionJson positoin = new PositionJson(transform.position);
+        String pos = JsonUtility.ToJson(positoin);
+        yield return new WaitForSeconds(0.1f);
+        socket.Connect();
+        //socket.Emit("connection", new JSONObject(pos));
+       // socket.Emit("connection");
+
+    }
+
     public void Play()
     {
-       
+
         socket.Emit("play");
     }
     public void JoinSession()
     {
         CheckNulls();
-        posrotJson posrotJson = new posrotJson(player.transform.position, player.transform.rotation,playerId);
+        posrotJson posrotJson = new posrotJson(player.transform.position, player.transform.rotation, playerId);
         String posrot = JsonUtility.ToJson(posrotJson);
         socket.Emit("join session", new JSONObject(posrot));
 
@@ -128,8 +144,16 @@ public class NetworkManager : MonoBehaviour
     {
         return;
         string animationString = JsonUtility.ToJson(animation);
-        if(sessionManager.isSessionAprroved())
-        socket.Emit("player animated", new JSONObject(animationString));
+        if (sessionManager.isSessionAprroved())
+            socket.Emit("player animated", new JSONObject(animationString));
+    }
+
+    internal void land()
+    {
+        PositionJson p = new PositionJson(player.transform.position);
+        String s = JsonUtility.ToJson(p);
+        socket.Emit("land", new JSONObject(s));
+
     }
 
     private void LogIn()
@@ -138,42 +162,6 @@ public class NetworkManager : MonoBehaviour
         String infoJson = JsonUtility.ToJson(info);
 
         socket.Emit("log in", new JSONObject(infoJson));
-
-    }
-    
-
-  
-
-    private void SetSessionId(SocketIOEvent obj)
-    {
-        Debug.Log("sadfalsdkjhgsa");
-        string player = obj.data.ToString();
-        PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
-        Debug.Log("data" + player + "    id is :   " + playerJson.sessionId);
-
-        playerId = playerJson.sessionId;
-        isId = true;
-        playerJson.sessionId = playerId;
-        String p = JsonUtility.ToJson(playerJson);
-
-        socket.Emit("id is set",new JSONObject(p));
-    }
-
-
-    public void Connect()
-    {
-        StartCoroutine(ConnectToServer());
-
-    }
-    #region commands
-    IEnumerator ConnectToServer()
-    {
-        PositionJson positoin = new PositionJson(transform.position);
-        String pos = JsonUtility.ToJson(positoin);
-        yield return new WaitForSeconds(0.1f);
-        socket.Connect();
-        //socket.Emit("connection", new JSONObject(pos));
-       // socket.Emit("connection");
 
     }
     public void sendRot(Quaternion rotation, int sessionId)
@@ -245,8 +233,83 @@ public class NetworkManager : MonoBehaviour
         String user = JsonUtility.ToJson(userJson);
         socket.Emit("log in", new JSONObject(user));
     }
+    public void Parachute()
+    {
+        PositionJson p = new PositionJson(player.transform.position);
+        String s = JsonUtility.ToJson(p);
+        socket.Emit("parachute", new JSONObject(s));
+        status = "airborn";
+
+    }
     #endregion commands
+
+
+
+    //////////////////////////////////////////////////////////////////
+
+
+    
     #region listening
+    private void SetSessionId(SocketIOEvent obj)
+    {
+        Debug.Log("sadfalsdkjhgsa");
+        string player = obj.data.ToString();
+        PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
+        Debug.Log("data" + player + "    id is :   " + playerJson.sessionId);
+
+        playerId = playerJson.sessionId;
+        isId = true;
+        playerJson.sessionId = playerId;
+        String p = JsonUtility.ToJson(playerJson);
+
+        socket.Emit("id is set", new JSONObject(p));
+    }
+    private void OnOtherPlayerAirBorn(SocketIOEvent obj)
+    {
+        String s = obj.data.ToString();
+    }
+
+    private void OnOtherPlayerLanded(SocketIOEvent obj)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void MovePlain(SocketIOEvent obj)
+    {
+        if (plain == null)
+            plain = GameObject.FindGameObjectWithTag("plain");
+        Vector3.Lerp(plain.transform.position, new Vector3(2400f, plain.transform.position.y, 1800f), 400f);
+
+    }
+
+    private void OnDisconnect(SocketIOEvent obj)
+    {
+        Debug.Log("disconnected");
+    }
+
+    private void OnStartGame(SocketIOEvent obj)
+    {
+
+        SceneManager.LoadScene(2);
+    }
+
+    private void OnDecreaseZone(SocketIOEvent obj)
+    {
+        Debug.Log("decrease zone");
+    }
+
+    private void OnLogIn(SocketIOEvent obj)
+    {
+        Debug.Log(socket.pingInterval);
+        if (loggedIn == true)
+            return;
+        Debug.Log("logged in successful");
+        loggedIn = true;
+        GameObject account = GameObject.FindGameObjectWithTag("account");
+        account.GetComponent<Text>().text = "Connected";
+        account.GetComponent<Text>().color = Color.green;
+
+    }
     private void OnWeaponChanged(SocketIOEvent obj)
     {
         string w = obj.data.ToString();
@@ -302,12 +365,17 @@ public class NetworkManager : MonoBehaviour
         Vector3 pos;
         int sessionId;
         String s = obj.data.ToString();
+        
         PositionJson posJ = JsonUtility.FromJson<PositionJson>(s);
         pos = new Vector3(posJ.position[0], posJ.position[1], posJ.position[2]);
         sessionId = posJ.sessionId;
         sessionManager.movePlayer(pos, sessionId);
     }
     #endregion listening
+
+
+    ////////////////////////////////////////////////////////////////////////////
+
     #region JsonClasses
     [Serializable]
     public class UserJson
