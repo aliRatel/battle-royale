@@ -26,13 +26,15 @@ public class PlayerManager : MonoBehaviour
     }
     void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1) ;
-        GameObject [] spawnPoints = GameObject.FindGameObjectsWithTag("spawn point");
-        int a = UnityEngine.Random.Range(0, spawnPoints.Length);
-        GameObject spawnPoint = spawnPoints[a];
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("spawn point");
+            int a = UnityEngine.Random.Range(0, spawnPoints.Length);
+            GameObject spawnPoint = spawnPoints[a];
 
-        transform.position = spawnPoint.transform.position;
-        GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().JoinSession();
+            transform.position = spawnPoint.transform.position;
+            GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().JoinSession();
+        }
     }
 
     // Update is called once per frame

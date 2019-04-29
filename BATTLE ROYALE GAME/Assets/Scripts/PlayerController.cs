@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
         if (networkManager.status == "airborn"&& collision.collider.gameObject.tag!="eplayer")
         {
             networkManager.status = "on ground";
-
+            networkManager.land();
         }
     }
 }

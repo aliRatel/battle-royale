@@ -252,10 +252,9 @@ public class NetworkManager : MonoBehaviour
     #region listening
     private void SetSessionId(SocketIOEvent obj)
     {
-        Debug.Log("sadfalsdkjhgsa");
+      
         string player = obj.data.ToString();
         PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
-        Debug.Log("data" + player + "    id is :   " + playerJson.sessionId);
 
         playerId = playerJson.sessionId;
         isId = true;
@@ -342,9 +341,6 @@ public class NetworkManager : MonoBehaviour
         PlayerJson[] p = playersJson.players;
         foreach (PlayerJson player in p)
         {
-            Debug.Log("emad"+player.sessionId);
-            Debug.Log("ali" + playerId);
-
             if (player.sessionId!=playerId)
             sessionManager.AddNewPlayer(player);
         }
