@@ -36,10 +36,9 @@ public class PlayerController : MonoBehaviour
             return;
         }
         # region animation
-        animator.SetBool("isHustler", h);
 
 
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             animator.SetBool("isCrouching", true);
 

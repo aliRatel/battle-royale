@@ -12,7 +12,7 @@ public class SessionManager : MonoBehaviour
     public GameObject[] weapons;
     public  GameObject[] playersObjects;
     public int playerId;
-    public  bool sessionAprroved ;
+    public  Boolean sessionAprroved =false;
     public Animator anim;
     public GameObject localPlayer;
     public GameObject weaponHolder;
@@ -56,8 +56,9 @@ public class SessionManager : MonoBehaviour
         }
         Item newitem = weapon.GetComponent<Item>();
                 Item olditem = temp.GetComponent<Item>();
-                
-                newitem.id = olditem.id;
+        Destroy(temp);
+
+        newitem.id = olditem.id;
                 newitem.spareAmmo = olditem.spareAmmo;
                 newitem.currentMag = olditem.currentMag;
 
@@ -77,8 +78,8 @@ public class SessionManager : MonoBehaviour
                 weapon.transform.Find("bullet point").transform.Find("muzzle fire").gameObject.SetActive(true);
                 playerShooter.AddWeapon(weapon);
                 weapons[newitem.id]=weapon;
-                networkManager.SendWeaponChanged(weapon);
-                GameObject.Destroy(temp);
+
+        networkManager.SendWeaponChanged(weapon);
                 
         
     
@@ -102,14 +103,15 @@ public class SessionManager : MonoBehaviour
                 
                 Item newitem = weapon.GetComponent<Item>();
                 Item olditem = temp.GetComponent<Item>();
+        Destroy(temp);
 
-                newitem.id = olditem.id;
+        newitem.id = olditem.id;
                 newitem.spareAmmo = olditem.spareAmmo;
                 newitem.currentMag = olditem.currentMag;
                 newitem.action = "drop";
 
 
-                weapon.transform.SetParent(null);
+        weapon.transform.SetParent(null);
                 weapon.transform.Find("Canvas").gameObject.SetActive(false);
                 weapon.transform.position = localPlayer.transform.position + Vector3.forward*3;
                 weapon.GetComponent<BoxCollider>().enabled = true;
@@ -123,9 +125,8 @@ public class SessionManager : MonoBehaviour
 
                 weapons[newitem.id] = weapon;
 
-                networkManager.SendWeaponChanged(weapon);
+        networkManager.SendWeaponChanged(weapon);
 
-                GameObject.Destroy(temp);
           
 
     }
@@ -154,7 +155,7 @@ public class SessionManager : MonoBehaviour
         
         players = new Player[100];
         playersObjects = new GameObject[100];
-        sessionAprroved = false;
+        weaponHolder = GameObject.FindGameObjectWithTag("weapon holder");
 
     }
   

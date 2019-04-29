@@ -9,6 +9,7 @@ public class PlayerShooter : MonoBehaviour {
     public int firstWeaponAmmo;
    public int secondWeaponAmmo;
     public Item currentWeapon;
+    public Animator animator;
     public GameObject bulletPrefab;
     public SessionManager sessionManager;
     public NetworkManager networkManager;
@@ -24,11 +25,25 @@ public    float z;
         isReloading = false;
         sessionManager = GameObject.FindGameObjectWithTag("session manager").GetComponent<SessionManager>();
         networkManager = GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>();
-	}
+        animator = GetComponentInChildren<Animator>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.Alpha1) && firstWeapon != null)
+        if (currentWeapon != null)
+        {
+            animator.SetLayerWeight(animator.GetLayerIndex("aimangle"), 1);
+            animator.SetBool("isHustler", true);
+        }
+        else
+        {
+            animator.SetBool("isHustler", false);
+            animator.SetLayerWeight(animator.GetLayerIndex("aimangle"), 0);
+        }
+
+
+
+            if (Input.GetKey(KeyCode.Alpha1) && firstWeapon != null)
         {
             hustlerFirstWeapon();
             
@@ -127,7 +142,7 @@ public    float z;
         }
 
         currentWeapon = firstWeapon;
-        hUDManager.SetBg1();
+        //hUDManager.SetBg1();
 
     }
 

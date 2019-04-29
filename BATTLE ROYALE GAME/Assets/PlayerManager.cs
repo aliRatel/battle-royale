@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        DontDestroyOnLoad(this);
         health = 100;
         armor = 0;
     }

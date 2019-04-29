@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviour
@@ -41,13 +42,33 @@ public class NetworkManager : MonoBehaviour
         socket.On("player animated", OnPlayerAnimated);
         socket.On("weapon changed", OnWeaponChanged);
         socket.On("logged in successed", OnLogIn);
+        socket.On("decrease zone", OnDecreaseZone);
+        socket.On("start game", OnStartGame);
+        
+        socket.On("disconnect", OnDisconnect);
         CheckNulls();
 
     }
 
+    private void OnDisconnect(SocketIOEvent obj)
+    {
+        Debug.Log("disconnected");
+    }
+
+    private void OnStartGame(SocketIOEvent obj)
+    {
+        
+        SceneManager.LoadScene(2);
+    }
+
+    private void OnDecreaseZone(SocketIOEvent obj)
+    {
+        Debug.Log("decrease zone");
+    }
 
     private void OnLogIn(SocketIOEvent obj)
     {
+        Debug.Log(socket.pingInterval);
         if (loggedIn == true)
             return;
         Debug.Log("logged in successful");
@@ -91,6 +112,7 @@ public class NetworkManager : MonoBehaviour
         }
     public void Play()
     {
+       
         socket.Emit("play");
     }
     public void JoinSession()
@@ -250,6 +272,7 @@ public class NetworkManager : MonoBehaviour
     private void OnApproved(SocketIOEvent obj)
     {
         Debug.Log("on Approved");
+        sessionManager.setSessionApproved();
         string players = obj.data.ToString();
 
         PlayersJson playersJson = JsonUtility.FromJson<PlayersJson>(players);
