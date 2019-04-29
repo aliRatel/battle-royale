@@ -336,7 +336,7 @@ public class NetworkManager : MonoBehaviour
         Debug.Log("on Approved");
         sessionManager.setSessionApproved();
         string players = obj.data.ToString();
-
+        Debug.Log(players);
         PlayersJson playersJson = JsonUtility.FromJson<PlayersJson>(players);
         PlayerJson[] p = playersJson.players;
         foreach (PlayerJson player in p)

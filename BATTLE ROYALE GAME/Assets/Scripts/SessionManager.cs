@@ -186,14 +186,14 @@ public class SessionManager : MonoBehaviour
 
 
         //players[sessionId] = player;
-        if (players[sessionId] == null && playersObjects[sessionId] == null)
-        {
+        //if (players[sessionId] == null && playersObjects[sessionId] == null)
+        //{
             Player player = new Player(position, rotation, sessionId);
             players[sessionId] = player;
             GameObject pl = Instantiate(playerPrefab, position, rotation) as GameObject;
             playersObjects[sessionId] = pl;
             playersObjects[sessionId].GetComponent<PlayerManager>().setId(sessionId);
-        }
+        //}
 
         //Debug.Log("posi" + pl.transform.position);
 
