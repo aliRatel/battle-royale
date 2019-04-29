@@ -10,6 +10,10 @@ public class EnemyPlayer : MonoBehaviour
     public GameObject weaponHolder;
     public int health;
     public int armor;
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
     // Start is called before the first frame update
     void Start()
     {
