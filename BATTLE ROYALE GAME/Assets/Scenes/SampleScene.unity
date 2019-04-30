@@ -3631,7 +3631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400184, guid: c3d355511a8e32f429c8924012140fed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1349.5
+      value: 71
       objectReference: {fileID: 0}
     - target: {fileID: 400184, guid: c3d355511a8e32f429c8924012140fed, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3639,7 +3639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400184, guid: c3d355511a8e32f429c8924012140fed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1011.6
+      value: 54
       objectReference: {fileID: 0}
     - target: {fileID: 400184, guid: c3d355511a8e32f429c8924012140fed, type: 3}
       propertyPath: m_LocalRotation.x
@@ -10796,6 +10796,22 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 640294425}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &1932333650
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932333647}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1940798146
 PrefabInstance:
   m_ObjectHideFlags: 0

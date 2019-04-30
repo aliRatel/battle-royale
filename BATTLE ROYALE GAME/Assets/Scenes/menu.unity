@@ -771,7 +771,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &150258220
 PrefabInstance:
@@ -2601,7 +2601,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &604254601
 PrefabInstance:
@@ -3885,7 +3885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 010d39cbd03ee4c99a746c1f8ecdc0d8, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 010d39cbd03ee4c99a746c1f8ecdc0d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6246,11 +6246,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 3797851706698038028, guid: f9770e95f228eef4e800dc738012fd18,
-        type: 3}
-      propertyPath: socket
-      value: 
-      objectReference: {fileID: 591171568}
     - target: {fileID: 3797851706698038029, guid: f9770e95f228eef4e800dc738012fd18,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6289,7 +6284,7 @@ PrefabInstance:
     - target: {fileID: 3797851706698038029, guid: f9770e95f228eef4e800dc738012fd18,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3797851706698038029, guid: f9770e95f228eef4e800dc738012fd18,
         type: 3}
@@ -6306,6 +6301,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3797851706698038028, guid: f9770e95f228eef4e800dc738012fd18,
+        type: 3}
+      propertyPath: socket
+      value: 
+      objectReference: {fileID: 591171568}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9770e95f228eef4e800dc738012fd18, type: 3}
 --- !u!1001 &1361727317

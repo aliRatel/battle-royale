@@ -283,7 +283,7 @@ public class NetworkManager : MonoBehaviour
         if (plain == null)
             plain = GameObject.FindGameObjectWithTag("plain");
         Debug.Log(plain);
-        Vector3.Lerp(plain.transform.position, new Vector3(2400f, plain.transform.position.y, 1800f), 400*Time.deltaTime);
+        plain.GetComponent<Rigidbody>().velocity = plain.transform.forward * 50f;
 
     }
 
