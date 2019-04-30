@@ -78,11 +78,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.F)&&networkManager.status=="in plain")
         {
-            if (plain == null) plain = GameObject.FindGameObjectWithTag("plain");
             
-            plain.GetComponentInChildren<Camera>().enabled = false;
-            GetComponentInChildren<Camera>().enabled = true;
-            transform.position = plain.transform.position + Vector3.down * 20;
             networkManager.Parachute();
 
         }
