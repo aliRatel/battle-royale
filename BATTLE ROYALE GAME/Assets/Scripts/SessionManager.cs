@@ -176,29 +176,38 @@ public class SessionManager : MonoBehaviour
       
     }
 
-    internal void AddNewPlayer(NetworkManager.PlayerJson playerJson)
+    public void  AddNewPlayer(NetworkManager.PlayerJson playerJson )
     {
-        Debug.Log("otherPlyaer");
-        Vector3 position = new Vector3(playerJson.position[0], playerJson.position[1], playerJson.position[2]);
+       
+            Debug.Log("otherPlyaer");
+            Vector3 position = new Vector3(playerJson.position[0], playerJson.position[1], playerJson.position[2]);
+        Debug.Log(position);
+
         Quaternion rotation = new Quaternion(playerJson.rotation[0], playerJson.rotation[1], playerJson.rotation[2], 0.0f);
+        Debug.Log(rotation);
+
         int sessionId = playerJson.sessionId;
+            Debug.Log(sessionId);
 
 
+            //players[sessionId] = player;
+            //if (players[sessionId] == null && playersObjects[sessionId] == null)
+            //{
+            Debug.Log("mid2");
 
-        //players[sessionId] = player;
-        //if (players[sessionId] == null && playersObjects[sessionId] == null)
-        //{
             Player player = new Player(position, rotation, sessionId);
             players[sessionId] = player;
             GameObject pl = Instantiate(playerPrefab, position, rotation) as GameObject;
             playersObjects[sessionId] = pl;
-            playersObjects[sessionId].GetComponent<PlayerManager>().setId(sessionId);
-        //}
+            Debug.Log("mid3");
 
-        //Debug.Log("posi" + pl.transform.position);
+           // playersObjects[sessionId].GetComponent<PlayerManager>().setId(sessionId);
+            //}
 
+            //Debug.Log("posi" + pl.transform.position);
+            Debug.Log("endeddddd");
+        
     }
-
     internal void movePlayer(Vector3 pos, int sessionId)
     {
 

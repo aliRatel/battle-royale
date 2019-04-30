@@ -336,15 +336,34 @@ public class NetworkManager : MonoBehaviour
         Debug.Log("on Approved");
         sessionManager.setSessionApproved();
         string players = obj.data.ToString();
-        Debug.Log(players);
+        Debug.Log(players+"sss");
         PlayersJson playersJson = JsonUtility.FromJson<PlayersJson>(players);
+        Debug.Log("r");
+
         PlayerJson[] p = playersJson.players;
-        foreach (PlayerJson player in p)
+        Debug.Log("u");
+
+        Debug.Log("0   " + p[0].sessionId+" "+p[0].health);
+        Debug.Log("1   " + p[1].sessionId + " " + p[1].health);
+
+       // Debug.Log("2   " + p[2].sessionId + " " + p[2].health);
+                    Debug.Log(p.Length + "    length");
+
+        for (int i = 0;i<p.Length; i++)
         {
-            if (player.sessionId!=playerId)
-            sessionManager.AddNewPlayer(player);
+            Debug.Log(p.Length + "    length");
+            Debug.Log(p[i] + "    pi");
+
+            PlayerJson player = p[i];
+            Debug.Log("array " + player.sessionId );
+            if (player.sessionId != playerId)
+            {
+                sessionManager.AddNewPlayer(player);
+                Debug.Log("sadf" + player.sessionId);
+            }
+
+            }
         }
-    }
 
     private void OnOtherPlayerRotated(SocketIOEvent obj)
     {
@@ -444,15 +463,21 @@ public class NetworkManager : MonoBehaviour
         [Serializable]
     public class PlayerJson
     {
+        public int health = 0;
         public int sessionId;
         public float[] position;
         public float[] rotation;
+        public String socketId;
+        public String status;
        
-        public PlayerJson(int sessionId, Vector3 position, Quaternion rotation)
+        public PlayerJson(int health,int sessionId, Vector3 position, Quaternion rotation,String socketId,String status)
         {
+            this.health = health;
             this.sessionId = sessionId;
             this.position = new float[] { position.x, position.y, position.z };
             this.rotation = new float[] { rotation.x, rotation.y, rotation.z };
+            this.socketId = socketId;
+            this.status = status;
         }
     }
     [Serializable]
