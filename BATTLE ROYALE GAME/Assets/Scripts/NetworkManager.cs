@@ -53,19 +53,23 @@ public class NetworkManager : MonoBehaviour
         socket.On("decrease zone", OnDecreaseZone);
         socket.On("disconnect", OnDisconnect);
         CheckNulls();
-        if (SceneManager.GetActiveScene().buildIndex == 2)
+
+    }
+
+
+    private void OnLevelWasLoaded(int level)
+    {
+        if (level==2)
         {
+            Debug.Log("scheise");
             socket.Emit("in scene");
             sessionManager.sessionAprroved = false;
 
         }
     }
-
-
-
     private void Update()
     {
-
+     
         if (Input.GetKeyDown(KeyCode.C))
 
         if (Input.GetKeyDown(KeyCode.J))
@@ -354,12 +358,13 @@ public class NetworkManager : MonoBehaviour
         for (int i = 0;i<p.Length; i++)
         {
             Debug.Log(p.Length + "    length");
-            Debug.Log(p[i] + "    pi");
+         
 
             PlayerJson player = p[i];
             Debug.Log("array " + player.sessionId );
             if (player.sessionId != playerId)
             {
+               Debug.Log("dsfsagfhjdyhsgv" + player.sessionId);
                 sessionManager.AddNewPlayer(player);
                 Debug.Log("sadf" + player.sessionId);
             }

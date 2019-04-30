@@ -178,28 +178,35 @@ public class SessionManager : MonoBehaviour
 
     public void  AddNewPlayer(NetworkManager.PlayerJson playerJson )
     {
-       
-            Vector3 position = new Vector3(playerJson.position[0], playerJson.position[1], playerJson.position[2]);
+        Vector3 position = new Vector3(playerJson.position[0], playerJson.position[1], playerJson.position[2]);
 
         Quaternion rotation = new Quaternion(playerJson.rotation[0], playerJson.rotation[1], playerJson.rotation[2], 0.0f);
 
         int sessionId = playerJson.sessionId;
 
-
         if (players[sessionId] == null && playersObjects[sessionId] == null)
         {
+            Debug.Log("m4");
+
 
             Player player = new Player(position, rotation, sessionId);
-            players[sessionId] = player;
+            Debug.Log("m1");
 
             players[sessionId] = player;
+            Debug.Log("m2");
+
             GameObject pl = Instantiate(playerPrefab, position, rotation) as GameObject;
-            playersObjects[sessionId] = pl;
+            Debug.Log("m3");
 
-            playersObjects[sessionId].GetComponent<PlayerManager>().setId(sessionId);
+            playersObjects[sessionId] = pl;
+            Debug.Log("m4");
+
+            //playersObjects[sessionId].GetComponent<PlayerManager>().setId(sessionId);
+            //Debug.Log("m5");
+
         }
 
-        
+
     }
     internal void movePlayer(Vector3 pos, int sessionId)
     {
