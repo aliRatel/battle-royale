@@ -20,11 +20,7 @@ public class NetworkManager : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-        if(SceneManager.GetActiveScene().buildIndex==2)
-        {
-            sessionManager.sessionAprroved = false;
-            socket.Emit("in scene");
-        }
+       
         if (instance == null)
             instance = this;
         else if (instance != this)
@@ -57,7 +53,12 @@ public class NetworkManager : MonoBehaviour
         socket.On("decrease zone", OnDecreaseZone);
         socket.On("disconnect", OnDisconnect);
         CheckNulls();
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            socket.Emit("in scene");
+            sessionManager.sessionAprroved = false;
 
+        }
     }
 
 
@@ -70,7 +71,6 @@ public class NetworkManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
 
-            JoinSession();
 
 
         }
@@ -275,9 +275,11 @@ public class NetworkManager : MonoBehaviour
 
     private void MovePlain(SocketIOEvent obj)
     {
+        Debug.Log("move plain");
         if (plain == null)
             plain = GameObject.FindGameObjectWithTag("plain");
-        Vector3.Lerp(plain.transform.position, new Vector3(2400f, plain.transform.position.y, 1800f), 400f);
+        Debug.Log(plain);
+        Vector3.Lerp(plain.transform.position, new Vector3(2400f, plain.transform.position.y, 1800f), 400*Time.deltaTime);
 
     }
 
