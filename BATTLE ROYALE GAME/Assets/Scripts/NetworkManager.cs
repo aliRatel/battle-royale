@@ -49,6 +49,7 @@ public class NetworkManager : MonoBehaviour
         socket.On("weapon changed", OnWeaponChanged);
         socket.On("move plain", MovePlain);
         socket.On("player air born", OnOtherPlayerAirBorn);
+        socket.On("jump",jump);
         socket.On("player landed", OnOtherPlayerLanded);
         socket.On("decrease zone", OnDecreaseZone);
         socket.On("disconnect", OnDisconnect);
@@ -56,6 +57,11 @@ public class NetworkManager : MonoBehaviour
 
     }
 
+    private void jump(SocketIOEvent obj)
+    {
+        Debug.Log("jump");
+        Parachute();
+    }
 
     private void OnLevelWasLoaded(int level)
     {
@@ -239,6 +245,11 @@ public class NetworkManager : MonoBehaviour
     }
     public void Parachute()
     {
+        if (plain == null) plain = GameObject.FindGameObjectWithTag("plain");
+
+        plain.GetComponentInChildren<Camera>().enabled = false;
+        player.GetComponentInChildren<Camera>().enabled = true;
+        player.transform.position = plain.transform.position + Vector3.down * 20;
         PositionJson p = new PositionJson(player.transform.position);
         String s = JsonUtility.ToJson(p);
         socket.Emit("parachute", new JSONObject(s));
