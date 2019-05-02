@@ -67,7 +67,7 @@ public class NetworkManager : MonoBehaviour
     {
         if (level==2)
         {
-            Debug.Log("scheise");
+            player.GetComponent<PlayerController>().animator.enabled = false;
             socket.Emit("in scene");
             sessionManager.sessionAprroved = false;
 

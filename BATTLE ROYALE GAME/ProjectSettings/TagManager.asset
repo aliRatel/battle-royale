@@ -17,6 +17,7 @@ TagManager:
   - plain
   - plain camersa
   - eplayer
+  - weapon spawn point
   layers:
   - Default
   - TransparentFX
