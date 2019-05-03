@@ -18,6 +18,8 @@ TagManager:
   - plain camersa
   - eplayer
   - weapon spawn point
+  - parachute
+  - encryption manager
   layers:
   - Default
   - TransparentFX
