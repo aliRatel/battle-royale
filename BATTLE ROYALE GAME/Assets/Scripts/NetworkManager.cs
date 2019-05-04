@@ -12,7 +12,7 @@ public class NetworkManager : MonoBehaviour
     public SocketIOComponent socket;
     public GameObject player;
     public SessionManager sessionManager;
-    public  int playerId;
+    public int playerId;
     public GameObject plain;
     public bool loggedIn = false;
     public static bool isId = false;
@@ -22,14 +22,14 @@ public class NetworkManager : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-    	
-       
+
+
         if (instance == null)
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-        
+
         Connect();
 
     }
@@ -53,7 +53,7 @@ public class NetworkManager : MonoBehaviour
         socket.On("weapon changed", OnWeaponChanged);
         socket.On("move plain", MovePlain);
         socket.On("player air born", OnOtherPlayerAirBorn);
-        socket.On("jump",jump);
+        socket.On("jump", jump);
         socket.On("player landed", OnOtherPlayerLanded);
         socket.On("decrease zone", OnDecreaseZone);
         socket.On("disconnect", OnDisconnect);
@@ -72,7 +72,7 @@ public class NetworkManager : MonoBehaviour
         Debug.Log(rsa);
 
         RsaJson rsaJson = JsonUtility.FromJson<RsaJson>(rsa);
-        Debug.Log(rsaJson.d + "   " + rsaJson.N);
+        Debug.Log(rsaJson.d + "   " + rsaJson.N + "           " + rsaJson.cipher);
         encryptionManager.SetRsa(rsaJson);
     }
     [Serializable]
@@ -80,10 +80,12 @@ public class NetworkManager : MonoBehaviour
     {
         public string d;
         public string N;
-        public RsaJson(string d, string N)
+        public string cipher;
+        public RsaJson(string d, string N, string cipher)
         {
             this.d = d;
             this.N = N;
+            this.cipher = cipher;
         }
     }
     private void jump(SocketIOEvent obj)
@@ -94,25 +96,46 @@ public class NetworkManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        if (level==2)
+        if (level == 2)
         {
+            GameObject[] weaponSpawnPoints = GameObject.FindGameObjectsWithTag("weapon spawn point");
+
+            WeaponsJson weaponsPoints = new WeaponsJson(weaponSpawnPoints);
+            String s = JsonUtility.ToJson(weaponsPoints);
+            Debug.Log(s);
+            socket.Emit("weapons points", new JSONObject(s));
+
             player.GetComponent<PlayerController>().animator.enabled = false;
             socket.Emit("in scene");
             sessionManager.sessionAprroved = false;
 
         }
     }
+    [Serializable]
+    public class WeaponsJson
+    {
+        public PositionJson[] p;
+        public WeaponsJson(GameObject[] temp)
+        {
+            p = new PositionJson[temp.Length];
+            for (int i = 0; i < temp.Length; i++)
+            {
+                p[i] = new PositionJson(temp[i].transform.position, 0);
+            }
+        }
+
+    }
     private void Update()
     {
-     
+
         if (Input.GetKeyDown(KeyCode.C))
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
+            if (Input.GetKeyDown(KeyCode.J))
+            {
 
 
 
-        }
+            }
 
 
 
@@ -123,7 +146,7 @@ public class NetworkManager : MonoBehaviour
     {
         if (sessionManager == null)
         {
-           
+
             sessionManager = GameObject.FindGameObjectWithTag("session manager").GetComponent<SessionManager>();
         }
         if (player == null)
@@ -134,13 +157,13 @@ public class NetworkManager : MonoBehaviour
         if (encryptionManager == null)
             encryptionManager = GameObject.FindGameObjectWithTag("encryption manager").GetComponent<EncryptionManager>();
 
-        }
+    }
 
-    
 
-  
 
-  
+
+
+
 
 
     public void Connect()
@@ -164,7 +187,7 @@ public class NetworkManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         socket.Connect();
         //socket.Emit("connection", new JSONObject(pos));
-       // socket.Emit("connection");
+        // socket.Emit("connection");
 
     }
 
@@ -202,7 +225,8 @@ public class NetworkManager : MonoBehaviour
     {
         logInInfo info = new logInInfo("ali", "emad");
         String infoJson = JsonUtility.ToJson(info);
-
+        infoJson = AES.encrypting(infoJson);
+        Debug.Log(infoJson);
         socket.Emit("log in", new JSONObject(infoJson));
 
     }
@@ -220,7 +244,7 @@ public class NetworkManager : MonoBehaviour
         if (sessionManager.isSessionAprroved())
             socket.Emit("player moved", new JSONObject(newPos));
     }
-    public void  SendWeaponChanged(GameObject weapon)
+    public void SendWeaponChanged(GameObject weapon)
     {
         WeaponJson weaponJson = new WeaponJson(weapon, this.playerId);
         String newWeapon = JsonUtility.ToJson(weaponJson);
@@ -228,13 +252,13 @@ public class NetworkManager : MonoBehaviour
     }
     public void SignUP(GameObject field)
     {
-        String userName=null, password=null;
-       Text[] fields =  field.GetComponentsInChildren<Text>();
+        String userName = null, password = null;
+        Text[] fields = field.GetComponentsInChildren<Text>();
         for (int i = 0; i < fields.Length; i++)
         {
             if (fields[i].name == "user name field")
             {
-                
+
                 userName = fields[i].text;
             }
             else if (fields[i].name == "password field")
@@ -244,7 +268,7 @@ public class NetworkManager : MonoBehaviour
         }
         if (userName.Length < 4 || password.Length < 4)
             return;
-        UserJson userJson = new UserJson(userName,password);
+        UserJson userJson = new UserJson(userName, password);
 
         String user = JsonUtility.ToJson(userJson);
         socket.Emit("sign up", new JSONObject(user));
@@ -266,15 +290,27 @@ public class NetworkManager : MonoBehaviour
                 password = fields[i].text;
             }
         }
-        if (userName.Length <1 || password.Length < 1)
+        if (userName.Length < 1 || password.Length < 1)
             return;
 
 
-        UserJson userJson = new UserJson(userName,password);
+        UserJson userJson = new UserJson(userName, password);
 
         String user = JsonUtility.ToJson(userJson);
-        socket.Emit("log in", new JSONObject(user));
+        Debug.Log(user.Length + "   length");
+        user = AES.encrypting(user);
+        Debug.Log(user);
+        Debug.Log(AES.decrypting(user));
+        socket.Emit("log in", new JSONObject(JsonUtility.ToJson(new EncString(user))));
     }
+    [Serializable]
+    public class  EncString {
+        public String s;
+    public EncString(String s )
+    {
+            this.s = s;
+    }
+}
     public void Parachute()
     {
         if (plain == null) plain = GameObject.FindGameObjectWithTag("plain");
@@ -326,6 +362,7 @@ public class NetworkManager : MonoBehaviour
         if (plain == null)
             plain = GameObject.FindGameObjectWithTag("plain");
         Debug.Log(plain);
+        plain.GetComponent<Rigidbody>().velocity = plain.transform.forward * 50f;
         plain.GetComponent<Rigidbody>().velocity = plain.transform.forward * 50f;
 
     }

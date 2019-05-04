@@ -8,6 +8,7 @@ public class EncryptionManager : MonoBehaviour
 {
     public static EncryptionManager instance;
     public RSA rsa;
+    public AES aes;
     private void Awake()
     {
         if (instance == null)
@@ -34,13 +35,13 @@ public class EncryptionManager : MonoBehaviour
         Debug.Log("setRsa");
         rsa = new RSA();
         
-        byte[] d = Encoding.UTF8.GetBytes(rsaJson.d);
-        byte[] n = Encoding.UTF8.GetBytes(rsaJson.N);
         
-        rsa.d = new System.Numerics.BigInteger(d);
-        rsa.N = new System.Numerics.BigInteger(n);
-        Debug.Log(rsa.d);
-        Debug.Log(rsa.N);
+        rsa.d =  System.Numerics.BigInteger.Parse(rsaJson.d);
+        rsa.N =  System.Numerics.BigInteger.Parse(rsaJson.N);
+        Debug.Log(rsa.decrypt(rsaJson.cipher));
+        aes = new AES(rsa.decrypt(rsaJson.cipher));
+ 
+
 
     }
 }

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Numerics;
+using UnityEngine;
 
-public class RSA
+public class RSA : MonoBehaviour
 {
     public BigInteger p;
     public BigInteger q;
@@ -34,7 +35,7 @@ public class RSA
     {
         string test = "";
 
-        test += System.Text.Encoding.UTF8.GetString(encrypted);
+        test += Encoding.ASCII.GetString(encrypted);
 
         return test;
     }
@@ -46,16 +47,45 @@ public class RSA
 
     public string decrypt(string message)
     {
-
+        
         byte[] bytes = Encoding.UTF8.GetBytes(message);
-        BigInteger enc = new BigInteger(bytes);
+        Debug.Log("message   "+ message);
+        
+        BigInteger enc = BigInteger.Parse(message);
+        Debug.Log("enc    " + enc);
         BigInteger temp = BigInteger.ModPow(enc, d, N);
-        bytes = temp.ToByteArray();
-        return BytesToString(bytes);
+        Debug.Log("temp  "+temp);
+
+
+
+        return decode(temp.ToString()) ;
 
     }
 
+    private byte[] getBytes(string v)
+    {
+        return System.Text.Encoding.UTF8.GetBytes(v);
+    }
+    private string decode(string s)
+    {
+        string stringified = s;
+        string s1 = "";
 
+        for (int i = 0; i < stringified.Length; i += 2)
+        {
+            byte num = byte.Parse(stringified.Substring(i, 2));
 
+            if (num <= 30)
+            {
+                s1 += (char)(byte.Parse(stringified.Substring(i, 3)));
+                i++;
+            }
+            else
+            {
+                s1 += (char)(num);
+            }
+        }
 
+        return s1;
+    }
 }
