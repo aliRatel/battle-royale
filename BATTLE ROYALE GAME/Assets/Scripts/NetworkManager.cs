@@ -33,12 +33,6 @@ public class NetworkManager : MonoBehaviour
         Connect();
 
     }
-
-    internal void KickPlayers()
-    {
-        socket.Emit("kick players");
-    }
-
     void Start()
     {
         socket.On("rsa", OnRsa);
@@ -46,6 +40,7 @@ public class NetworkManager : MonoBehaviour
         socket.On("setId", SetSessionId);
         socket.On("approved", OnApproved);
         socket.On("other player connected", OnOtherPlayerConnected);
+        socket.On("weapons", OnWeapons);
         socket.On("start game", OnStartGame);
         socket.On("player moved", OnOtherPlayerMoved);
         socket.On("player rotated", OnOtherPlayerRotated);
@@ -61,39 +56,15 @@ public class NetworkManager : MonoBehaviour
 
     }
 
-    private void OnRsa(SocketIOEvent obj)
+    private void OnWeapons(SocketIOEvent obj)
     {
-        Debug.Log("on rsa");
-
-
-        if (encryptionManager == null) encryptionManager =
-                GameObject.FindGameObjectWithTag("encryption manager").GetComponent<EncryptionManager>();
-        string rsa = obj.data.ToString();
-        Debug.Log(rsa);
-
-        RsaJson rsaJson = JsonUtility.FromJson<RsaJson>(rsa);
-        Debug.Log(rsaJson.d + "   " + rsaJson.N + "           " + rsaJson.cipher);
-        encryptionManager.SetRsa(rsaJson);
+        Debug.Log("on weapons");
+        String weapons = obj.data.ToString();
+        WeaponsJson2 weaponsJson = JsonUtility.FromJson<WeaponsJson2>(weapons);
+        Debug.Log(weaponsJson.weapons.Length);
+        sessionManager.distribute(weaponsJson.weapons);
     }
-    [Serializable]
-    public class RsaJson
-    {
-        public string d;
-        public string N;
-        public string cipher;
-        public RsaJson(string d, string N, string cipher)
-        {
-            this.d = d;
-            this.N = N;
-            this.cipher = cipher;
-        }
-    }
-    private void jump(SocketIOEvent obj)
-    {
-        Debug.Log("jump");
-        Parachute();
-    }
-
+ 
     private void OnLevelWasLoaded(int level)
     {
         if (level == 2)
@@ -103,7 +74,7 @@ public class NetworkManager : MonoBehaviour
             WeaponsJson weaponsPoints = new WeaponsJson(weaponSpawnPoints);
             String s = JsonUtility.ToJson(weaponsPoints);
             Debug.Log(s);
-            socket.Emit("weapons points", new JSONObject(s));
+        //    socket.Emit("weapons points", new JSONObject(s));
 
             player.GetComponent<PlayerController>().animator.enabled = false;
             socket.Emit("in scene");
@@ -111,20 +82,7 @@ public class NetworkManager : MonoBehaviour
 
         }
     }
-    [Serializable]
-    public class WeaponsJson
-    {
-        public PositionJson[] p;
-        public WeaponsJson(GameObject[] temp)
-        {
-            p = new PositionJson[temp.Length];
-            for (int i = 0; i < temp.Length; i++)
-            {
-                p[i] = new PositionJson(temp[i].transform.position, 0);
-            }
-        }
-
-    }
+ 
     private void Update()
     {
 
@@ -215,18 +173,23 @@ public class NetworkManager : MonoBehaviour
 
     internal void land()
     {
+        player.GetComponent<PlayerController>().animator.enabled = true;
+        
         PositionJson p = new PositionJson(player.transform.position);
         String s = JsonUtility.ToJson(p);
         socket.Emit("land", new JSONObject(s));
 
+    }
+    internal void KickPlayers()
+    {
+        socket.Emit("kick players");
     }
 
     private void LogIn()
     {
         logInInfo info = new logInInfo("ali", "emad");
         String infoJson = JsonUtility.ToJson(info);
-        infoJson = AES.encrypting(infoJson);
-        Debug.Log(infoJson);
+        //infoJson = AES.encrypting(infoJson);
         socket.Emit("log in", new JSONObject(infoJson));
 
     }
@@ -318,7 +281,7 @@ public class NetworkManager : MonoBehaviour
         plain.GetComponentInChildren<Camera>().enabled = false;
         player.GetComponentInChildren<Camera>().enabled = true;
         player.transform.position = plain.transform.position + Vector3.down * 20;
-        PositionJson p = new PositionJson(player.transform.position);
+        PositionJson p = new PositionJson(player.transform.position,playerId);
         String s = JsonUtility.ToJson(p);
         socket.Emit("parachute", new JSONObject(s));
         status = "airborn";
@@ -333,6 +296,7 @@ public class NetworkManager : MonoBehaviour
 
     
     #region listening
+    
     private void SetSessionId(SocketIOEvent obj)
     {
       
@@ -472,6 +436,27 @@ public class NetworkManager : MonoBehaviour
         pos = new Vector3(posJ.position[0], posJ.position[1], posJ.position[2]);
         sessionId = posJ.sessionId;
         sessionManager.movePlayer(pos, sessionId);
+    }
+
+    private void OnRsa(SocketIOEvent obj)
+    {
+        Debug.Log("on rsa");
+
+
+        if (encryptionManager == null) encryptionManager =
+                GameObject.FindGameObjectWithTag("encryption manager").GetComponent<EncryptionManager>();
+        string rsa = obj.data.ToString();
+        Debug.Log(rsa);
+
+        RsaJson rsaJson = JsonUtility.FromJson<RsaJson>(rsa);
+        Debug.Log(rsaJson.d + "   " + rsaJson.N + "           " + rsaJson.cipher);
+        encryptionManager.SetRsa(rsaJson);
+    }
+
+    private void jump(SocketIOEvent obj)
+    {
+        Debug.Log("jump");
+        Parachute();
     }
     #endregion listening
 
@@ -627,7 +612,56 @@ public class NetworkManager : MonoBehaviour
             this.userName = userName;
             this.passWord = passWord;
         }
-        #endregion JsonClasses
 
     }
+    [Serializable]
+    public class WeaponsJson
+    {
+        public PositionJson[] p;
+        public WeaponsJson(GameObject[] temp)
+        {
+            p = new PositionJson[temp.Length];
+            for (int i = 0; i < temp.Length; i++)
+            {
+                p[i] = new PositionJson(temp[i].transform.position, 0);
+            }
+        }
+
+    }
+    [Serializable]
+    public class RsaJson
+    {
+        public string d;
+        public string N;
+        public string cipher;
+        public RsaJson(string d, string N, string cipher)
+        {
+            this.d = d;
+            this.N = N;
+            this.cipher = cipher;
+        }
+    }
+    [Serializable]
+    public class WeaponsJson2
+    {
+        public WeaponJson2[] weapons;
+        public WeaponsJson2(WeaponJson2[] weapons)
+        {
+            this.weapons = weapons;
+        }
+    }
+    [Serializable]
+    public class WeaponJson2
+    {
+        public string name;
+        public int id;
+        public WeaponJson2(string name, int id)
+        {
+            this.name = name;
+            this.id = id;
+        }
+    }
+    #endregion JsonClasses
+
+
 }

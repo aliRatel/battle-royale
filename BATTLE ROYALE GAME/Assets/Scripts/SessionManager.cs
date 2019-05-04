@@ -10,6 +10,7 @@ public class SessionManager : MonoBehaviour
 
     public Player[] players;
     public GameObject[] weapons;
+    public GameObject[] weaponsPoints;
     public  GameObject[] playersObjects;
     public int playerId;
     public  Boolean sessionAprroved =false;
@@ -85,6 +86,40 @@ public class SessionManager : MonoBehaviour
     
     }
 
+    internal void distribute(NetworkManager.WeaponJson2[] weapons)
+    {
+
+        weaponsPoints= GameObject.FindGameObjectsWithTag("weapon spawn point");
+        Debug.Log(weaponsPoints.Length);
+        for (int i = 0 ; i < weapons.Length;i++ )
+        {
+            Debug.Log(weapons[i].name);
+            GameObject w = null;
+            NetworkManager.WeaponJson2 weapon = weapons[i];
+            string name = weapon.name;
+            int id = weapon.id;
+            switch (name.ToLower())
+            {
+                case "ak-47":
+                   w  = Instantiate(ak_prefab, weaponsPoints[i].transform.position,weaponsPoints[i].transform.rotation) as GameObject;
+                    Debug.Log(w);
+                    break;
+                case "m4a1":
+                    w = Instantiate(m4_prefab, weaponsPoints[i].transform.position, weaponsPoints[i].transform.rotation) as GameObject;
+                    Debug.Log(w);
+
+                    break;
+
+            }
+
+            w.GetComponent<Item>().id = i;
+            this.weapons[id] = w;
+            Debug.Log(this.weapons[id]);
+
+
+        }
+    }
+
     internal void RemoveWeapon(GameObject temp)
     {
         playerShooter = localPlayer.GetComponent<PlayerShooter>();
@@ -151,8 +186,9 @@ public class SessionManager : MonoBehaviour
 
     void Start()
     {
+        weapons = new GameObject[500];
         localPlayer = GameObject.FindGameObjectWithTag("localPlayer");
-        
+        weaponsPoints = new GameObject[500];
         players = new Player[100];
         playersObjects = new GameObject[100];
         weaponHolder = GameObject.FindGameObjectWithTag("weapon holder");
