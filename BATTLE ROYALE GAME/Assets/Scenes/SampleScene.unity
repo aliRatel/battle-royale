@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 39cace2863926444a9a78daa8ae26413, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.80377746, g: 0.7082274, b: 0.62298125, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12860,16 +12860,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114001291004035570, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
-        type: 3}
-      propertyPath: networkManager
-      value: 
-      objectReference: {fileID: 584977972}
-    - target: {fileID: 114499333081086660, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
-        type: 3}
-      propertyPath: networkManager
-      value: 
-      objectReference: {fileID: 584977972}
     - target: {fileID: 114047091275470952, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
         type: 3}
       propertyPath: bulletPrefab
@@ -12880,6 +12870,16 @@ PrefabInstance:
       propertyPath: hUDManager
       value: 
       objectReference: {fileID: 1502679027}
+    - target: {fileID: 114001291004035570, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
+        type: 3}
+      propertyPath: networkManager
+      value: 
+      objectReference: {fileID: 584977972}
+    - target: {fileID: 114499333081086660, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
+        type: 3}
+      propertyPath: networkManager
+      value: 
+      objectReference: {fileID: 584977972}
     - target: {fileID: 114177010949604640, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
         type: 3}
       propertyPath: networkManager
@@ -22386,26 +22386,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: session manager
       objectReference: {fileID: 0}
-    - target: {fileID: 3434295090907810764, guid: 1492d0615271a304d8e007bf53ed971f,
-        type: 3}
-      propertyPath: weapons.Array.data[0]
-      value: 
-      objectReference: {fileID: 769362172}
-    - target: {fileID: 3434295090907810764, guid: 1492d0615271a304d8e007bf53ed971f,
-        type: 3}
-      propertyPath: weapons.Array.data[1]
-      value: 
-      objectReference: {fileID: 5281589780530455260}
-    - target: {fileID: 3434295090907810764, guid: 1492d0615271a304d8e007bf53ed971f,
-        type: 3}
-      propertyPath: weaponHolder
-      value: 
-      objectReference: {fileID: 767263337}
-    - target: {fileID: 3434295090907810764, guid: 1492d0615271a304d8e007bf53ed971f,
-        type: 3}
-      propertyPath: networkManager
-      value: 
-      objectReference: {fileID: 584977972}
     - target: {fileID: 3434295090907810765, guid: 1492d0615271a304d8e007bf53ed971f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22461,6 +22441,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3434295090907810764, guid: 1492d0615271a304d8e007bf53ed971f,
+        type: 3}
+      propertyPath: weapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 769362172}
+    - target: {fileID: 3434295090907810764, guid: 1492d0615271a304d8e007bf53ed971f,
+        type: 3}
+      propertyPath: weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 5281589780530455260}
+    - target: {fileID: 3434295090907810764, guid: 1492d0615271a304d8e007bf53ed971f,
+        type: 3}
+      propertyPath: weaponHolder
+      value: 
+      objectReference: {fileID: 767263337}
+    - target: {fileID: 3434295090907810764, guid: 1492d0615271a304d8e007bf53ed971f,
+        type: 3}
+      propertyPath: networkManager
+      value: 
+      objectReference: {fileID: 584977972}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1492d0615271a304d8e007bf53ed971f, type: 3}
 --- !u!1001 &3797851707204367672
@@ -22480,21 +22480,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3797851706698038028, guid: f9770e95f228eef4e800dc738012fd18,
-        type: 3}
-      propertyPath: socket
-      value: 
-      objectReference: {fileID: 625245201}
-    - target: {fileID: 3797851706698038028, guid: f9770e95f228eef4e800dc738012fd18,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 624879173}
-    - target: {fileID: 3797851706698038028, guid: f9770e95f228eef4e800dc738012fd18,
-        type: 3}
-      propertyPath: sessionManager
-      value: 
-      objectReference: {fileID: 1719535620}
     - target: {fileID: 3797851706698038029, guid: f9770e95f228eef4e800dc738012fd18,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22550,6 +22535,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3797851706698038028, guid: f9770e95f228eef4e800dc738012fd18,
+        type: 3}
+      propertyPath: socket
+      value: 
+      objectReference: {fileID: 625245201}
+    - target: {fileID: 3797851706698038028, guid: f9770e95f228eef4e800dc738012fd18,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 624879173}
+    - target: {fileID: 3797851706698038028, guid: f9770e95f228eef4e800dc738012fd18,
+        type: 3}
+      propertyPath: sessionManager
+      value: 
+      objectReference: {fileID: 1719535620}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9770e95f228eef4e800dc738012fd18, type: 3}
 --- !u!1 &5281589780530455260 stripped
