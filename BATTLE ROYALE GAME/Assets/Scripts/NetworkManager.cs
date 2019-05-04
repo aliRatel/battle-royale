@@ -17,9 +17,12 @@ public class NetworkManager : MonoBehaviour
     public bool loggedIn = false;
     public static bool isId = false;
     public String status = "in plain";
+    public EncryptionManager encryptionManager;
+
     // Use this for initialization
     void Awake()
     {
+    	
        
         if (instance == null)
             instance = this;
@@ -38,6 +41,7 @@ public class NetworkManager : MonoBehaviour
 
     void Start()
     {
+        socket.On("rsa", OnRsa);
         socket.On("logged in successed", OnLogIn);
         socket.On("setId", SetSessionId);
         socket.On("approved", OnApproved);
@@ -57,6 +61,31 @@ public class NetworkManager : MonoBehaviour
 
     }
 
+    private void OnRsa(SocketIOEvent obj)
+    {
+        Debug.Log("on rsa");
+
+
+        if (encryptionManager == null) encryptionManager =
+                GameObject.FindGameObjectWithTag("encryption manager").GetComponent<EncryptionManager>();
+        string rsa = obj.data.ToString();
+        Debug.Log(rsa);
+
+        RsaJson rsaJson = JsonUtility.FromJson<RsaJson>(rsa);
+        Debug.Log(rsaJson.d + "   " + rsaJson.N);
+        encryptionManager.SetRsa(rsaJson);
+    }
+    [Serializable]
+    public class RsaJson
+    {
+        public string d;
+        public string N;
+        public RsaJson(string d, string N)
+        {
+            this.d = d;
+            this.N = N;
+        }
+    }
     private void jump(SocketIOEvent obj)
     {
         Debug.Log("jump");
@@ -102,6 +131,9 @@ public class NetworkManager : MonoBehaviour
             Debug.Log("null");
             player = GameObject.FindGameObjectWithTag("localPlayer");
         }
+        if (encryptionManager == null)
+            encryptionManager = GameObject.FindGameObjectWithTag("encryption manager").GetComponent<EncryptionManager>();
+
         }
 
     

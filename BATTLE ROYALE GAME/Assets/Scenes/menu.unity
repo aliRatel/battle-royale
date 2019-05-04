@@ -2351,9 +2351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 402253614}
-  - component: {fileID: 402253612}
   - component: {fileID: 402253611}
-  - component: {fileID: 402253613}
   m_Layer: 0
   m_Name: EcnryptionManager
   m_TagString: encryption manager
@@ -2370,31 +2368,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 402253610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8490e4bd3a8dad4e98bf3c1129ed2df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &402253612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402253610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc9474e1cfa7ba48a6af4fc5ec2e3da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &402253613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402253610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb5e0fd8a34fe14db854774f11f272f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8279c10ab0d04a9418987c61b2fa4947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &402253614
@@ -3930,7 +3904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 010d39cbd03ee4c99a746c1f8ecdc0d8, type: 3}
       propertyPath: url
-      value: ws://192.168.1.9:4000/socket.io/?EIO=4&transport=websocket
+      value: ws://192.168.1.20:4000/socket.io/?EIO=4&transport=websocket
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 010d39cbd03ee4c99a746c1f8ecdc0d8, type: 3}
       propertyPath: m_LocalPosition.x
