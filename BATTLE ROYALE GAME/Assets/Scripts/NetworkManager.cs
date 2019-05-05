@@ -14,6 +14,7 @@ public class NetworkManager : MonoBehaviour
     public SessionManager sessionManager;
     public int playerId;
     public GameObject plain;
+    public GameObject parachute;
     public bool loggedIn = false;
     public static bool isId = false;
     public String status = "in plain";
@@ -77,6 +78,8 @@ public class NetworkManager : MonoBehaviour
         //    socket.Emit("weapons points", new JSONObject(s));
 
             player.GetComponent<PlayerController>().animator.enabled = false;
+            player.GetComponent<Rigidbody>().isKinematic = true;
+            
             socket.Emit("in scene");
             sessionManager.sessionAprroved = false;
 
@@ -174,10 +177,12 @@ public class NetworkManager : MonoBehaviour
     internal void land()
     {
         player.GetComponent<PlayerController>().animator.enabled = true;
-        
+        parachute.SetActive(false);
         PositionJson p = new PositionJson(player.transform.position);
         String s = JsonUtility.ToJson(p);
         socket.Emit("land", new JSONObject(s));
+        parachute.SetActive(false);
+        player.GetComponent<Rigidbody>().isKinematic = false;
 
     }
     internal void KickPlayers()
@@ -185,14 +190,14 @@ public class NetworkManager : MonoBehaviour
         socket.Emit("kick players");
     }
 
-    private void LogIn()
-    {
-        logInInfo info = new logInInfo("ali", "emad");
-        String infoJson = JsonUtility.ToJson(info);
-        //infoJson = AES.encrypting(infoJson);
-        socket.Emit("log in", new JSONObject(infoJson));
+    //private void LogIn()
+    //{
+    //    logInInfo info = new logInInfo("ali", "emad");
+    //    String infoJson = JsonUtility.ToJson(info);
+    //    //infoJson = AES.encrypting(infoJson);
+    //    socket.Emit("log in", new JSONObject(infoJson));
 
-    }
+    //}
     public void sendRot(Quaternion rotation, int sessionId)
     {
         RotationJson rotJ = new RotationJson(rotation, playerId);
@@ -277,10 +282,12 @@ public class NetworkManager : MonoBehaviour
     public void Parachute()
     {
         if (plain == null) plain = GameObject.FindGameObjectWithTag("plain");
-
+        if (parachute == null) parachute = player.transform.Find("parachute point").gameObject;
+        parachute.SetActive(true);
         plain.GetComponentInChildren<Camera>().enabled = false;
         player.GetComponentInChildren<Camera>().enabled = true;
         player.transform.position = plain.transform.position + Vector3.down * 20;
+        player.GetComponent<Rigidbody>().isKinematic = false;
         PositionJson p = new PositionJson(player.transform.position,playerId);
         String s = JsonUtility.ToJson(p);
         socket.Emit("parachute", new JSONObject(s));
@@ -301,6 +308,11 @@ public class NetworkManager : MonoBehaviour
     {
       
         string player = obj.data.ToString();
+        Debug.Log(player);
+        EncString s = JsonUtility.FromJson<EncString>(player);
+        player  = AES.decrypting(s.s);
+
+        Debug.Log(player);
         PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
 
         playerId = playerJson.sessionId;
@@ -328,6 +340,9 @@ public class NetworkManager : MonoBehaviour
         Debug.Log(plain);
         plain.GetComponent<Rigidbody>().velocity = plain.transform.forward * 50f;
         plain.GetComponent<Rigidbody>().velocity = plain.transform.forward * 50f;
+        
+        parachute = player.transform.Find("parachute point").transform.gameObject;
+
 
     }
 
