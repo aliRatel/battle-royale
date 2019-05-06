@@ -26,13 +26,25 @@ public class ZoneManager : MonoBehaviour
     {
         
     }
-    private void OnCollisionExit(Collision collision)
+ 
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.CompareTag("local player"))
+        Debug.Log("exit");
+        if(other.CompareTag("localPlayer"))
         {
-            
+            Debug.Log("zone collision");
+        }
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("enter");
+        if (other.CompareTag("localPlayer"))
+        {
+            Debug.Log("zone collision");
         }
     }
+
 
     public void DecreaseSize(float percentage)
     {
