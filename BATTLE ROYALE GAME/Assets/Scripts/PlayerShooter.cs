@@ -145,7 +145,7 @@ public    float z;
         }
 
         currentWeapon = firstWeapon;
-        //hUDManager.SetBg1();
+        hUDManager.SetBg1();
 
     }
 

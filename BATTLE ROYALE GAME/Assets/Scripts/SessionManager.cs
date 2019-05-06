@@ -43,6 +43,7 @@ public class SessionManager : MonoBehaviour
 
     internal void PickWeapon(GameObject temp)
     {
+        if (localPlayer.GetComponent<PlayerShooter>().firstWeapon != null && localPlayer.GetComponent<PlayerShooter>().SecondWeapon != null) return;
         GameObject weapon= null;
         switch (temp.GetComponent<Item>().itemName.ToLower())
         { 

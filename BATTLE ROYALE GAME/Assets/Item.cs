@@ -48,7 +48,7 @@ public class Item : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.E)&& canPickUp)
         {
             
-            
+                
             canPickUp = false;
             action = "pick";
             sessionManager.PickWeapon(gameObject);
