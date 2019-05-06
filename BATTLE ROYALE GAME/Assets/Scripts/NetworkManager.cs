@@ -19,6 +19,7 @@ public class NetworkManager : MonoBehaviour
     public static bool isId = false;
     public String status = "in plain";
     public EncryptionManager encryptionManager;
+    public ZoneManager zoneManager;
 
     // Use this for initialization
     void Awake()
@@ -85,7 +86,7 @@ public class NetworkManager : MonoBehaviour
 
         }
     }
- 
+     
     private void Update()
     {
 
@@ -360,6 +361,14 @@ public class NetworkManager : MonoBehaviour
     private void OnDecreaseZone(SocketIOEvent obj)
     {
         Debug.Log("decrease zone");
+        String s = obj.data.ToString();
+        Debug.Log(s);
+        ZoneJson zoneJson = JsonUtility.FromJson<ZoneJson>(s);
+        float size = zoneJson.size;
+        Debug.Log(size);
+        if (zoneManager == null)
+            zoneManager = GameObject.FindGameObjectWithTag("zone").GetComponent<ZoneManager>();
+        zoneManager.DecreaseSize(size);
     }
 
     private void OnLogIn(SocketIOEvent obj)
@@ -674,6 +683,15 @@ public class NetworkManager : MonoBehaviour
         {
             this.name = name;
             this.id = id;
+        }
+    }
+    [Serializable]
+    public class ZoneJson
+    {
+        public float size;
+        public ZoneJson(float size)
+        {
+            this.size = size;
         }
     }
     #endregion JsonClasses

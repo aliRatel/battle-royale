@@ -30,6 +30,8 @@ public    float z;
 	
 	// Update is called once per frame
 	void Update () {
+        if (hUDManager == null) { hUDManager = GameObject.FindGameObjectWithTag("hud").GetComponent<HUDManager>(); }
+
         if (currentWeapon != null)
         {
             animator.SetLayerWeight(animator.GetLayerIndex("aimangle"), 1);
@@ -66,6 +68,7 @@ public    float z;
 
         if (Input.GetButton("Fire1"))
         {
+
             if (currentWeapon == null) return;
             if (currentWeapon.currentMag > 0 && !isReloading)
             {

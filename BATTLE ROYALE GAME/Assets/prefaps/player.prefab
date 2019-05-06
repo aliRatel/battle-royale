@@ -5036,7 +5036,8 @@ MonoBehaviour:
   secondWeaponAmmo: 0
   currentWeapon: {fileID: 0}
   animator: {fileID: 0}
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 8697077922847176338, guid: 73dad95fb927165488eb572a05c43f6a,
+    type: 3}
   sessionManager: {fileID: 0}
   networkManager: {fileID: 0}
   z: 0
