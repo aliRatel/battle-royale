@@ -223,20 +223,15 @@ public class SessionManager : MonoBehaviour
 
         if (players[sessionId] == null && playersObjects[sessionId] == null)
         {
-            Debug.Log("m4");
 
 
             Player player = new Player(position, rotation, sessionId);
-            Debug.Log("m1");
 
             players[sessionId] = player;
-            Debug.Log("m2");
 
             GameObject pl = Instantiate(playerPrefab, position, rotation) as GameObject;
-            Debug.Log("m3");
 
             playersObjects[sessionId] = pl;
-            Debug.Log("m4");
 
             //playersObjects[sessionId].GetComponent<PlayerManager>().setId(sessionId);
             //Debug.Log("m5");
@@ -274,6 +269,9 @@ public class SessionManager : MonoBehaviour
 
 
                 weapon = Instantiate(ak_prefab, enemyPlayer.weaponHolder.transform.position, enemyPlayer.weaponHolder.transform.rotation) as GameObject;
+                break;
+            case "m4":
+                weapon = Instantiate(m4_prefab, enemyPlayer.weaponHolder.transform.position, enemyPlayer.weaponHolder.transform.rotation) as GameObject;
                 break;
 
             default: return; 

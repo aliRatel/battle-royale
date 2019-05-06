@@ -49,11 +49,8 @@ public class ZoneManager : MonoBehaviour
     public void DecreaseSize(float percentage)
     {
 
-        Debug.Log(percentage + "   " + shape.radius);
         transform.localScale = new Vector3(scale.x - (scale.x * percentage), scale.y, scale.z - (scale.z * percentage));
 
-        //shape.radius = (radius) - (radius * percentage);
-        Debug.Log(percentage + "   " + shape.radius);
 
     }
 }

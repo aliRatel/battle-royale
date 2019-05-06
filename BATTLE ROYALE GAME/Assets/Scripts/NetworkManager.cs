@@ -289,6 +289,7 @@ public class NetworkManager : MonoBehaviour
         player.GetComponentInChildren<Camera>().enabled = true;
         player.transform.position = plain.transform.position + Vector3.down * 20;
         player.GetComponent<Rigidbody>().isKinematic = false;
+        sessionManager.sessionAprroved = true;
         PositionJson p = new PositionJson(player.transform.position,playerId);
         String s = JsonUtility.ToJson(p);
         socket.Emit("parachute", new JSONObject(s));
@@ -360,12 +361,10 @@ public class NetworkManager : MonoBehaviour
 
     private void OnDecreaseZone(SocketIOEvent obj)
     {
-        Debug.Log("decrease zone");
         String s = obj.data.ToString();
-        Debug.Log(s);
+
         ZoneJson zoneJson = JsonUtility.FromJson<ZoneJson>(s);
         float size = zoneJson.size;
-        Debug.Log(size);
         if (zoneManager == null)
             zoneManager = GameObject.FindGameObjectWithTag("zone").GetComponent<ZoneManager>();
         zoneManager.DecreaseSize(size);
@@ -385,7 +384,9 @@ public class NetworkManager : MonoBehaviour
     }
     private void OnWeaponChanged(SocketIOEvent obj)
     {
+        Debug.Log("on weapon changed");
         string w = obj.data.ToString();
+        Debug.Log(w);
         WeaponJson weaponJson = JsonUtility.FromJson<WeaponJson>(w);
         sessionManager.changeWeapon(weaponJson);
     }
