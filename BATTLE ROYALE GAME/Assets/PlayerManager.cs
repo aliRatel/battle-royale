@@ -11,6 +11,9 @@ public class PlayerManager : MonoBehaviour
     public int health;
     public int armor;
     public int sessionId;
+    public bool inZone;
+    public float zoneHitRate;
+    public float zoneNextHit;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -26,6 +29,8 @@ public class PlayerManager : MonoBehaviour
     }
     void Start()
     {
+        zoneHitRate = 1f;
+        zoneNextHit = 0f;
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("spawn point");
@@ -40,7 +45,18 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!inZone) {
+            zoneNextHit += 0.05f;
+        if (zoneNextHit >= zoneHitRate)
+        {
+                zoneNextHit = 0f;
+                dicreaseHealth(1);
+        }
+        }
+        else
+        {
+            zoneNextHit = 0f;
+        }
     }
 
    

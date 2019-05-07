@@ -14,11 +14,9 @@ public class ZoneManager : MonoBehaviour
     void Start()
     {
         scale = transform.localScale;
-        player = GameObject.FindGameObjectWithTag("local palyer").gameObject;
+        player = GameObject.FindGameObjectWithTag("localPlayer").gameObject;
         ps = GetComponent<ParticleSystem>();
-        shape = ps.shape;
-        radius = shape.radius;
-        Debug.Log(radius);
+ 
     }
 
     // Update is called once per frame
@@ -29,19 +27,20 @@ public class ZoneManager : MonoBehaviour
  
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("exit");
         if(other.CompareTag("localPlayer"))
         {
-            Debug.Log("zone collision");
+            player.GetComponent<PlayerManager>().inZone = false;
+
+            Debug.Log("exit");
         }
 
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("enter");
         if (other.CompareTag("localPlayer"))
         {
-            Debug.Log("zone collision");
+            Debug.Log("enter");
+            player.GetComponent<PlayerManager>().inZone = true;
         }
     }
 
