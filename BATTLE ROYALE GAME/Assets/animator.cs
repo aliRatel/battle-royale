@@ -45,6 +45,7 @@ public class animator : MonoBehaviour {
        anim.GetBool("isHustler"),
        anim.GetBool("isAiming"),
        anim.GetBool("isCrouching")
+       
            );
         networkManager.SendAnimation(animation);
 
