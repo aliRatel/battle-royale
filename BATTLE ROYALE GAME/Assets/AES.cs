@@ -648,7 +648,7 @@ public class AES: MonoBehaviour
         }
         public static System.String deletePadding(System.String input)
         {
-        Debug.Log("input " + input);
+
             bool hasPadding = false;
             int a = input.Length - 1;
             if (input[a] == '0' || input[a] == '@')
@@ -673,7 +673,6 @@ public class AES: MonoBehaviour
                 }
                 else if (input[i] == '@')
                 {
-                Debug.Log("@");
                     input = input.Substring(0, input.Length - 1);
                     return input;
                 }

@@ -169,7 +169,7 @@ public class NetworkManager : MonoBehaviour
 
     internal void SendAnimation(AnimationJson animation)
     {
-        return;
+        
         string animationString = JsonUtility.ToJson(animation);
         if (sessionManager.isSessionAprroved())
             socket.Emit("player animated", new JSONObject(animationString));
@@ -310,9 +310,9 @@ public class NetworkManager : MonoBehaviour
     {
       
         string player = obj.data.ToString();
-        Debug.Log(player);
-        EncString s = JsonUtility.FromJson<EncString>(player);
-        player  = AES.decrypting(s.s);
+        //Debug.Log(player);
+        //EncString s = JsonUtility.FromJson<EncString>(player);
+        //player  = AES.decrypting(s.s);
 
         Debug.Log(player);
         PlayerJson playerJson = JsonUtility.FromJson<PlayerJson>(player);
