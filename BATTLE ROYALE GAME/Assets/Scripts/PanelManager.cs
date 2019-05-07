@@ -10,9 +10,11 @@ public class PanelManager : MonoBehaviour {
 	public Animator initiallyOpen;
 
 	private int m_OpenParameterId;
-	private Animator m_Open;
+	public Animator m_Open;
 	private GameObject m_PreviouslySelected;
-
+    public NetworkManager networkManager;
+    public GameObject account;
+    public Button connectBt;
 	const string k_OpenTransitionName = "Open";
 	const string k_ClosedStateName = "Closed";
 
@@ -28,10 +30,12 @@ public class PanelManager : MonoBehaviour {
 
 	public void OpenPanel (Animator anim)
 	{
-		if (m_Open == anim)
-			return;
 
-		anim.gameObject.SetActive(true);
+        if (m_Open == anim)
+        {
+            return;
+        }
+        anim.gameObject.SetActive(true);
 		var newPreviouslySelected = EventSystem.current.currentSelectedGameObject;
 
 		anim.transform.SetAsLastSibling();
@@ -97,9 +101,16 @@ public class PanelManager : MonoBehaviour {
 
     public void changeScene(int a)
     {
-        //if (GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().loggedIn == false)
-        //    return;
-        GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().Play();
+
+        if (account == null) account = GameObject.FindGameObjectWithTag("account") ;
+        if (networkManager == null)
+            networkManager = GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>();
+        if (networkManager.loggedIn == false || !networkManager.socket.IsConnected)
+        {
+            account.GetComponent<Text>().color = Color.red;
+            account.GetComponent<Text>().text = "please log in ";
+            return; }
+            GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().Play();
 
         SceneManager.LoadScene(a);
     }
