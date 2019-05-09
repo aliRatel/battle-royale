@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
 
-    public int health;
+    public int health = 100;
     public int armor;
     public int sessionId;
     public bool inZone = true;
@@ -25,7 +25,6 @@ public class PlayerManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(this);
-        health = 100;
         armor = 0;
     }
     void Start()

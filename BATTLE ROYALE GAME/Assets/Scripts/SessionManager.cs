@@ -90,12 +90,20 @@ public class SessionManager : MonoBehaviour
     
     }
 
+    internal void killPlayer(int playerId)
+    {
+        GameObject killedPlayer = playersObjects[playerId];
+
+    }
+
     internal void decreaseMyHealth(int health)
     {
         Debug.Log("from session manager " + health);
-        if (hudManager == null)
-            hudManager = GameObject.FindGameObjectWithTag("hud manager").GetComponent<HUDManager>();
-        anim.gameObject.GetComponent<PlayerManager>().health = health;
+        //if (hudManager == null)
+        //    hudManager = GameObject.FindGameObjectWithTag("hud manager").GetComponent<HUDManager>();
+        Debug.Log("ali");
+        localPlayer.GetComponent<PlayerManager>().health = health;
+        Debug.Log("after ali ");
         hudManager.decreasehealth(health);
     }
 

@@ -82,6 +82,16 @@ public class NetworkManager : MonoBehaviour
     private void OnPlayerKilled(SocketIOEvent obj)
     {
         Debug.Log("killed");
+        String s = obj.data.ToString();
+        ShotJson shotJson = JsonUtility.FromJson<ShotJson>(s);
+        if (shotJson.playerId == playerId)
+        {
+          //  sessionManager.KillMe();
+        }
+        else
+        {
+            sessionManager.killPlayer(shotJson.playerId);
+        }
     }
 
     private void OnLevelWasLoaded(int level)
