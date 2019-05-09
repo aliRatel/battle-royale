@@ -17,6 +17,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        Debug.Log("awake player");
         if (instance == null)
             instance = this;
         else if (instance != this)

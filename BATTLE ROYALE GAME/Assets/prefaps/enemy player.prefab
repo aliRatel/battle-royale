@@ -4489,11 +4489,10 @@ GameObject:
   - component: {fileID: 8614681690390983032}
   - component: {fileID: 8615021333937031758}
   - component: {fileID: 8614631764298541282}
-  - component: {fileID: 8509688707435288269}
   - component: {fileID: 4961886595231634941}
   m_Layer: 0
   m_Name: enemy player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4569,6 +4568,7 @@ MonoBehaviour:
   socketIO: {fileID: 0}
   localPlayer: 0
   networkManager: {fileID: 0}
+  plain: {fileID: 0}
 --- !u!114 &8615021333937031758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4610,25 +4610,13 @@ MonoBehaviour:
   firstWeaponAmmo: 0
   secondWeaponAmmo: 0
   currentWeapon: {fileID: 0}
+  animator: {fileID: 0}
   bulletPrefab: {fileID: 0}
   sessionManager: {fileID: 0}
+  networkManager: {fileID: 0}
+  z: 0
   isReloading: 0
   hUDManager: {fileID: 0}
---- !u!114 &8509688707435288269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8511394630903463122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a60db9e16927854095d9689dc083a23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  armor: 0
-  sessionId: 0
 --- !u!114 &4961886595231634941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4636,7 +4624,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8511394630903463122}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b286d9b3d14f9054ea3904ff44fe03f9, type: 3}
   m_Name: 

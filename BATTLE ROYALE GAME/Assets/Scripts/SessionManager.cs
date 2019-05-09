@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class SessionManager : MonoBehaviour
 {
+    
     public static SessionManager instance;
 
     public Player[] players;
@@ -21,7 +22,7 @@ public class SessionManager : MonoBehaviour
     public GameObject droppedWeapon;
     public GameObject playerPrefab;
     public GameObject ak_prefab,m4_prefab;
-    
+    public HUDManager hudManager;
     public NetworkManager networkManager;
 
     
@@ -43,8 +44,10 @@ public class SessionManager : MonoBehaviour
 
     internal void PickWeapon(GameObject temp)
     {
-        if (localPlayer.GetComponent<PlayerShooter>().firstWeapon != null && localPlayer.GetComponent<PlayerShooter>().SecondWeapon != null) return;
+        if (localPlayer.GetComponent<PlayerShooter>().firstWeapon != null &&
+            localPlayer.GetComponent<PlayerShooter>().SecondWeapon != null) return;
         GameObject weapon= null;
+        Debug.Log(temp.GetComponent<Item>().itemName.ToLower());
         switch (temp.GetComponent<Item>().itemName.ToLower())
         { 
             case "ak_47" :
@@ -85,6 +88,19 @@ public class SessionManager : MonoBehaviour
                 
         
     
+    }
+
+    internal void decreaseMyHealth(int health)
+    {
+        Debug.Log("from session manager " + health);
+        if (hudManager == null)
+            hudManager = GameObject.FindGameObjectWithTag("hud manager").GetComponent<HUDManager>();
+        hudManager.decreasehealth(health);
+    }
+
+    internal void DecreasePlayerHealth(NetworkManager.HealthJson healthJson)
+    {
+        playersObjects[healthJson.id].GetComponent<EnemyPlayer>().health = healthJson.health;
     }
 
     internal void distribute(NetworkManager.WeaponJson2[] weapons)
@@ -230,7 +246,7 @@ public class SessionManager : MonoBehaviour
             players[sessionId] = player;
 
             GameObject pl = Instantiate(playerPrefab, position, rotation) as GameObject;
-
+            pl.GetComponent<EnemyPlayer>().id = sessionId;
             playersObjects[sessionId] = pl;
 
             //playersObjects[sessionId].GetComponent<PlayerManager>().setId(sessionId);

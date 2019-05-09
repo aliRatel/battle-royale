@@ -46,6 +46,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 0}
   - {fileID: 0}
+  weaponsPoints: []
   playersObjects: []
   playerId: 0
   sessionAprroved: 0
@@ -54,7 +55,7 @@ MonoBehaviour:
   weaponHolder: {fileID: 0}
   playerShooter: {fileID: 0}
   droppedWeapon: {fileID: 0}
-  playerPrefab: {fileID: 1510335609812538, guid: fb4837d7e6fcdbb49a2f0bf741940cab,
+  playerPrefab: {fileID: 8511394630903463122, guid: ecb4b3d84c2a35a4488013ecbbdd292c,
     type: 3}
   ak_prefab: {fileID: 1988219865168552, guid: 514831ff3d580a64485c9ba1eecc3b6f, type: 3}
   m4_prefab: {fileID: 1904424667344631928, guid: 68c07ccff686baa4b87e8382942cbe3e,

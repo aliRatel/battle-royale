@@ -35,6 +35,8 @@ public class NetworkManager : MonoBehaviour
         Connect();
 
     }
+
+
     void Start()
     {
         socket.On("rsa", OnRsa);
@@ -50,6 +52,8 @@ public class NetworkManager : MonoBehaviour
         socket.On("weapon changed", OnWeaponChanged);
         socket.On("move plain", MovePlain);
         socket.On("player air born", OnOtherPlayerAirBorn);
+        socket.On("kill player", OnPlayerKilled);
+        socket.On("hit player", OnPlayerHit);
         socket.On("jump", jump);
         socket.On("player landed", OnOtherPlayerLanded);
         socket.On("decrease zone", OnDecreaseZone);
@@ -58,15 +62,27 @@ public class NetworkManager : MonoBehaviour
 
     }
 
-    private void OnWeapons(SocketIOEvent obj)
+    private void OnPlayerHit(SocketIOEvent obj)
     {
-        Debug.Log("on weapons");
-        String weapons = obj.data.ToString();
-        WeaponsJson2 weaponsJson = JsonUtility.FromJson<WeaponsJson2>(weapons);
-        Debug.Log(weaponsJson.weapons.Length);
-        sessionManager.distribute(weaponsJson.weapons);
+        Debug.Log("from player manager " + obj);
+        String s = obj.data.ToString();
+        HealthJson healthJson = JsonUtility.FromJson<HealthJson>(s);
+        if(healthJson.id == playerId)
+        {
+            sessionManager.decreaseMyHealth(healthJson.health);
+        }
+           else
+                {
+                    sessionManager.DecreasePlayerHealth(healthJson);
+                }
     }
- 
+
+
+    private void OnPlayerKilled(SocketIOEvent obj)
+    {
+        throw new NotImplementedException();
+    }
+
     private void OnLevelWasLoaded(int level)
     {
         if (level == 2)
@@ -76,17 +92,17 @@ public class NetworkManager : MonoBehaviour
             WeaponsJson weaponsPoints = new WeaponsJson(weaponSpawnPoints);
             String s = JsonUtility.ToJson(weaponsPoints);
             Debug.Log(s);
-        //    socket.Emit("weapons points", new JSONObject(s));
+            //    socket.Emit("weapons points", new JSONObject(s));
 
             player.GetComponent<PlayerController>().animator.enabled = false;
             player.GetComponent<Rigidbody>().isKinematic = true;
-            
+
             socket.Emit("in scene");
             sessionManager.sessionAprroved = false;
 
         }
     }
-     
+
     private void Update()
     {
 
@@ -152,6 +168,12 @@ public class NetworkManager : MonoBehaviour
         // socket.Emit("connection");
 
     }
+    public void HitPlayer(int health, int playerId)
+    {
+        ShotJson shotJson = new ShotJson(health, playerId, this.playerId);
+        String s = JsonUtility.ToJson(shotJson);
+        socket.Emit("hit player", new JSONObject(s));
+    }
 
     public void Play()
     {
@@ -169,7 +191,7 @@ public class NetworkManager : MonoBehaviour
 
     internal void SendAnimation(AnimationJson animation)
     {
-        
+
         string animationString = JsonUtility.ToJson(animation);
         if (sessionManager.isSessionAprroved())
             socket.Emit("player animated", new JSONObject(animationString));
@@ -273,13 +295,14 @@ public class NetworkManager : MonoBehaviour
         socket.Emit("log in", new JSONObject(JsonUtility.ToJson(new EncString(user))));
     }
     [Serializable]
-    public class  EncString {
-        public String s;
-    public EncString(String s )
+    public class EncString
     {
+        public String s;
+        public EncString(String s)
+        {
             this.s = s;
+        }
     }
-}
     public void Parachute()
     {
         if (plain == null) plain = GameObject.FindGameObjectWithTag("plain");
@@ -290,7 +313,7 @@ public class NetworkManager : MonoBehaviour
         player.transform.position = plain.transform.position + Vector3.down * 20;
         player.GetComponent<Rigidbody>().isKinematic = false;
         sessionManager.sessionAprroved = true;
-        PositionJson p = new PositionJson(player.transform.position,playerId);
+        PositionJson p = new PositionJson(player.transform.position, playerId);
         String s = JsonUtility.ToJson(p);
         socket.Emit("parachute", new JSONObject(s));
         status = "airborn";
@@ -303,12 +326,20 @@ public class NetworkManager : MonoBehaviour
     //////////////////////////////////////////////////////////////////
 
 
-    
+
     #region listening
-    
+    private void OnWeapons(SocketIOEvent obj)
+    {
+        Debug.Log("on weapons");
+        String weapons = obj.data.ToString();
+        WeaponsJson2 weaponsJson = JsonUtility.FromJson<WeaponsJson2>(weapons);
+        Debug.Log(weaponsJson.weapons.Length);
+        sessionManager.distribute(weaponsJson.weapons);
+    }
+
     private void SetSessionId(SocketIOEvent obj)
     {
-      
+
         string player = obj.data.ToString();
         //Debug.Log(player);
         //EncString s = JsonUtility.FromJson<EncString>(player);
@@ -342,7 +373,7 @@ public class NetworkManager : MonoBehaviour
         Debug.Log(plain);
         plain.GetComponent<Rigidbody>().velocity = plain.transform.forward * 50f;
         plain.GetComponent<Rigidbody>().velocity = plain.transform.forward * 50f;
-        
+
         parachute = player.transform.Find("parachute point").transform.gameObject;
 
 
@@ -411,35 +442,35 @@ public class NetworkManager : MonoBehaviour
         Debug.Log("on Approved");
         sessionManager.setSessionApproved();
         string players = obj.data.ToString();
-        Debug.Log(players+"sss");
+        Debug.Log(players + "sss");
         PlayersJson playersJson = JsonUtility.FromJson<PlayersJson>(players);
         Debug.Log("r");
 
         PlayerJson[] p = playersJson.players;
         Debug.Log("u");
 
-        Debug.Log("0   " + p[0].sessionId+" "+p[0].health);
+        Debug.Log("0   " + p[0].sessionId + " " + p[0].health);
         Debug.Log("1   " + p[1].sessionId + " " + p[1].health);
 
-       // Debug.Log("2   " + p[2].sessionId + " " + p[2].health);
-                    Debug.Log(p.Length + "    length");
+        // Debug.Log("2   " + p[2].sessionId + " " + p[2].health);
+        Debug.Log(p.Length + "    length");
 
-        for (int i = 0;i<p.Length; i++)
+        for (int i = 0; i < p.Length; i++)
         {
             Debug.Log(p.Length + "    length");
-         
+
 
             PlayerJson player = p[i];
-            Debug.Log("array " + player.sessionId );
+            Debug.Log("array " + player.sessionId);
             if (player.sessionId != playerId)
             {
-               Debug.Log("dsfsagfhjdyhsgv" + player.sessionId);
+                Debug.Log("dsfsagfhjdyhsgv" + player.sessionId);
                 sessionManager.AddNewPlayer(player);
                 Debug.Log("sadf" + player.sessionId);
             }
 
-            }
         }
+    }
 
     private void OnOtherPlayerRotated(SocketIOEvent obj)
     {
@@ -456,7 +487,7 @@ public class NetworkManager : MonoBehaviour
         Vector3 pos;
         int sessionId;
         String s = obj.data.ToString();
-        
+
         PositionJson posJ = JsonUtility.FromJson<PositionJson>(s);
         pos = new Vector3(posJ.position[0], posJ.position[1], posJ.position[2]);
         sessionId = posJ.sessionId;
@@ -489,13 +520,24 @@ public class NetworkManager : MonoBehaviour
     ////////////////////////////////////////////////////////////////////////////
 
     #region JsonClasses
+        [Serializable]
+        public class HealthJson
+    {
+        public int health;
+        public int id;
+        public HealthJson(int health,int id)
+        {
+            this.health = health;
+            this.id = id;
+        }
+    }
     [Serializable]
     public class UserJson
 
     {
         public String userName;
         public String password;
-        public UserJson(String userName,String password)
+        public UserJson(String userName, String password)
         {
             this.userName = userName;
             this.password = password;
@@ -503,7 +545,7 @@ public class NetworkManager : MonoBehaviour
 
     }
 
-        [Serializable]
+    [Serializable]
     public class WeaponJson
     {
         public string name;
@@ -514,7 +556,7 @@ public class NetworkManager : MonoBehaviour
         public float[] position;
         public string action;
 
-        public WeaponJson(GameObject weapon,int sessionID)
+        public WeaponJson(GameObject weapon, int sessionID)
         {
             Item item = weapon.GetComponent<Item>();
             this.name = item.itemName;
@@ -534,7 +576,7 @@ public class NetworkManager : MonoBehaviour
         public float horizontal, vertical;
         public bool run, isHustler, isAiming, isCrouching;
 
-        public AnimationJson(int sessionId,float horizontal, float vertical, bool run, bool isHustler, bool isAiming, bool isCrouching)
+        public AnimationJson(int sessionId, float horizontal, float vertical, bool run, bool isHustler, bool isAiming, bool isCrouching)
         {
             this.sessionId = sessionId;
             this.horizontal = horizontal;
@@ -551,13 +593,13 @@ public class NetworkManager : MonoBehaviour
         public PlayerJson[] players;
         public PlayersJson(PlayerJson[] players)
         {
-            for(int i = 0; i< players.Length; i++)
+            for (int i = 0; i < players.Length; i++)
             {
                 this.players[i] = players[i];
             }
         }
     }
-        [Serializable]
+    [Serializable]
     public class PlayerJson
     {
         public int health = 0;
@@ -566,8 +608,8 @@ public class NetworkManager : MonoBehaviour
         public float[] rotation;
         public String socketId;
         public String status;
-       
-        public PlayerJson(int health,int sessionId, Vector3 position, Quaternion rotation,String socketId,String status)
+
+        public PlayerJson(int health, int sessionId, Vector3 position, Quaternion rotation, String socketId, String status)
         {
             this.health = health;
             this.sessionId = sessionId;
@@ -620,7 +662,7 @@ public class NetworkManager : MonoBehaviour
         public float[] rotation;
         public int sessionId;
 
-        public posrotJson(Vector3 position, Quaternion rotation,int sessionId)
+        public posrotJson(Vector3 position, Quaternion rotation, int sessionId)
         {
             this.position = new float[] { position.x, position.y, position.z };
             this.rotation = new float[] { rotation.x, rotation.y, rotation.z };
@@ -694,6 +736,20 @@ public class NetworkManager : MonoBehaviour
         {
             this.size = size;
         }
+    }
+    [Serializable]
+    public class ShotJson
+    {
+        public int health;
+        public int playerId;
+        public int shooterId;
+        public ShotJson(int health, int playerId, int shooterId)
+        {
+            this.health = health;
+            this.playerId = playerId;
+            this.shooterId = shooterId;
+        }
+
     }
     #endregion JsonClasses
 

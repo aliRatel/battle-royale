@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class HUDManager : MonoBehaviour {
     public GameObject w1Ammo;
     public GameObject w2Ammo;
@@ -83,6 +84,9 @@ public class HUDManager : MonoBehaviour {
         img1.color = white;
         img2.color = yellow;
     }
-
+    public void decreasehealth(int health)
+    {
+        Debug.Log("from hud " + health);
+    }
 
 }
