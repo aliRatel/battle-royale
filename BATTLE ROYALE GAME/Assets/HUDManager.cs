@@ -86,6 +86,7 @@ public class HUDManager : MonoBehaviour {
     }
     public void decreasehealth(int health)
     {
+
         Debug.Log("from hud " + health);
     }
 

@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviour
     public int health;
     public int armor;
     public int sessionId;
-    public bool inZone;
+    public bool inZone = true;
     public float zoneHitRate;
     public float zoneNextHit;
     // Start is called before the first frame update

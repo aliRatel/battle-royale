@@ -523,11 +523,11 @@ public class NetworkManager : MonoBehaviour
         [Serializable]
         public class HealthJson
     {
-        public int health;
+        public int newHealth;
         public int id;
-        public HealthJson(int health,int id)
+        public HealthJson(int newHealth,int id)
         {
-            this.health = health;
+            this.newHealth = newHealth;
             this.id = id;
         }
     }
