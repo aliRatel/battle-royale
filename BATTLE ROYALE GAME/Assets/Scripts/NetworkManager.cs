@@ -80,7 +80,7 @@ public class NetworkManager : MonoBehaviour
 
     private void OnPlayerKilled(SocketIOEvent obj)
     {
-        throw new NotImplementedException();
+        Debug.Log("killed");
     }
 
     private void OnLevelWasLoaded(int level)

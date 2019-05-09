@@ -27,7 +27,9 @@ public class ZoneManager : MonoBehaviour
  
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("localPlayer"))
+        if (GameObject.FindGameObjectWithTag("networkManager").GetComponent<NetworkManager>().status != "on ground") return;
+
+        if (other.CompareTag("localPlayer"))
         {
             player.GetComponent<PlayerManager>().inZone = false;
 
@@ -37,7 +39,8 @@ public class ZoneManager : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("localPlayer"))
+        if (GameObject.FindGameObjectWithTag("networkManager").GetComponent<NetworkManager>().status != "on ground") return;
+        if (other.CompareTag("localPlayer") )
         {
             Debug.Log("enter");
             player.GetComponent<PlayerManager>().inZone = true;

@@ -15,6 +15,7 @@ public class EnemyPlayer : MonoBehaviour
     public int id;
     private void Awake()
     {
+        health = 100;
         DontDestroyOnLoad(this);
         networkManager = GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>();
     }
