@@ -69,6 +69,7 @@ public class NetworkManager : MonoBehaviour
         HealthJson healthJson = JsonUtility.FromJson<HealthJson>(s);
         if(healthJson.id == playerId)
         {
+            Debug.Log("velllllo");
             sessionManager.decreaseMyHealth(healthJson.newHealth);
         }
            else
@@ -168,9 +169,9 @@ public class NetworkManager : MonoBehaviour
         // socket.Emit("connection");
 
     }
-    public void HitPlayer(int health, int playerId)
+    public void HitPlayer(int health, int pid)
     {
-        ShotJson shotJson = new ShotJson(health, playerId, this.playerId);
+        ShotJson shotJson = new ShotJson(health, pid, this.playerId);
         String s = JsonUtility.ToJson(shotJson);
         socket.Emit("hit player", new JSONObject(s));
     }

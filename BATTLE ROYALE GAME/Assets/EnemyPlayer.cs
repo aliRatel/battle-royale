@@ -33,7 +33,6 @@ public class EnemyPlayer : MonoBehaviour
 
     public void dicreaseHealth(int health ,int playerId )
     {
-        this.health -=health;
-        networkManager.HitPlayer(health, playerId);
+        networkManager.HitPlayer(health, id);
     }
 }

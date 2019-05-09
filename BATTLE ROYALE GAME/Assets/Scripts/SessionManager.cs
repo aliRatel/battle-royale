@@ -95,6 +95,7 @@ public class SessionManager : MonoBehaviour
         Debug.Log("from session manager " + health);
         if (hudManager == null)
             hudManager = GameObject.FindGameObjectWithTag("hud manager").GetComponent<HUDManager>();
+        anim.gameObject.GetComponent<PlayerManager>().health = health;
         hudManager.decreasehealth(health);
     }
 

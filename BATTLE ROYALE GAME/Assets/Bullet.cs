@@ -31,7 +31,9 @@ public class Bullet : MonoBehaviour
         {
             case "swat:Hips":
                 enemyPlayer = other.gameObject.transform.root.GetComponent<EnemyPlayer>();
-                 health =(int)( damage * 0.7);
+                ownerID = enemyPlayer.id;
+                Debug.Log(ownerID);
+                health = (int)( damage * 0.7);
                 enemyPlayer.dicreaseHealth(health,ownerID);
                 Debug.Log(other.gameObject.name); ;
              g  =  Instantiate(bloodSplash, other.transform.position,other.transform.rotation) as GameObject;
@@ -42,7 +44,10 @@ public class Bullet : MonoBehaviour
 
             case "swat:Head":
                 enemyPlayer = other.gameObject.transform.root.GetComponent<EnemyPlayer>();
-                 health = damage ;
+                ownerID = enemyPlayer.id;
+                Debug.Log(ownerID);
+
+                health = damage ;
                 enemyPlayer.dicreaseHealth(health, ownerID);
                 Debug.Log("trigger");
                   g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
@@ -54,7 +59,9 @@ public class Bullet : MonoBehaviour
                 Debug.Log("trigger");
 
                 enemyPlayer = other.gameObject.transform.root.GetComponent<EnemyPlayer>();
-                 health = (int)(damage * 0.8);
+                ownerID = enemyPlayer.id;
+
+                health = (int)(damage * 0.8);
                 enemyPlayer.dicreaseHealth(health, ownerID);
                   g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
                 Destroy(this);
@@ -64,6 +71,8 @@ public class Bullet : MonoBehaviour
 
             default:
                 enemyPlayer = other.gameObject.transform.root.GetComponent<EnemyPlayer>();
+                ownerID = enemyPlayer.id;
+
                 health = (int)(damage * 0.5);
                 enemyPlayer.dicreaseHealth(health, ownerID);
                 g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
