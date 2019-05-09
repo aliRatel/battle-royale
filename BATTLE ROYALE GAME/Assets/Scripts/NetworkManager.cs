@@ -69,7 +69,7 @@ public class NetworkManager : MonoBehaviour
         HealthJson healthJson = JsonUtility.FromJson<HealthJson>(s);
         if(healthJson.id == playerId)
         {
-            sessionManager.decreaseMyHealth(healthJson.health);
+            sessionManager.decreaseMyHealth(healthJson.newHealth);
         }
            else
                 {

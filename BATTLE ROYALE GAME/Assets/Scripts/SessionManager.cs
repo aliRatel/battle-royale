@@ -100,7 +100,7 @@ public class SessionManager : MonoBehaviour
 
     internal void DecreasePlayerHealth(NetworkManager.HealthJson healthJson)
     {
-        playersObjects[healthJson.id].GetComponent<EnemyPlayer>().health = healthJson.health;
+        playersObjects[healthJson.id].GetComponent<EnemyPlayer>().health = healthJson.newHealth;
     }
 
     internal void distribute(NetworkManager.WeaponJson2[] weapons)
