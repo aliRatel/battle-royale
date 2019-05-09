@@ -4624,7 +4624,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8511394630903463122}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b286d9b3d14f9054ea3904ff44fe03f9, type: 3}
   m_Name: 
@@ -4633,8 +4633,10 @@ MonoBehaviour:
   SecondWeapon: {fileID: 0}
   currentWeapon: {fileID: 0}
   weaponHolder: {fileID: 8511356775191814858}
+  networkManager: {fileID: 0}
   health: 0
   armor: 0
+  id: 0
 --- !u!1 &8511395821843861638
 GameObject:
   m_ObjectHideFlags: 0
