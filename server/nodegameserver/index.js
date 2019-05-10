@@ -36,8 +36,8 @@ var zoneSize = 1;
 var config = {
     time: 1,
     startTime: null,
-    totalTime: (60000)* 4,
-    totalPlayers: 1,
+    totalTime: (60000)* 10,
+    totalPlayers: 2,
     status: 'ready'
 };
 var plain = {
@@ -139,7 +139,7 @@ io.on('connection', function (socket) {
         }
         socket.join(sessionRoom);
         var player = {
-            health: 10,
+            health: 100,
             sessionId: totalPlayers,
             position: [],
             rotation: [],
