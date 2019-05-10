@@ -24,8 +24,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="226" column="18" selection-start-line="226" selection-start-column="18" selection-end-line="226" selection-end-column="18" />
+            <state relative-caret-position="506">
+              <caret line="224" column="31" selection-start-line="224" selection-start-column="31" selection-end-line="224" selection-end-column="31" />
               <folding>
                 <element signature="n#!!block;n#RsaEcr#0" expanded="false" />
                 <element signature="n#!!block;n#RsaDec#0" expanded="false" />
@@ -296,12 +296,12 @@
       <workItem from="1557432294109" duration="7824000" />
       <workItem from="1557484056171" duration="9763000" />
       <workItem from="1557498173518" duration="6594000" />
-      <workItem from="1557506123828" duration="2096000" />
+      <workItem from="1557506123828" duration="2358000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196444000" />
+    <option name="totallyTimeSpent" value="196706000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -969,8 +969,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="226" column="18" selection-start-line="226" selection-start-column="18" selection-end-line="226" selection-end-column="18" />
+        <state relative-caret-position="506">
+          <caret line="224" column="31" selection-start-line="224" selection-start-column="31" selection-end-line="224" selection-end-column="31" />
           <folding>
             <element signature="n#!!block;n#RsaEcr#0" expanded="false" />
             <element signature="n#!!block;n#RsaDec#0" expanded="false" />

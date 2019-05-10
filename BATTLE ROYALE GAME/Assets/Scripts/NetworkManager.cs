@@ -246,7 +246,7 @@ public class NetworkManager : MonoBehaviour
     {
         player.GetComponent<PlayerController>().animator.enabled = true;
         parachute.SetActive(false);
-        PositionJson p = new PositionJson(player.transform.position);
+        PositionJson p = new PositionJson(player.transform.position,playerId);
         String s = JsonUtility.ToJson(p);
         socket.Emit("land", new JSONObject(s));
         parachute.SetActive(false);
