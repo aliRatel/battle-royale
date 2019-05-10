@@ -19,6 +19,7 @@ public    float z;
     public bool isReloading;
     Coroutine startSomeCoroutine;
     public HUDManager hUDManager;
+    public GameObject bloodSplash;
 
     // Use this for initialization
     void Start () {
@@ -144,8 +145,8 @@ public    float z;
                 health = (int)(damage * 0.7);
                 enemyPlayer.dicreaseHealth(health, ownerID);
                 Debug.Log(other.gameObject.name); ;
-               // g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
-               // Destroy(g, 1f);
+                g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
+                Destroy(g, 1f);
 
                 break;
 
@@ -158,8 +159,8 @@ public    float z;
                 health = damage;
                 enemyPlayer.dicreaseHealth(health, ownerID);
                 Debug.Log("trigger");
-              //  g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
-               // Destroy(g, 1f);
+                g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
+                Destroy(g, 1f);
 
 
                 break;
@@ -173,9 +174,9 @@ public    float z;
 
                 health = (int)(damage * 0.8);
                 enemyPlayer.dicreaseHealth(health, ownerID);
-               // g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
+                g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
 
-              //  Destroy(g, 1f);
+                Destroy(g, 1f);
 
 
                 break;

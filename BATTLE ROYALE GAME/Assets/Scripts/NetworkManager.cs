@@ -128,6 +128,8 @@ public class NetworkManager : MonoBehaviour
         {
             if (go.tag != this.tag) Destroy(go);
         }
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
 
         player = null;
