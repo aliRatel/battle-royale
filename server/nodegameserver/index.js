@@ -31,6 +31,7 @@ var a =aes1.encrypting('asfasd');
 
 
 
+
     // console.log(AES.initKey);
 var zoneSize = 1;
 var config = {

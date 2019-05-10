@@ -13,7 +13,6 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(this,4000);
 
     }
 
@@ -22,7 +21,69 @@ public class Bullet : MonoBehaviour
     {
         
     }
-  
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Collider other = collision.collider;
+        EnemyPlayer enemyPlayer;
+        GameObject g;
+        int health;
+        switch (other.gameObject.name)
+        {
+            case "swat:Hips":
+                enemyPlayer = other.gameObject.transform.root.GetComponent<EnemyPlayer>();
+                ownerID = enemyPlayer.id;
+                Debug.Log(ownerID);
+                health = (int)(damage * 0.7);
+                enemyPlayer.dicreaseHealth(health, ownerID);
+                Debug.Log(other.gameObject.name); ;
+                g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
+                Destroy(g, 1f);
+                Destroy(this);
+
+                break;
+
+            case "swat:Head":
+                enemyPlayer = other.gameObject.transform.root.GetComponent<EnemyPlayer>();
+                ownerID = enemyPlayer.id;
+                Debug.Log(ownerID);
+
+                health = damage;
+                enemyPlayer.dicreaseHealth(health, ownerID);
+                Debug.Log("trigger");
+                g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
+                Destroy(g, 1f);
+                Destroy(this);
+
+
+                break;
+            case "swat:Spine":
+                Debug.Log("trigger");
+
+                enemyPlayer = other.gameObject.transform.root.GetComponent<EnemyPlayer>();
+                ownerID = enemyPlayer.id;
+
+                health = (int)(damage * 0.8);
+                enemyPlayer.dicreaseHealth(health, ownerID);
+                g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
+
+                Destroy(g, 1f);
+                Destroy(this);
+
+
+                break;
+
+                //default:
+                //    enemyPlayer = other.gameObject.transform.root.GetComponent<EnemyPlayer>();
+                //    ownerID = enemyPlayer.id;
+
+                //    health = (int)(damage * 0.5);
+                //    enemyPlayer.dicreaseHealth(health, ownerID);
+                //    g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
+                //    Destroy(g, 1f);
+                //    break;
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         EnemyPlayer enemyPlayer;
@@ -39,6 +100,7 @@ public class Bullet : MonoBehaviour
                 Debug.Log(other.gameObject.name); ;
              g  =  Instantiate(bloodSplash, other.transform.position,other.transform.rotation) as GameObject;
                 Destroy(g, 1f);
+                Destroy(this);
 
                 break;
 
@@ -52,6 +114,8 @@ public class Bullet : MonoBehaviour
                 Debug.Log("trigger");
                   g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
                 Destroy(g, 1f);
+                Destroy(this);
+
 
                 break;
             case "swat:Spine":
@@ -65,19 +129,20 @@ public class Bullet : MonoBehaviour
                   g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
                
                 Destroy(g, 1f);
+                Destroy(this);
 
 
                 break;
 
-            default:
-                enemyPlayer = other.gameObject.transform.root.GetComponent<EnemyPlayer>();
-                ownerID = enemyPlayer.id;
+            //default:
+            //    enemyPlayer = other.gameObject.transform.root.GetComponent<EnemyPlayer>();
+            //    ownerID = enemyPlayer.id;
 
-                health = (int)(damage * 0.5);
-                enemyPlayer.dicreaseHealth(health, ownerID);
-                g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
-                Destroy(g, 1f);
-                break;
+            //    health = (int)(damage * 0.5);
+            //    enemyPlayer.dicreaseHealth(health, ownerID);
+            //    g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
+            //    Destroy(g, 1f);
+            //    break;
         }
     }
 }

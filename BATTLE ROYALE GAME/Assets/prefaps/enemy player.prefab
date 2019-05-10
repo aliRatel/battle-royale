@@ -2174,10 +2174,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8510952974096824248}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.12
+  m_Radius: 0.15
   m_Center: {x: 0, y: 0.08, z: 0}
 --- !u!1 &8510954799008672280
 GameObject:
@@ -2284,7 +2284,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8510962594374609842}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.36926526, y: 0.12499602, z: 0.25733608}
@@ -3512,7 +3512,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8511199758088994108}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.36926526, y: 0.56, z: 0.25733596}
@@ -4538,8 +4538,8 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8511394630903463122}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
+  m_IsTrigger: 1
+  m_Enabled: 0
   m_Radius: 0.33
   m_Height: 1.88
   m_Direction: 1
@@ -4634,6 +4634,7 @@ MonoBehaviour:
   currentWeapon: {fileID: 0}
   weaponHolder: {fileID: 8511356775191814858}
   networkManager: {fileID: 0}
+  anim: {fileID: 0}
   health: 0
   armor: 0
   id: 0
