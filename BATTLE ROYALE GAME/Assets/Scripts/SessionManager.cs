@@ -90,6 +90,13 @@ public class SessionManager : MonoBehaviour
     
     }
 
+    internal void flashMuzzle(int id)
+    {
+        weapons[id].GetComponent<Item>().sound.Play();
+        weapons[id].GetComponent<Item>().muzzleFire.GetComponent<ParticleSystem>().Play();
+
+    }
+
     internal void ParachutePlayer(int id)
 
     {

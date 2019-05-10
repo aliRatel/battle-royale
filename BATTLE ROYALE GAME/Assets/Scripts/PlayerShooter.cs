@@ -82,6 +82,7 @@ public    float z;
                     if (!currentWeapon.sound.isPlaying)
                         currentWeapon.sound.Play();
                     //todo fire
+                    networkManager.FlashMuzzle(currentWeapon);
                     checkBulletHit(trackBullets());
 
                     //GameObject bullet = Instantiate(bulletPrefab, currentWeapon.bulletPoint.transform.position, currentWeapon.bulletPoint.transform.localRotation) as GameObject;

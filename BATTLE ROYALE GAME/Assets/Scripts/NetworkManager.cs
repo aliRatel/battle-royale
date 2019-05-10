@@ -21,6 +21,7 @@ public class NetworkManager : MonoBehaviour
     public EncryptionManager encryptionManager;
     public ZoneManager zoneManager;
 
+
     // Use this for initialization
     void Awake()
     {
@@ -55,12 +56,20 @@ public class NetworkManager : MonoBehaviour
         socket.On("kill player", OnPlayerKilled);
         socket.On("hit player", OnPlayerHit);
         socket.On("player air born", OnPlayerAirBorn);
+        socket.On("flash muzzle", OnMuzzleFlash);
         socket.On("jump", jump);
         socket.On("player landed", OnOtherPlayerLanded);
         socket.On("decrease zone", OnDecreaseZone);
         socket.On("disconnect", OnDisconnect);
         CheckNulls();
 
+    }
+
+    private void OnMuzzleFlash(SocketIOEvent obj)
+    {
+        string s = obj.data.ToString();
+        WeaponJson wJson = JsonUtility.FromJson<WeaponJson>(s);
+        sessionManager.flashMuzzle(wJson.id);
     }
 
     private void OnPlayerAirBorn(SocketIOEvent obj)
@@ -87,6 +96,12 @@ public class NetworkManager : MonoBehaviour
                 }
     }
 
+    internal void FlashMuzzle(Item currentWeapon)
+    {
+        WeaponJson wJson = new WeaponJson(currentWeapon.gameObject, playerId);
+        String s = JsonUtility.ToJson(wJson);
+        socket.Emit("flash muzzle", new JSONObject(s));
+    }
 
     private void OnPlayerKilled(SocketIOEvent obj)
     {

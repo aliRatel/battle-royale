@@ -140,7 +140,7 @@ io.on('connection', function (socket) {
         }
         socket.join(sessionRoom);
         var player = {
-            health: 1000,
+            health: 100,
             sessionId: totalPlayers,
             position: [],
             rotation: [],
@@ -234,7 +234,9 @@ var i = findId(socket);
            io.to(players[i].socketId).emit('jump');
            }
     });
-
+    socket.on('flash muzzle',function(data){
+       socket.broadcast.to(sessionRoom).emit('flash muzzle',data);
+    });
     socket.on('hit player', function (data) {
 if(players[data.playerId].health<=0)return;
 console.log(data);
