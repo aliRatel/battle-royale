@@ -37,7 +37,7 @@ var zoneSize = 1;
 var config = {
     time: 1,
     startTime: null,
-    totalTime: (60000)* 10,
+    totalTime: (60000)* 5,
     totalPlayers: 2,
     status: 'ready'
 };
