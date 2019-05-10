@@ -92,6 +92,7 @@ public class SessionManager : MonoBehaviour
 
     internal void flashMuzzle(int id)
     {
+        if(!weapons[id].GetComponent<Item>().sound.isPlaying)
         weapons[id].GetComponent<Item>().sound.Play();
         weapons[id].GetComponent<Item>().muzzleFire.GetComponent<ParticleSystem>().Play();
 

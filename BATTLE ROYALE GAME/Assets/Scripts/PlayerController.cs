@@ -134,9 +134,9 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (networkManager.status == "airborn" && collision.collider.gameObject.tag != "eplayer")
+        if (networkManager.status == "airborn" && collision.collider.gameObject.transform.root.tag != "eplayer")
         {
-
+            Debug.Log(" asfsadf" +collision.collider.name);
             networkManager.status = "on ground";
             networkManager.land();
         }
