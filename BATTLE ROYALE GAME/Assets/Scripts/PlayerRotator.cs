@@ -32,6 +32,8 @@ public class PlayerRotator : MonoBehaviour
     }
     private void Update()
     {
+        if (networkManager.status == "dead") return;
+
         currentRotation = transform.rotation;
 
 
@@ -50,7 +52,7 @@ public class PlayerRotator : MonoBehaviour
     void LateUpdate()
     {
 
-
+        if (networkManager.status == "dead") return;
         RotateCam();
 
 

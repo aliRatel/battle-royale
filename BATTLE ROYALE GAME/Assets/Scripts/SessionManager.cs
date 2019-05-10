@@ -90,17 +90,49 @@ public class SessionManager : MonoBehaviour
     
     }
 
+    internal void ParachutePlayer(int id)
+
+    {
+        GameObject parachute = playersObjects[id].transform.Find("parachute point").gameObject;
+        gameObject.SetActive(true);
+    }
+    internal void LandPlayer(int id)
+
+    {
+        GameObject parachute = playersObjects[id].transform.Find("parachute point").gameObject;
+        gameObject.SetActive(false);
+    }
+
+
+    internal void KillMe()
+    {
+        playerShooter = localPlayer.GetComponent<PlayerShooter>();
+        if (playerShooter.firstWeapon != null) RemoveWeapon(playerShooter.firstWeapon.gameObject);
+        if (playerShooter.SecondWeapon != null) RemoveWeapon(playerShooter.SecondWeapon.gameObject);
+        localPlayer.GetComponentInChildren<Animator>().SetBool("died", true);
+
+
+    }
+
     internal void killPlayer(int playerId)
     {
         GameObject killedPlayer = playersObjects[playerId];
-
+        killedPlayer.GetComponent<EnemyPlayer>().anim.SetBool("died", true);
+        Collider[] c = killedPlayer.GetComponentsInChildren<Collider>();
+        foreach(Collider collider in c)
+        {
+            collider.enabled = false;
+        }
+        hudManager.killSomeOne();
     }
 
     internal void decreaseMyHealth(int health)
     {
         Debug.Log("from session manager " + health);
-        //if (hudManager == null)
-        //    hudManager = GameObject.FindGameObjectWithTag("hud manager").GetComponent<HUDManager>();
+        if (hudManager == null)
+            hudManager = GameObject.FindGameObjectWithTag("hud").GetComponent<HUDManager>();
+
+        hudManager.decreasehealth(health);
         Debug.Log("ali");
         localPlayer.GetComponent<PlayerManager>().health = health;
         Debug.Log("after ali ");
@@ -116,10 +148,10 @@ public class SessionManager : MonoBehaviour
     {
 
         weaponsPoints= GameObject.FindGameObjectsWithTag("weapon spawn point");
-        Debug.Log(weaponsPoints.Length);
+
         for (int i = 0 ; i < weapons.Length;i++ )
         {
-            Debug.Log(weapons[i].name);
+
             GameObject w = null;
             NetworkManager.WeaponJson2 weapon = weapons[i];
             string name = weapon.name;
@@ -128,11 +160,11 @@ public class SessionManager : MonoBehaviour
             {
                 case "ak-47":
                    w  = Instantiate(ak_prefab, weaponsPoints[i].transform.position,weaponsPoints[i].transform.rotation) as GameObject;
-                    Debug.Log(w);
+
                     break;
                 case "m4a1":
                     w = Instantiate(m4_prefab, weaponsPoints[i].transform.position, weaponsPoints[i].transform.rotation) as GameObject;
-                    Debug.Log(w);
+
 
                     break;
 
@@ -140,7 +172,7 @@ public class SessionManager : MonoBehaviour
 
             w.GetComponent<Item>().id = i;
             this.weapons[id] = w;
-            Debug.Log(this.weapons[id]);
+
 
 
         }
@@ -235,7 +267,6 @@ public class SessionManager : MonoBehaviour
     {
         if (networkManager == null)
             networkManager = GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>();
-      
     }
 
     public void  AddNewPlayer(NetworkManager.PlayerJson playerJson )

@@ -54,12 +54,21 @@ public class NetworkManager : MonoBehaviour
         socket.On("player air born", OnOtherPlayerAirBorn);
         socket.On("kill player", OnPlayerKilled);
         socket.On("hit player", OnPlayerHit);
+        socket.On("player air born", OnPlayerAirBorn);
         socket.On("jump", jump);
         socket.On("player landed", OnOtherPlayerLanded);
         socket.On("decrease zone", OnDecreaseZone);
         socket.On("disconnect", OnDisconnect);
         CheckNulls();
 
+    }
+
+    private void OnPlayerAirBorn(SocketIOEvent obj)
+    {
+        String s = obj.data.ToString();
+        PositionJson pJson = JsonUtility.FromJson<PositionJson>(s);
+        int id = pJson.sessionId;
+        sessionManager.ParachutePlayer(id);
     }
 
     private void OnPlayerHit(SocketIOEvent obj)
@@ -82,17 +91,42 @@ public class NetworkManager : MonoBehaviour
     private void OnPlayerKilled(SocketIOEvent obj)
     {
         Debug.Log("killed");
+
         String s = obj.data.ToString();
         ShotJson shotJson = JsonUtility.FromJson<ShotJson>(s);
         if (shotJson.playerId == playerId)
         {
-          //  sessionManager.KillMe();
+            status = "dead";
+           sessionManager.KillMe();
+            DestroyScene();
         }
         else
         {
             sessionManager.killPlayer(shotJson.playerId);
         }
     }
+
+    private void DestroyScene()
+    {
+        GameObject[] gameObjects = GameObject.FindObjectsOfType<GameObject>();
+        foreach (GameObject go in gameObjects)
+        {
+            if (go.tag != this.tag) Destroy(go);
+        }
+
+
+        player = null;
+      sessionManager=null;
+      playerId = 0 ;
+      plain = null;
+        parachute = null ;
+      loggedIn = false;
+       isId = false;
+      status = "in plain";
+      encryptionManager = null;
+      zoneManager =null;
+        SceneManager.LoadScene(0);
+}
 
     private void OnLevelWasLoaded(int level)
     {
@@ -116,7 +150,6 @@ public class NetworkManager : MonoBehaviour
 
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.C))
 
             if (Input.GetKeyDown(KeyCode.J))
@@ -319,8 +352,8 @@ public class NetworkManager : MonoBehaviour
         if (plain == null) plain = GameObject.FindGameObjectWithTag("plain");
         if (parachute == null) parachute = player.transform.Find("parachute point").gameObject;
         parachute.SetActive(true);
-        plain.GetComponentInChildren<Camera>().enabled = false;
-        player.GetComponentInChildren<Camera>().enabled = true;
+        plain.transform.Find("plain cam").gameObject.SetActive(false);
+        player.transform.Find("Main Camera").gameObject.SetActive(true);
         player.transform.position = plain.transform.position + Vector3.down * 20;
         player.GetComponent<Rigidbody>().isKinematic = false;
         sessionManager.sessionAprroved = true;
@@ -341,10 +374,10 @@ public class NetworkManager : MonoBehaviour
     #region listening
     private void OnWeapons(SocketIOEvent obj)
     {
-        Debug.Log("on weapons");
+
         String weapons = obj.data.ToString();
         WeaponsJson2 weaponsJson = JsonUtility.FromJson<WeaponsJson2>(weapons);
-        Debug.Log(weaponsJson.weapons.Length);
+
         sessionManager.distribute(weaponsJson.weapons);
     }
 
@@ -373,7 +406,10 @@ public class NetworkManager : MonoBehaviour
 
     private void OnOtherPlayerLanded(SocketIOEvent obj)
     {
-        throw new NotImplementedException();
+        String s = obj.data.ToString();
+        PositionJson pJson = JsonUtility.FromJson<PositionJson>(s);
+        int id = pJson.sessionId;
+        sessionManager.LandPlayer(id);
     }
 
     private void MovePlain(SocketIOEvent obj)

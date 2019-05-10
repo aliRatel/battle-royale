@@ -30,7 +30,7 @@ public class Item : MonoBehaviour {
         GetComponent<BoxCollider>().enabled = true;
         GetComponent<CapsuleCollider>().enabled = true;
 
-        itemRb.isKinematic = true;
+        itemRb.isKinematic = false;
     }
     // Use this for initialization
     void Start () {
@@ -45,7 +45,7 @@ public class Item : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.E)&& canPickUp)
+        if (Input.GetKeyDown(KeyCode.E)&& canPickUp &&GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().status!="dead")
         {
             
                 

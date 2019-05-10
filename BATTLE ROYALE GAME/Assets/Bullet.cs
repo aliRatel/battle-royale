@@ -13,7 +13,8 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     
+        Destroy(this,4);
+
     }
 
     // Update is called once per frame
@@ -37,7 +38,6 @@ public class Bullet : MonoBehaviour
                 enemyPlayer.dicreaseHealth(health,ownerID);
                 Debug.Log(other.gameObject.name); ;
              g  =  Instantiate(bloodSplash, other.transform.position,other.transform.rotation) as GameObject;
-                Destroy(this);
                 Destroy(g, 1f);
 
                 break;
@@ -51,7 +51,6 @@ public class Bullet : MonoBehaviour
                 enemyPlayer.dicreaseHealth(health, ownerID);
                 Debug.Log("trigger");
                   g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
-                Destroy(this);
                 Destroy(g, 1f);
 
                 break;
@@ -64,8 +63,9 @@ public class Bullet : MonoBehaviour
                 health = (int)(damage * 0.8);
                 enemyPlayer.dicreaseHealth(health, ownerID);
                   g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
-                Destroy(this);
+               
                 Destroy(g, 1f);
+
 
                 break;
 
@@ -76,9 +76,7 @@ public class Bullet : MonoBehaviour
                 health = (int)(damage * 0.5);
                 enemyPlayer.dicreaseHealth(health, ownerID);
                 g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
-                Destroy(this);
                 Destroy(g, 1f);
-                Destroy(this);
                 break;
         }
     }

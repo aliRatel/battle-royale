@@ -1,0 +1,20 @@
+{
+  "name": "nodegameserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aes-js": "^3.1.2",
+    "big-integer": "",
+    "crypto-js": "^3.1.9-1",
+    "cryptojs": "^2.5.3",
+    "express": "^4.16.3",
+    "mysql": "^2.10.2",
+    "socket.io": "^2.1.1"
+  }
+}

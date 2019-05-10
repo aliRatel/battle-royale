@@ -14,6 +14,7 @@ public class ZoneManager : MonoBehaviour
     void Start()
     {
         scale = transform.localScale;
+         radius = GetComponent<SphereCollider>().radius;
         player = GameObject.FindGameObjectWithTag("localPlayer").gameObject;
         ps = GetComponent<ParticleSystem>();
  
@@ -24,25 +25,31 @@ public class ZoneManager : MonoBehaviour
     {
         
     }
- 
+
+    
     private void OnTriggerExit(Collider other)
     {
-        if (GameObject.FindGameObjectWithTag("networkManager").GetComponent<NetworkManager>().status != "on ground") return;
+        Debug.Log("exit "+other.tag);
 
         if (other.CompareTag("localPlayer"))
         {
+
+           
+
             player.GetComponent<PlayerManager>().inZone = false;
 
-            Debug.Log("exit");
+
         }
 
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (GameObject.FindGameObjectWithTag("networkManager").GetComponent<NetworkManager>().status != "on ground") return;
+        Debug.Log("enter " + other.tag);
+
+
         if (other.CompareTag("localPlayer") )
         {
-            Debug.Log("enter");
+
             player.GetComponent<PlayerManager>().inZone = true;
         }
     }
@@ -52,7 +59,6 @@ public class ZoneManager : MonoBehaviour
     {
 
         transform.localScale = new Vector3(scale.x - (scale.x * percentage), scale.y, scale.z - (scale.z * percentage));
-
-
+        GetComponent<SphereCollider>().radius =radius- (radius* percentage);
     }
 }

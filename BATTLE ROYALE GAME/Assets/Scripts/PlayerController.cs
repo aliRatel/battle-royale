@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,13 +32,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (networkManager.status == "dead") return;
+
         currentPosiotion = transform.position;
         if (!localPlayer)
         {
             return;
         }
-        # region animation
+        #region animation
+        if (Input.GetKey(KeyCode.Q))
+        {
+            animator.SetBool("died", true);
 
+        }
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
@@ -76,7 +83,7 @@ public class PlayerController : MonoBehaviour
         #endregion animation
         #region movement
 
-        if(Input.GetKey(KeyCode.F)&&networkManager.status=="in plain")
+        if(Input.GetKey(KeyCode.F)&&networkManager.status=="in plain" &&SceneManager.GetActiveScene().buildIndex==2)
         {
             
             networkManager.Parachute();
@@ -133,6 +140,7 @@ public class PlayerController : MonoBehaviour
     {
         if (networkManager.status == "airborn" && collision.collider.gameObject.tag != "eplayer")
         {
+
             networkManager.status = "on ground";
             networkManager.land();
         }

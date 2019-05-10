@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
 
-    public int health = 100;
+    public int health ;
     public int armor;
     public int sessionId;
     public bool inZone = true;
@@ -26,9 +26,11 @@ public class PlayerManager : MonoBehaviour
         }
         DontDestroyOnLoad(this);
         armor = 0;
+
     }
     void Start()
     {
+        health = 15;
         zoneHitRate = 1f;
         zoneNextHit = 0f;
         if (SceneManager.GetActiveScene().buildIndex == 1)
@@ -63,8 +65,8 @@ public class PlayerManager : MonoBehaviour
 
     internal void dicreaseHealth(int health)
     {
-       this.health -= health;
-        //todo networking;
+        GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().HitPlayer(health,sessionId);
+
     }
 
     internal void setId(int id)

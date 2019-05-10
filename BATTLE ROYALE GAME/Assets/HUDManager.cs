@@ -12,6 +12,9 @@ public class HUDManager : MonoBehaviour {
     public GameObject w2Img;
     public GameObject w1Bg;
     public GameObject w2IBg;
+    public Image healthBar;
+    public Text killed;
+    public Text alive;
     Color yellow = Color.yellow;
     Color white = Color.white;
 
@@ -86,8 +89,16 @@ public class HUDManager : MonoBehaviour {
     }
     public void decreasehealth(int health)
     {
-
-        Debug.Log("from hud " + health);
+        healthBar.fillAmount = health / 100;
     }
 
+    internal void killSomeOne()
+    {
+        int a = int.Parse( killed.text.ToString());
+        int b = a;
+        a++;
+        b--;
+        killed.text = a.ToString();
+        alive.text = b.ToString();
+    }
 }
