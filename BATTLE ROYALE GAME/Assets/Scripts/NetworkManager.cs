@@ -216,6 +216,7 @@ public class NetworkManager : MonoBehaviour
     {
         ShotJson shotJson = new ShotJson(health, pid, this.playerId);
         String s = JsonUtility.ToJson(shotJson);
+        Debug.Log(s);
         socket.Emit("hit player", new JSONObject(s));
     }
 

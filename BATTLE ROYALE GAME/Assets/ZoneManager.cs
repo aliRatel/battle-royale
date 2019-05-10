@@ -30,7 +30,7 @@ public class ZoneManager : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Debug.Log("exit "+other.tag);
-        if (GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().status != "on ground") return ;
+        if (GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().status != "on ground") { Debug.Log("not on ground"); return; }
 
         if (other.CompareTag("localPlayer"))
         {
@@ -45,7 +45,7 @@ public class ZoneManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("enter " + other.tag);
-        if (GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().status != "on ground") return;
+        if (GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().status != "on ground") { Debug.Log("not on ground"); return; }
 
 
         if (other.CompareTag("localPlayer") )
