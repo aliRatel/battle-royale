@@ -168,6 +168,7 @@ io.on('connection', function (socket) {
         var c = (players[i]) ;
         socket.emit('setId', players[i]  );
 
+
         console.log(data);
 
 

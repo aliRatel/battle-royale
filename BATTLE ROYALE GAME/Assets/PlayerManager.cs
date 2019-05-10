@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviour
     public int health ;
     public int armor;
     public int sessionId;
-    public Boolean inZone = true;
+    public Boolean inZone;
     public float zoneHitRate;
     public float zoneNextHit;
     // Start is called before the first frame update
@@ -30,7 +30,8 @@ public class PlayerManager : MonoBehaviour
     }
     void Start()
     {
-        health = 15;
+        inZone = true;
+        health = 100;
         zoneHitRate = 1f;
         zoneNextHit = 0f;
         if (SceneManager.GetActiveScene().buildIndex == 1)
