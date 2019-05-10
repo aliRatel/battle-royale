@@ -118,17 +118,17 @@ public class SessionManager : MonoBehaviour
     internal void killPlayer(int playerId)
     {
         GameObject killedPlayer = playersObjects[playerId];
-        Debug.Log("a");
         killedPlayer.GetComponentInChildren<Animator>().SetBool("died", true);
-        Debug.Log("ab");
+       
 
         Collider[] c = killedPlayer.GetComponentsInChildren<Collider>();
-                Debug.Log("ac");
+            
 
         foreach(Collider collider in c)
         {
             collider.enabled = false;
         }
+        hudManager = GameObject.FindGameObjectWithTag("hud").GetComponent<HUDManager>();
         hudManager.killSomeOne();
         Debug.Log("ad");
 

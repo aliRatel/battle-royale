@@ -61,7 +61,6 @@ public    float z;
            
         }
 
-        trackBullets();
        
 
 
@@ -83,10 +82,12 @@ public    float z;
                     if (!currentWeapon.sound.isPlaying)
                         currentWeapon.sound.Play();
                     //todo fire
-                    GameObject bullet = Instantiate(bulletPrefab, currentWeapon.bulletPoint.transform.position, currentWeapon.bulletPoint.transform.localRotation) as GameObject;
-                    bullet.GetComponent<Rigidbody>().velocity = currentWeapon.bulletPoint.transform.forward * 7800f*Time.deltaTime;
-                    bullet.GetComponent<Bullet>().ownerID = networkManager.playerId;
-                    Debug.Log(bullet.GetComponent<Bullet>().ownerID);
+                    checkBulletHit(trackBullets());
+
+                    //GameObject bullet = Instantiate(bulletPrefab, currentWeapon.bulletPoint.transform.position, currentWeapon.bulletPoint.transform.localRotation) as GameObject;
+                   // bullet.GetComponent<Rigidbody>().velocity = currentWeapon.bulletPoint.transform.forward * 7800f*Time.deltaTime;
+                  //  bullet.GetComponent<Bullet>().ownerID = networkManager.playerId;
+                  //  Debug.Log(bullet.GetComponent<Bullet>().ownerID);
                     // todo start coroutine to destroy bullet
                     //todo manage bullets
                     currentWeapon.currentMag--;
@@ -127,6 +128,69 @@ public    float z;
         }
     }
 
+    private void checkBulletHit(Collider other)
+    {
+        int damage = 10;   
+        EnemyPlayer enemyPlayer;
+        GameObject g;
+        int health;
+        switch (other.gameObject.name)
+        {
+            case "swat:Hips":
+                enemyPlayer = other.gameObject.transform.root.GetComponent<EnemyPlayer>();
+                int ownerID = enemyPlayer.id;
+                Debug.Log(ownerID);
+                health = (int)(damage * 0.7);
+                enemyPlayer.dicreaseHealth(health, ownerID);
+                Debug.Log(other.gameObject.name); ;
+               // g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
+               // Destroy(g, 1f);
+
+                break;
+
+            case "swat:Head":
+
+                enemyPlayer = other.gameObject.transform.root.GetComponent<EnemyPlayer>();
+                ownerID = enemyPlayer.id;
+                Debug.Log(ownerID);
+
+                health = damage;
+                enemyPlayer.dicreaseHealth(health, ownerID);
+                Debug.Log("trigger");
+              //  g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
+               // Destroy(g, 1f);
+
+
+                break;
+            case "swat:Spine":
+               
+
+                Debug.Log("trigger");
+
+                enemyPlayer = other.gameObject.transform.root.GetComponent<EnemyPlayer>();
+                ownerID = enemyPlayer.id;
+
+                health = (int)(damage * 0.8);
+                enemyPlayer.dicreaseHealth(health, ownerID);
+               // g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
+
+              //  Destroy(g, 1f);
+
+
+                break;
+
+                //default:
+                //    enemyPlayer = other.gameObject.transform.root.GetComponent<EnemyPlayer>();
+                //    ownerID = enemyPlayer.id;
+
+                //    health = (int)(damage * 0.5);
+                //    enemyPlayer.dicreaseHealth(health, ownerID);
+                //    g = Instantiate(bloodSplash, other.transform.position, other.transform.rotation) as GameObject;
+                //    Destroy(g, 1f);
+                //    break;
+        }
+    }
+
     private void hustlerSecondtWeapon()
     {
         if (currentWeapon == firstWeapon)
@@ -153,7 +217,7 @@ public    float z;
 
     }
 
-    private void trackBullets()
+    private Collider trackBullets()
     {
         int x = Screen.width / 2;
         int y = Screen.height / 2;
@@ -171,8 +235,10 @@ public    float z;
         {
             z = 1000;
         }
+        
 
         Debug.DrawRay(ray.origin, ray.direction * 1000, new Color(1f, 0.922f, 0.016f, 1f));
+        return hit.collider;
     }
 
     IEnumerator reload()

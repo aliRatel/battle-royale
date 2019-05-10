@@ -89,13 +89,16 @@ public class HUDManager : MonoBehaviour {
     }
     public void decreasehealth(int health)
     {
-        healthBar.fillAmount = health / 100;
+        healthBar.fillAmount = (health / 100f);
+        Debug.Log(health / 100f);
     }
 
-    internal void killSomeOne()
+    public void killSomeOne()
     {
+
+
         int a = int.Parse( killed.text.ToString());
-        int b = a;
+        int b = int.Parse(alive.text.ToString());
         a++;
         b--;
         killed.text = a.ToString();

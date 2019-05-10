@@ -140,7 +140,7 @@ io.on('connection', function (socket) {
         }
         socket.join(sessionRoom);
         var player = {
-            health: 100,
+            health: 1000,
             sessionId: totalPlayers,
             position: [],
             rotation: [],

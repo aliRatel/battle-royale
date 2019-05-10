@@ -5058,6 +5058,9 @@ MonoBehaviour:
   health: 0
   armor: 0
   sessionId: 0
+  inZone: 0
+  zoneHitRate: 0
+  zoneNextHit: 0
 --- !u!1 &1954574006280204
 GameObject:
   m_ObjectHideFlags: 0
