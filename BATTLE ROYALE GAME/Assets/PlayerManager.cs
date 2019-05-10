@@ -66,7 +66,8 @@ public class PlayerManager : MonoBehaviour
 
     internal void dicreaseHealth(int health)
     {
-        GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().HitPlayer(health,sessionId);
+        GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().HitPlayer(health,
+            GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().playerId);
 
     }
 

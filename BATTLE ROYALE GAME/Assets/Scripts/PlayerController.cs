@@ -40,11 +40,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         #region animation
-        if (Input.GetKey(KeyCode.Q))
-        {
-            animator.SetBool("died", true);
-
-        }
+    
 
         if (Input.GetKey(KeyCode.LeftControl))
         {

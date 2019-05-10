@@ -84,7 +84,7 @@ public    float z;
                         currentWeapon.sound.Play();
                     //todo fire
                     GameObject bullet = Instantiate(bulletPrefab, currentWeapon.bulletPoint.transform.position, currentWeapon.bulletPoint.transform.localRotation) as GameObject;
-                    bullet.GetComponent<Rigidbody>().velocity = currentWeapon.bulletPoint.transform.forward * 120f;
+                    bullet.GetComponent<Rigidbody>().velocity = currentWeapon.bulletPoint.transform.forward * 7800f*Time.deltaTime;
                     bullet.GetComponent<Bullet>().ownerID = networkManager.playerId;
                     Debug.Log(bullet.GetComponent<Bullet>().ownerID);
                     // todo start coroutine to destroy bullet

@@ -93,14 +93,15 @@ public class SessionManager : MonoBehaviour
     internal void ParachutePlayer(int id)
 
     {
+
         GameObject parachute = playersObjects[id].transform.Find("parachute point").gameObject;
-        gameObject.SetActive(true);
+        parachute.SetActive(true);
     }
     internal void LandPlayer(int id)
 
     {
         GameObject parachute = playersObjects[id].transform.Find("parachute point").gameObject;
-        gameObject.SetActive(false);
+        parachute.SetActive(false);
     }
 
 
@@ -117,13 +118,20 @@ public class SessionManager : MonoBehaviour
     internal void killPlayer(int playerId)
     {
         GameObject killedPlayer = playersObjects[playerId];
-        killedPlayer.GetComponent<EnemyPlayer>().anim.SetBool("died", true);
+        Debug.Log("a");
+        killedPlayer.GetComponentInChildren<Animator>().SetBool("died", true);
+        Debug.Log("ab");
+
         Collider[] c = killedPlayer.GetComponentsInChildren<Collider>();
+                Debug.Log("ac");
+
         foreach(Collider collider in c)
         {
             collider.enabled = false;
         }
         hudManager.killSomeOne();
+        Debug.Log("ad");
+
     }
 
     internal void decreaseMyHealth(int health)
