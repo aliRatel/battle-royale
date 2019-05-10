@@ -37,15 +37,15 @@ public class animator : MonoBehaviour {
             anim.SetFloat("AimAngle",camx-360-10 );
 
         }
-  
+
         NetworkManager.AnimationJson animation = new NetworkManager.AnimationJson(networkManager.playerId,
        anim.GetFloat("Horizontal"),
        anim.GetFloat("Vertical"),
        anim.GetBool("run"),
        anim.GetBool("isHustler"),
        anim.GetBool("isAiming"),
-       anim.GetBool("isCrouching")
-       
+       anim.GetBool("isCrouching"),
+       anim.GetBool("air born")
            );
         networkManager.SendAnimation(animation);
 

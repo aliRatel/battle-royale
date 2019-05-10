@@ -747,14 +747,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
-    - target: {fileID: 1953391404207192, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1712143532003904, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
-      propertyPath: m_TagString
-      value: weapon holder
-      objectReference: {fileID: 0}
     - target: {fileID: 4228296320196370, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
       propertyPath: m_LocalPosition.x
       value: -237.6
@@ -797,28 +789,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4228296320196370, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114047091275470952, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
-        type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1707802141}
-    - target: {fileID: 4110796700937804, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.051377337
-      objectReference: {fileID: 0}
-    - target: {fileID: 4110796700937804, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99867934
-      objectReference: {fileID: 0}
-    - target: {fileID: 4110796700937804, guid: 10f294f3e111e8a49919c7bfbc1b7f60, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -5.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 95059658786985394, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1475,12 +1445,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69b2d87350ce22943bdd2ce92e580e8e, type: 3}
---- !u!95 &1707802141 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 95342202397605126, guid: 10f294f3e111e8a49919c7bfbc1b7f60,
-    type: 3}
-  m_PrefabInstance: {fileID: 926380233}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2111906673
 PrefabInstance:
   m_ObjectHideFlags: 0

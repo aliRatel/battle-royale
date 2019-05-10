@@ -405,6 +405,7 @@ public class SessionManager : MonoBehaviour
         anim.SetBool("isHustler", animationJson.isHustler);
         anim.SetBool("isAiming", animationJson.isAiming);
         anim.SetBool("isCrouching", animationJson.isCrouching);
+        anim.SetBool("air born", animationJson.isAirBorn);
     }
 
    

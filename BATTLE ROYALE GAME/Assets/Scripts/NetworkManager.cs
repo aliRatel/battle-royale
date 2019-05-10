@@ -147,14 +147,16 @@ public class NetworkManager : MonoBehaviour
     {
         if (level == 2)
         {
+            player.GetComponent<PlayerController>().animator.SetBool("air born", true);
+
             GameObject[] weaponSpawnPoints = GameObject.FindGameObjectsWithTag("weapon spawn point");
 
             WeaponsJson weaponsPoints = new WeaponsJson(weaponSpawnPoints);
             String s = JsonUtility.ToJson(weaponsPoints);
-            Debug.Log(s);
+            Debug.Log("looooaded");
             //    socket.Emit("weapons points", new JSONObject(s));
 
-            player.GetComponent<PlayerController>().animator.enabled = false;
+            //player.GetComponent<PlayerController>().animator.enabled = false;
             player.GetComponent<Rigidbody>().isKinematic = true;
 
             socket.Emit("in scene");
@@ -259,7 +261,8 @@ public class NetworkManager : MonoBehaviour
 
     internal void land()
     {
-        player.GetComponent<PlayerController>().animator.enabled = true;
+        //player.GetComponent<PlayerController>().animator.enabled = true;
+        player.GetComponent<PlayerController>().animator.SetBool("air born", false);
         parachute.SetActive(false);
         PositionJson p = new PositionJson(player.transform.position,playerId);
         String s = JsonUtility.ToJson(p);
@@ -638,8 +641,9 @@ public class NetworkManager : MonoBehaviour
         public int sessionId;
         public float horizontal, vertical;
         public bool run, isHustler, isAiming, isCrouching;
+        public bool isAirBorn;
 
-        public AnimationJson(int sessionId, float horizontal, float vertical, bool run, bool isHustler, bool isAiming, bool isCrouching)
+        public AnimationJson(int sessionId, float horizontal, float vertical, bool run, bool isHustler, bool isAiming, bool isCrouching,bool isAirBorn)
         {
             this.sessionId = sessionId;
             this.horizontal = horizontal;
@@ -648,6 +652,7 @@ public class NetworkManager : MonoBehaviour
             this.isHustler = isHustler;
             this.isAiming = isAiming;
             this.isCrouching = isCrouching;
+            this.isAirBorn = isAirBorn;
         }
     }
     [Serializable]
