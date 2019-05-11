@@ -16018,6 +16018,7 @@ MonoBehaviour:
   healthBar: {fileID: 1663279939}
   killed: {fileID: 1852977821}
   alive: {fileID: 232417230}
+  btn: {fileID: 699049226}
   state: {fileID: 175956927}
   panel: {fileID: 267889866}
 --- !u!1001 &1503914427
