@@ -71,12 +71,12 @@ public class NetworkManager : MonoBehaviour
 
     }
 
-    private void OnYouWon(SocketIOEvent obj)
+    public void OnYouWon(SocketIOEvent obj)
     {
         Debug.Log("you won");
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-
+        sessionManager.hudManager.panel.SetActive(true);
        // DestroyScene();
     }
 

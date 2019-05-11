@@ -117,6 +117,7 @@ public class SessionManager : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        hudManager.panel.SetActive(true);
         hudManager.state.text = "you died";
         playerShooter = localPlayer.GetComponent<PlayerShooter>();
         if (playerShooter.firstWeapon != null) RemoveWeapon(playerShooter.firstWeapon.gameObject);
