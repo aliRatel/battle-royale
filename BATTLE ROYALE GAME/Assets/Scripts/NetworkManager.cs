@@ -73,6 +73,8 @@ public class NetworkManager : MonoBehaviour
 
     public void OnYouWon(SocketIOEvent obj)
     {
+        status = "dead";
+        sessionManager.hudManager.btn.onClick.AddListener(DestroyScene);
         Debug.Log("you won");
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;

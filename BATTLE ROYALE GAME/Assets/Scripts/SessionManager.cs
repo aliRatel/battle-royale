@@ -115,6 +115,8 @@ public class SessionManager : MonoBehaviour
 
     internal void KillMe()
     {
+        hudManager.btn.onClick.AddListener(networkManager.DestroyScene);
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         hudManager.panel.SetActive(true);

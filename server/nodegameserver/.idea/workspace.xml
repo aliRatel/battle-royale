@@ -24,17 +24,17 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="661">
-              <caret line="274" column="0" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
+            <state relative-caret-position="554">
+              <caret line="298" column="0" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
               <folding>
                 <element signature="n#!!block;n#RsaEcr#0" expanded="false" />
                 <element signature="n#!!block;n#RsaDec#0" expanded="false" />
                 <element signature="e#1614#1877#0" expanded="false" />
                 <element signature="e#2104#2818#0" expanded="false" />
                 <element signature="e#2869#2937#0" expanded="false" />
-                <element signature="e#7649#7770#0" expanded="false" />
-                <element signature="e#7936#8006#0" expanded="false" />
-                <element signature="e#8049#8151#0" expanded="false" />
+                <element signature="e#6335#7247#0" expanded="false" />
+                <element signature="e#8112#8182#0" expanded="false" />
+                <element signature="e#8225#8327#0" expanded="false" />
                 <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
                 <element signature="n#!!block;n#addNewUser#0" expanded="false" />
                 <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -144,8 +144,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -297,26 +297,27 @@
       <workItem from="1557506123828" duration="7043000" />
       <workItem from="1557519387096" duration="9240000" />
       <workItem from="1557572921347" duration="7565000" />
+      <workItem from="1557611551366" duration="1491000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218196000" />
+    <option name="totallyTimeSpent" value="219687000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31503198" sideWeight="0.4895013" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31823027" sideWeight="0.48425198" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1744312" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1744312" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31503198" sideWeight="0.5104987" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31823027" sideWeight="0.515748" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997833" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -378,9 +379,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -424,9 +425,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -451,9 +452,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -504,9 +505,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -531,9 +532,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -558,9 +559,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -585,9 +586,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -612,9 +613,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -639,9 +640,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -659,9 +660,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -679,9 +680,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -699,9 +700,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -719,9 +720,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -739,9 +740,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -759,9 +760,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -779,9 +780,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -799,9 +800,9 @@
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />
@@ -935,17 +936,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="661">
-          <caret line="274" column="0" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
+        <state relative-caret-position="554">
+          <caret line="298" column="0" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#RsaEcr#0" expanded="false" />
             <element signature="n#!!block;n#RsaDec#0" expanded="false" />
             <element signature="e#1614#1877#0" expanded="false" />
             <element signature="e#2104#2818#0" expanded="false" />
             <element signature="e#2869#2937#0" expanded="false" />
-            <element signature="e#7649#7770#0" expanded="false" />
-            <element signature="e#7936#8006#0" expanded="false" />
-            <element signature="e#8049#8151#0" expanded="false" />
+            <element signature="e#6335#7247#0" expanded="false" />
+            <element signature="e#8112#8182#0" expanded="false" />
+            <element signature="e#8225#8327#0" expanded="false" />
             <element signature="n#!!block;n#getclientBySessionId#0" expanded="false" />
             <element signature="n#!!block;n#addNewUser#0" expanded="false" />
             <element signature="n#!!block;n#resetServer#0" expanded="false" />

@@ -283,16 +283,19 @@ console.log(data);
 
     });
     socket.on('player moved', function (data) {
+        if(players[data.sessionId]==null) return;
 
         players[data.sessionId].position = data.position.slice();
         socket.broadcast.emit('player moved', data);
     });
     socket.on('player rotated', function (data) {
-
+        console.log(data);
+        if(players[data.sessionId]==null) return;
         players[data.sessionId].rotation = data.rotation;
         socket.broadcast.emit('player rotated', data);
     });
     socket.on('player animated', function (data) {
+        if(players[data.sessionId]==null) return;
 
         socket.broadcast.emit('player animated', data);
     });

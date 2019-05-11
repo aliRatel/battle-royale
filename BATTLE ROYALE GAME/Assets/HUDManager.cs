@@ -17,7 +17,7 @@ public class HUDManager : MonoBehaviour {
     public Text alive;
     Color yellow = Color.yellow;
     Color white = Color.white;
-
+    public Button btn;
     public Text  state;
     public GameObject panel;
 
