@@ -224,6 +224,9 @@ public    float z;
         int x = Screen.width / 2;
         int y = Screen.height / 2;
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(x, y));
+        ray.origin = Camera.main.transform.position;
+        ray.origin += Camera.main.transform.forward * 15;
+
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {

@@ -17,12 +17,15 @@ public class PlayerController : MonoBehaviour
     public bool localPlayer;
     public NetworkManager networkManager;
     public GameObject plain;
+    public Rigidbody rb;
+    public bool isJumping;
 
 
     // Use this for initialization
     void Start()
     {
-
+        isJumping = false;
+        rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         localPlayer = true;
         networkManager = GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>();
@@ -32,6 +35,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (rb.velocity.magnitude > 1)
+        {
+            isJumping = false;
+        }
         if (networkManager.status == "dead") return;
 
         currentPosiotion = transform.position;
@@ -107,7 +114,12 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space))
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y + speed * Time.deltaTime, transform.position.z);
+            if (isJumping) return;
+            animator.SetBool("jump", true);
+            isJumping = true;
+         //   rb.velocity = transform.position +(transform.up *0.5f );
+            
+            transform.position = new Vector3(transform.position.x, transform.position.y + ( 15* Time.deltaTime), transform.position.z);
         }
         #endregion
         #region networking
