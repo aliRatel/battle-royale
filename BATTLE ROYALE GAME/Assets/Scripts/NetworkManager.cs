@@ -74,7 +74,10 @@ public class NetworkManager : MonoBehaviour
     private void OnYouWon(SocketIOEvent obj)
     {
         Debug.Log("you won");
-        DestroyScene();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+       // DestroyScene();
     }
 
     private void OnCanJoin(SocketIOEvent obj)
@@ -139,7 +142,7 @@ public class NetworkManager : MonoBehaviour
         {
             status = "dead";
            sessionManager.KillMe();
-            DestroyScene();
+          //  DestroyScene();
         }
         else
         {
@@ -147,8 +150,9 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    private void DestroyScene()
+    public void DestroyScene()
     {
+
         GameObject[] gameObjects = GameObject.FindObjectsOfType<GameObject>();
         foreach (GameObject go in gameObjects)
         {

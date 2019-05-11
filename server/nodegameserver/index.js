@@ -246,31 +246,21 @@ var i = findId(socket);
        socket.broadcast.to(sessionRoom).emit('flash muzzle',data);
     });
     socket.on('hit player', function (data) {
-if(players[data.playerId].health<=0)return;
+if(players[data.playerId].health<=0)players[data.playerId].status='dead';
 console.log(data);
        players[data.playerId].health -=data.health;
+
         if(players[data.playerId].health <=0){
             console.log("kill");
             players[data.playerId].status = 'dead';
+            console.log(players);
             io.sockets.in(sessionRoom).emit('kill player',data);
             var isWinner = checkWinner();
             if(isWinner != -1){
-                console.log("we have a winner   "+isWinner);
-                io.to(players[isWinner].socketId).emit('you won');
-                players=[];
-                config.startTime = null;
-                config.status= "ready";
-                weapons=[];
-                totalPlayers = 0;
-                plain = {
-                    position: [],
-                    rotation: [],
-                    players: 0,
-                    status: 'fixed'
-                };
-                io.sockets.clients(sessionRoom).forEach(function(s){
-                    s.leave(sessionRoom);
-                });
+                console.log("we have a winner   "+players[isWinner].socketId);
+                io.to(players[isWinner].socketId).emit('you won',{s:'asdf'});
+                resetServer();
+
             }
         }else{
             console.log("hit");
@@ -441,12 +431,35 @@ function checkWinner() {
     var winnderId=-1;
     var alive = 0 ;
     for(var i = 0;i<players.length;i++){
-        if(players[i].status != 'dead')
+        if(players[i].status != 'dead') {
             winnderId = i;
-        alive++;
+            alive++;
+        }
         if(alive>1){
             return -1;
         }
     }
     return winnderId;
+}
+function resetServer() {
+    players=[];
+    config.startTime = null;
+    config.status= "ready";
+    weapons=[];
+    totalPlayers = 0;
+    plain = {
+        position: [],
+        rotation: [],
+        players: 0,
+        status: 'fixed'
+    };
+    io.of('/').in(sessionRoom).clients(function(error, clients) {
+        if (clients.length > 0) {
+            console.log('clients in the room: \n');
+            console.log(clients);
+            clients.forEach(function (socket_id) {
+                io.sockets.sockets[socket_id].leave(sessionRoom);
+            });
+        }
+    });
 }

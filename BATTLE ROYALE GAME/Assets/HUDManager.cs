@@ -18,6 +18,9 @@ public class HUDManager : MonoBehaviour {
     Color yellow = Color.yellow;
     Color white = Color.white;
 
+    public Text  state;
+    public GameObject panel;
+
     // Use this for initialization
     void Start () {
         white.a = 100f;

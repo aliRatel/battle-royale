@@ -115,6 +115,9 @@ public class SessionManager : MonoBehaviour
 
     internal void KillMe()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        hudManager.state.text = "you died";
         playerShooter = localPlayer.GetComponent<PlayerShooter>();
         if (playerShooter.firstWeapon != null) RemoveWeapon(playerShooter.firstWeapon.gameObject);
         if (playerShooter.SecondWeapon != null) RemoveWeapon(playerShooter.SecondWeapon.gameObject);
