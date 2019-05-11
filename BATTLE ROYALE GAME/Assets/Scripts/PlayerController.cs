@@ -35,10 +35,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rb.velocity.magnitude > 1)
-        {
-            isJumping = false;
-        }
+        //if (rb.velocity.magnitude > 1)
+        //{
+        //    isJumping = false;
+        //}
         if (networkManager.status == "dead") return;
 
         currentPosiotion = transform.position;
@@ -114,10 +114,10 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space))
         {
-            if (isJumping) return;
-            animator.SetBool("jump", true);
-            isJumping = true;
-         //   rb.velocity = transform.position +(transform.up *0.5f );
+         //   if (isJumping) return;
+         //   animator.SetBool("jump", true);
+         //   isJumping = true;
+         ////   rb.velocity = transform.position +(transform.up *0.5f );
             
             transform.position = new Vector3(transform.position.x, transform.position.y + ( 15* Time.deltaTime), transform.position.z);
         }
