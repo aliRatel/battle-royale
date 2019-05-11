@@ -200,6 +200,16 @@ public class SessionManager : MonoBehaviour
         }
     }
 
+    internal void SetAliveCount()
+    {
+        int a = 1;
+        for(int i = 0; i < playersObjects.Length; i++)
+        {
+            if (playersObjects[i] != null) a++;
+        }
+        hudManager.alive.text = a.ToString();
+    }
+
     internal void RemoveWeapon(GameObject temp)
     {
         playerShooter = localPlayer.GetComponent<PlayerShooter>();

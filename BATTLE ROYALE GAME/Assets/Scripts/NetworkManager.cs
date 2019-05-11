@@ -194,6 +194,7 @@ public class NetworkManager : MonoBehaviour
             player.GetComponent<Rigidbody>().isKinematic = true;
 
             socket.Emit("in scene");
+            sessionManager.SetAliveCount();
             sessionManager.sessionAprroved = false;
 
         }
