@@ -57,13 +57,26 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isCrouching", false);
 
         }
-        if (Input.GetMouseButton(1) || Input.GetMouseButton(0))
+        if ( Input.GetMouseButton(0))
         {
             animator.SetBool("isAiming", true);
         }
         else
         {
             animator.SetBool("isAiming", false);
+        }
+        
+        if (Input.GetMouseButton(1) && animator.GetBool("isHustler"))
+        {
+            animator.SetBool("isAiming", true);
+            Camera.main.fieldOfView = 30;
+
+        }
+        else
+        {
+            animator.SetBool("isAiming", false);
+            Camera.main.fieldOfView = 60;
+
         }
 
 

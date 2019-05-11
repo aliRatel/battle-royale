@@ -38,7 +38,7 @@ var config = {
     time: 1,
     startTime: null,
     totalTime: (60000)* 5,
-    totalPlayers: 1,
+    totalPlayers: 3,
     status: 'ready'
 };
 var plain = {

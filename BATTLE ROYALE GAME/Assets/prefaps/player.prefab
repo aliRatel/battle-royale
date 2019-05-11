@@ -5189,6 +5189,8 @@ MonoBehaviour:
   localPlayer: 0
   networkManager: {fileID: 0}
   plain: {fileID: 0}
+  rb: {fileID: 0}
+  isJumping: 0
 --- !u!114 &114499333081086660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5265,7 +5267,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953391404207192}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7a25096b6909643459f33cf289add63f, type: 3}
