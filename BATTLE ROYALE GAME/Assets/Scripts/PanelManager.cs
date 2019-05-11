@@ -109,9 +109,21 @@ public class PanelManager : MonoBehaviour {
         {
             account.GetComponent<Text>().color = Color.red;
             account.GetComponent<Text>().text = "please log in ";
-            return; }
+            
+        }
+        else if (!networkManager.canJoin)
+        {
+            Debug.Log("can join is false");
+            account.GetComponent<Text>().color = Color.red;
+            account.GetComponent<Text>().text = "try again later ";
             GameObject.FindGameObjectWithTag("network manager").GetComponent<NetworkManager>().Play();
 
-        SceneManager.LoadScene(a);
+        }
+        else
+        {
+
+            SceneManager.LoadScene(a);
+        }
+        
     }
 }

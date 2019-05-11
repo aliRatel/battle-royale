@@ -20,7 +20,9 @@ public class NetworkManager : MonoBehaviour
     public String status = "in plain";
     public EncryptionManager encryptionManager;
     public ZoneManager zoneManager;
+    public  bool canJoin = false;
 
+ 
 
     // Use this for initialization
     void Awake()
@@ -40,6 +42,7 @@ public class NetworkManager : MonoBehaviour
 
     void Start()
     {
+        canJoin = false;
         socket.On("rsa", OnRsa);
         socket.On("logged in successed", OnLogIn);
         socket.On("setId", SetSessionId);
@@ -61,7 +64,29 @@ public class NetworkManager : MonoBehaviour
         socket.On("player landed", OnOtherPlayerLanded);
         socket.On("decrease zone", OnDecreaseZone);
         socket.On("disconnect", OnDisconnect);
+        socket.On("try again",OnTryAgain);
+        socket.On("can join", OnCanJoin);
+        socket.On("you won",OnYouWon);
         CheckNulls();
+
+    }
+
+    private void OnYouWon(SocketIOEvent obj)
+    {
+        DestroyScene();
+    }
+
+    private void OnCanJoin(SocketIOEvent obj)
+    {
+        Debug.Log("can join");
+        canJoin = true;
+
+    }
+
+    private void OnTryAgain(SocketIOEvent obj)
+    {
+        Debug.Log("try again");
+        canJoin = false;
 
     }
 
@@ -126,7 +151,7 @@ public class NetworkManager : MonoBehaviour
         GameObject[] gameObjects = GameObject.FindObjectsOfType<GameObject>();
         foreach (GameObject go in gameObjects)
         {
-            if (go.tag != this.tag) Destroy(go);
+            if (go.tag != this.tag || go.name != "SocketIO") Destroy(go);
         }
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -137,11 +162,11 @@ public class NetworkManager : MonoBehaviour
       playerId = 0 ;
       plain = null;
         parachute = null ;
-      loggedIn = false;
        isId = false;
       status = "in plain";
       encryptionManager = null;
-      zoneManager =null;
+        zoneManager = null;
+        canJoin = false;
         SceneManager.LoadScene(0);
 }
 

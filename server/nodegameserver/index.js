@@ -133,8 +133,16 @@ io.on('connection', function (socket) {
         logInUser(info, socket);
     });
     socket.on('play', function (data) {
-        if (config.status == 'in game')
+        if (config.status == 'in game') {
+            console.log('in game');
+            socket.emit('try again');
             return;
+        }else{
+            console.log('ready');
+
+            socket.emit('can join');
+        }
+
         if (config.status != 'loppy') {
             config.status = 'loppy';
         }
@@ -245,6 +253,24 @@ console.log(data);
             console.log("kill");
             players[data.playerId].status = 'dead';
             io.sockets.in(sessionRoom).emit('kill player',data);
+            var isWinner = checkWinner();
+            if(isWinner != -1){
+                io.to(players[isWinner].socketId).emit("you won");
+                players=[];
+                config.startTime = null;
+                config.status= "ready";
+                weapons=[];
+                totalPlayers = 0;
+                plain = {
+                    position: [],
+                    rotation: [],
+                    players: 0,
+                    status: 'fixed'
+                };
+                io.sockets.clients(sessionRoom).forEach(function(s){
+                    s.leave(sessionRoom);
+                });
+            }
         }else{
             console.log("hit");
 
@@ -255,10 +281,7 @@ console.log(data);
             io.sockets.in(sessionRoom).emit('hit player',da);
         }
 
-        var isWinner = checkWinner();
-        if(isWinner != -1){
 
-        }
 
     });
     socket.on('weapon changed', function (data) {
