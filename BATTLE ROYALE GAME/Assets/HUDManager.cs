@@ -20,7 +20,7 @@ public class HUDManager : MonoBehaviour {
     public Button btn;
     public Text  state;
     public GameObject panel;
-
+    public Image defaultImage;
     // Use this for initialization
     void Start () {
         white.a = 100f;
@@ -106,5 +106,21 @@ public class HUDManager : MonoBehaviour {
         b--;
         killed.text = a.ToString();
         alive.text = b.ToString();
+    }
+
+    internal void drop1()
+    {
+        w1Img.GetComponent<Image>().sprite = null;
+        w1Img.GetComponent<Image>().color = white;
+        Text t = w2Ammo.GetComponent<Text>();
+        t.text = "";
+    }
+
+    internal void drop2()
+    {
+        w2Img.GetComponent<Image>().sprite = null;
+        w2Img.GetComponent<Image>().color = white;
+        Text t = w1Ammo.GetComponent<Text>();
+        t.text = "";
     }
 }

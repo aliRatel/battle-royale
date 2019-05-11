@@ -121,10 +121,13 @@ public    float z;
 
 
             currentWeapon.action = "drop";
+            if (firstWeapon == currentWeapon) hUDManager.drop1();
+            if (SecondWeapon == currentWeapon) hUDManager.drop1();
 
             sessionManager.RemoveWeapon(currentWeapon.gameObject);
 
             currentWeapon = null;
+            
 
 
         }
