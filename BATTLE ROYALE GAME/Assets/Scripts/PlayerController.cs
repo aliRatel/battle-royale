@@ -35,10 +35,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (rb.velocity.magnitude > 1)
-        //{
-        //    isJumping = false;
-        //}
+        animator.SetBool("jump", false);
+
         if (networkManager.status == "dead") return;
 
         currentPosiotion = transform.position;
@@ -47,7 +45,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         #region animation
-    
+
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
@@ -86,9 +84,9 @@ public class PlayerController : MonoBehaviour
         #endregion animation
         #region movement
 
-        if(Input.GetKey(KeyCode.F)&&networkManager.status=="in plain" &&SceneManager.GetActiveScene().buildIndex==2)
+        if (Input.GetKey(KeyCode.F) && networkManager.status == "in plain" && SceneManager.GetActiveScene().buildIndex == 2)
         {
-            
+
             networkManager.Parachute();
 
         }
@@ -112,14 +110,10 @@ public class PlayerController : MonoBehaviour
         {
             transform.position += transform.right * speed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-         //   if (isJumping) return;
-         //   animator.SetBool("jump", true);
-         //   isJumping = true;
-         ////   rb.velocity = transform.position +(transform.up *0.5f );
-            
-            transform.position = new Vector3(transform.position.x, transform.position.y + ( 15* Time.deltaTime), transform.position.z);
+            animator.SetBool("jump", true);
+
         }
         #endregion
         #region networking
@@ -134,7 +128,7 @@ public class PlayerController : MonoBehaviour
             zof = Mathf.Abs(oldPosition.z - currentPosiotion.z);
 
 
-            if (xof > 5 || yof < 5 || zof <5)
+            if (xof > 5 || yof < 5 || zof < 5)
             {
                 networkManager.sendPos(transform.position, networkManager.playerId);
                 oldPosition = currentPosiotion;
@@ -148,7 +142,7 @@ public class PlayerController : MonoBehaviour
     {
         if (networkManager.status == "airborn" && collision.collider.gameObject.transform.root.tag != "eplayer")
         {
-            Debug.Log(" asfsadf" +collision.collider.name);
+            Debug.Log(" asfsadf" + collision.collider.name);
             networkManager.status = "on ground";
             networkManager.land();
         }
