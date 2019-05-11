@@ -207,6 +207,7 @@ public class SessionManager : MonoBehaviour
         {
             if (playersObjects[i] != null) a++;
         }
+        Debug.Log(a + " couuuuuuuuuuuuuuuuunt");
         hudManager.alive.text = a.ToString();
     }
 

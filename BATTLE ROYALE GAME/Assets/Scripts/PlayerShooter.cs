@@ -122,7 +122,7 @@ public    float z;
 
             currentWeapon.action = "drop";
             if (firstWeapon == currentWeapon) hUDManager.drop1();
-            if (SecondWeapon == currentWeapon) hUDManager.drop1();
+            if (SecondWeapon == currentWeapon) hUDManager.drop2();
 
             sessionManager.RemoveWeapon(currentWeapon.gameObject);
 
@@ -198,6 +198,8 @@ public    float z;
 
     private void hustlerSecondtWeapon()
     {
+        if (SecondWeapon == null) return;
+
         if (currentWeapon == firstWeapon)
         {
             if (firstWeapon != null) firstWeapon.gameObject.SetActive(false);
@@ -211,6 +213,7 @@ public    float z;
 
     private void hustlerFirstWeapon()
     {
+        if (firstWeapon == null) return;
         if (currentWeapon == SecondWeapon)
         {
             if (SecondWeapon != null) SecondWeapon.gameObject.SetActive(false);

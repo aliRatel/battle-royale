@@ -111,16 +111,17 @@ public class HUDManager : MonoBehaviour {
     internal void drop1()
     {
         w1Img.GetComponent<Image>().sprite = null;
-        w1Img.GetComponent<Image>().color = white;
-        Text t = w2Ammo.GetComponent<Text>();
+        w1Bg.GetComponent<Image>().color = white;
+        Text t = w1Ammo.GetComponent<Text>();
         t.text = "";
     }
 
     internal void drop2()
     {
         w2Img.GetComponent<Image>().sprite = null;
-        w2Img.GetComponent<Image>().color = white;
-        Text t = w1Ammo.GetComponent<Text>();
+        w1Bg.GetComponent<Image>().color = white;
+
+        Text t = w2Ammo.GetComponent<Text>();
         t.text = "";
     }
 }
