@@ -73,6 +73,7 @@ public class NetworkManager : MonoBehaviour
 
     private void OnYouWon(SocketIOEvent obj)
     {
+        Debug.Log("you won");
         DestroyScene();
     }
 
@@ -421,10 +422,7 @@ public class NetworkManager : MonoBehaviour
     private void OnWeapons(SocketIOEvent obj)
     {
 
-        String weapons = obj.data.ToString();
-        WeaponsJson2 weaponsJson = JsonUtility.FromJson<WeaponsJson2>(weapons);
-
-        sessionManager.distribute(weaponsJson.weapons);
+   
     }
 
     private void SetSessionId(SocketIOEvent obj)
@@ -461,6 +459,10 @@ public class NetworkManager : MonoBehaviour
     private void MovePlain(SocketIOEvent obj)
     {
         Debug.Log("move plain");
+        String weapons = obj.data.ToString();
+        WeaponsJson2 weaponsJson = JsonUtility.FromJson<WeaponsJson2>(weapons);
+
+        sessionManager.distribute(weaponsJson.weapons);
         if (plain == null)
             plain = GameObject.FindGameObjectWithTag("plain");
         Debug.Log(plain);

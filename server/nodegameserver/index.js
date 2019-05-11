@@ -38,7 +38,7 @@ var config = {
     time: 1,
     startTime: null,
     totalTime: (60000)* 5,
-    totalPlayers: 3,
+    totalPlayers: 2,
     status: 'ready'
 };
 var plain = {
@@ -217,8 +217,8 @@ var i = findId(socket);
             console.log(config.startTime);
             zoneSize = 100;
             setInterval(decreaseZone,2000);
-            io.sockets.in(sessionRoom).emit('move plain');
-           io.sockets.in(sessionRoom).emit('weapons',{weapons});
+            io.sockets.in(sessionRoom).emit('move plain',{weapons});
+           //io.sockets.in(sessionRoom).emit('weapons');
 
         }
     });
@@ -255,7 +255,8 @@ console.log(data);
             io.sockets.in(sessionRoom).emit('kill player',data);
             var isWinner = checkWinner();
             if(isWinner != -1){
-                io.to(players[isWinner].socketId).emit("you won");
+                console.log("we have a winner   "+isWinner);
+                io.to(players[isWinner].socketId).emit('you won');
                 players=[];
                 config.startTime = null;
                 config.status= "ready";
