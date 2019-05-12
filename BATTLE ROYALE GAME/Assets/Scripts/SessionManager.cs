@@ -333,8 +333,8 @@ public class SessionManager : MonoBehaviour
     internal void movePlayer(Vector3 pos, int sessionId)
     {
 
-
-        playersObjects[sessionId].transform.position = pos;
+        
+        playersObjects[sessionId].transform.position = Vector3.Lerp(playersObjects[sessionId].transform.position,pos,1);
 
     }
 
