@@ -330,11 +330,19 @@ public class SessionManager : MonoBehaviour
 
 
     }
-    internal void movePlayer(Vector3 pos, int sessionId)
+    internal void movePlayer(Vector3 pos, int sessionId,float relay)
     {
+            EnemyPlayer enemyPlayer = playersObjects[sessionId].GetComponent<EnemyPlayer>();
+        enemyPlayer.lastRealPosion = enemyPlayer.realPosition;
+        enemyPlayer.realPosition = pos;
+        enemyPlayer.timeToLerp = relay;
 
-        
-        playersObjects[sessionId].transform.position = Vector3.Lerp(playersObjects[sessionId].transform.position,pos,1);
+        if(enemyPlayer.realPosition != enemyPlayer.transform.position)
+        {
+            enemyPlayer.isLerpingPosition = true;
+        }
+        enemyPlayer.timestartedLerping = Time.time;
+
 
     }
 

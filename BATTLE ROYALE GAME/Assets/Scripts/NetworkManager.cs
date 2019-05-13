@@ -326,9 +326,9 @@ public class NetworkManager : MonoBehaviour
         if (sessionManager.isSessionAprroved())
             socket.Emit("player rotated", new JSONObject(newRot));
     }
-    public void sendPos(Vector3 pos, int sessionId)
+    public void sendPos(Vector3 pos, int sessionId,float relay)
     {
-        PositionJson posJ = new PositionJson(pos, playerId);
+        PositionJson posJ = new PositionJson(pos, playerId,relay);
         String newPos = JsonUtility.ToJson(posJ);
         if (sessionManager.isSessionAprroved())
             socket.Emit("player moved", new JSONObject(newPos));
@@ -588,12 +588,14 @@ public class NetworkManager : MonoBehaviour
     {
         Vector3 pos;
         int sessionId;
+        float relay;
         String s = obj.data.ToString();
 
         PositionJson posJ = JsonUtility.FromJson<PositionJson>(s);
         pos = new Vector3(posJ.position[0], posJ.position[1], posJ.position[2]);
         sessionId = posJ.sessionId;
-        sessionManager.movePlayer(pos, sessionId);
+        relay = posJ.relay;
+        sessionManager.movePlayer(pos, sessionId,relay);
     }
 
     private void OnRsa(SocketIOEvent obj)
@@ -728,11 +730,13 @@ public class NetworkManager : MonoBehaviour
     {
         public float[] position;
         public int sessionId;
-        public PositionJson(Vector3 position, int sessionId)
+        public float relay;
+        public PositionJson(Vector3 position, int sessionId,float relay)
         {
             this.position = new float[]
             { position.x, position.y, position.z };
             this.sessionId = sessionId;
+            this.relay = relay;
         }
         public PositionJson(Vector3 position)
         {

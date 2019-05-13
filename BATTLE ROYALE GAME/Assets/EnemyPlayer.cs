@@ -14,6 +14,12 @@ public class EnemyPlayer : MonoBehaviour
     public int health;
     public int armor;
     public int id;
+    public bool isLerpingPosition;
+    public Vector3 realPosition;
+    public Vector3 lastRealPosion;
+    public float timestartedLerping;
+    public float timeToLerp;
+    
     private void Awake()
     {
         health = 100;
@@ -24,12 +30,24 @@ public class EnemyPlayer : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        isLerpingPosition = false;
+        realPosition = transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    
+    private void FixedUpdate()
     {
-        
+        NetworkLerp();
+    }
+
+    private void NetworkLerp()
+    {
+        if (isLerpingPosition)
+        {
+            float lerpPercentage = (Time.time - timestartedLerping) / timeToLerp;
+            transform.position = Vector3.Lerp(lastRealPosion, realPosition, lerpPercentage); 
+        }
     }
 
     public void dicreaseHealth(int health ,int id )

@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour
     public GameObject plain;
     public Rigidbody rb;
     public bool isJumping;
+    public bool canSend;
+    public float networkSendRate = 5;
+    public float timeBetweenMovementStart;
+    public float timeBetwennMovementEnd;
 
 
     // Use this for initialization
@@ -130,27 +134,45 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
         #region networking
-
-
-        if (currentPosiotion != oldPosition)
-        {
-            //todo position networking
-            float xof, yof, zof;
-            xof = Mathf.Abs(oldPosition.x - currentPosiotion.x);
-            yof = Mathf.Abs(oldPosition.y - currentPosiotion.y);
-            zof = Mathf.Abs(oldPosition.z - currentPosiotion.z);
-
-
-            if (xof > 2 || yof > 2 || zof > 2)
-            {
-                networkManager.sendPos(transform.position, networkManager.playerId);
-                oldPosition = currentPosiotion;
-
-            }
-           
-            #endregion networking
+        if(!canSend){
+            canSend = true;
+            StartCoroutine(StartNetworkSendCooldown());
         }
+
+       
+        //if (currentPosiotion != oldPosition)
+        //{
+        //    //todo position networking
+        //    float xof, yof, zof;
+        //    xof = Mathf.Abs(oldPosition.x - currentPosiotion.x);
+        //    yof = Mathf.Abs(oldPosition.y - currentPosiotion.y);
+        //    zof = Mathf.Abs(oldPosition.z - currentPosiotion.z);
+
+
+        //    if (xof > 5 || yof < 5 || zof < 5)
+        //    {
+        //        networkManager.sendPos(transform.position, networkManager.playerId);
+        //        oldPosition = currentPosiotion;
+
+        //    }
+
+          
+        //}
+      #endregion networking
     }
+    private IEnumerator StartNetworkSendCooldown()
+    {
+        timeBetweenMovementStart = Time.time;
+        yield return new WaitForSeconds((1 / networkSendRate));
+        SendNetworkMovement();
+    }
+    private void SendNetworkMovement()
+    {
+        timeBetwennMovementEnd = Time.time;
+        networkManager.sendPos(transform.position, networkManager.playerId,(timeBetwennMovementEnd - timeBetweenMovementStart));
+        canSend = false;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (networkManager.status == "airborn" && collision.collider.gameObject.transform.root.tag != "eplayer")
