@@ -299,7 +299,7 @@ public class NetworkManager : MonoBehaviour
         //player.GetComponent<PlayerController>().animator.enabled = true;
         player.GetComponent<PlayerController>().animator.SetBool("air born", false);
         parachute.SetActive(false);
-        PositionJson p = new PositionJson(player.transform.position,playerId);
+        PositionJson p = new PositionJson(player.transform.position,playerId,0);
         String s = JsonUtility.ToJson(p);
         socket.Emit("land", new JSONObject(s));
         parachute.SetActive(false);
@@ -411,7 +411,7 @@ public class NetworkManager : MonoBehaviour
         player.transform.position = plain.transform.position + Vector3.down * 20;
         player.GetComponent<Rigidbody>().isKinematic = false;
         sessionManager.sessionAprroved = true;
-        PositionJson p = new PositionJson(player.transform.position, playerId);
+        PositionJson p = new PositionJson(player.transform.position, playerId,0);
         String s = JsonUtility.ToJson(p);
         socket.Emit("parachute", new JSONObject(s));
         status = "airborn";
@@ -798,7 +798,7 @@ public class NetworkManager : MonoBehaviour
             p = new PositionJson[temp.Length];
             for (int i = 0; i < temp.Length; i++)
             {
-                p[i] = new PositionJson(temp[i].transform.position, 0);
+                p[i] = new PositionJson(temp[i].transform.position, 0,0);
             }
         }
 
