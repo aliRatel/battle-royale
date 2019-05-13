@@ -304,6 +304,7 @@ public class NetworkManager : MonoBehaviour
         socket.Emit("land", new JSONObject(s));
         parachute.SetActive(false);
         player.GetComponent<Rigidbody>().isKinematic = false;
+        player.GetComponent<Rigidbody>().drag = 0;
 
     }
     internal void KickPlayers()
@@ -410,6 +411,7 @@ public class NetworkManager : MonoBehaviour
         player.transform.Find("Main Camera").gameObject.SetActive(true);
         player.transform.position = plain.transform.position + Vector3.down * 20;
         player.GetComponent<Rigidbody>().isKinematic = false;
+        player.GetComponent<Rigidbody>().drag = 1.2f;
         sessionManager.sessionAprroved = true;
         PositionJson p = new PositionJson(player.transform.position, playerId,0);
         String s = JsonUtility.ToJson(p);
